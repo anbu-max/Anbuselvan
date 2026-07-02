@@ -1,95 +1,98 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import Link from "next/link"
-import { Menu } from "lucide-react"
-import { ThemeToggle } from "@/components/theme-toggle"
-import { Button } from "@/components/ui/button"
-import {
-  Sheet,
-  SheetContent,
-  SheetTrigger,
-} from "@/components/ui/sheet"
+import React, { useState, useEffect } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useTheme } from "next-themes";
 
 export function Navbar() {
-  const [isScrolled, setIsScrolled] = React.useState(false)
+  const pathname = usePathname();
+  const { setTheme, resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  React.useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50)
+  // Monitor path changes to close mobile menu
+  useEffect(() => {
+    setIsMenuOpen(false);
+  }, [pathname]);
+
+  // Wait for mounting on the client to avoid theme mismatch hydration errors
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const isInfoPage = pathname?.startsWith("/information");
+
+  const toggleTheme = () => {
+    setTheme(resolvedTheme === "dark" ? "light" : "dark");
+  };
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>, section: string) => {
+    if (pathname === "/") {
+      e.preventDefault();
+      window.dispatchEvent(new CustomEvent("nav-section", { detail: section }));
     }
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+  };
 
-  const navLinks = [
-    { name: "About Me", href: "#about" },
-    { name: "Projects", href: "#projects" },
-    { name: "Skills", href: "#skills" },
-    { name: "Blog", href: "https://thrive-blog.vercel.app/", external: true },
-    { name: "Contact", href: "#contact" },
-  ]
+  // Links list based on context
+  const getLinks = () => {
+    const links = [
+      { name: "Home", href: "/", section: "me" },
+      { name: "Skills", href: "/#skills", section: "skills" },
+      { name: "Experience", href: "/#experience", section: "me" },
+      { name: "Projects", href: "/#projects", section: "projects" },
+      { name: "Contact", href: "/#contact", section: "contact" }
+    ];
 
-  return (
-    <div
-      className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
-        isScrolled ? "pt-4" : "pt-0"
-      }`}
-    >
-      <header
-        className={`w-full transition-all duration-500 mx-auto ${
-          isScrolled
-            ? "max-w-2xl rounded-full border bg-background/80 backdrop-blur-md shadow-lg py-2"
-            : "max-w-7xl bg-transparent py-4 border-b border-transparent"
-        }`}
-      >
-        <div className={`container mx-auto flex items-center justify-between px-6 ${isScrolled ? "h-12" : "h-16"}`}>
-        <Link href="/" className="text-2xl font-bold tracking-tighter hover:text-primary transition-colors">
-          SSS
-        </Link>
-        <nav className="hidden md:flex gap-6">
-          {navLinks.map((link) => (
-            <Link
-              key={link.name}
-              href={link.href}
-              target={link.external ? "_blank" : undefined}
-              className="text-sm font-medium hover:text-brand-blue transition-colors relative group"
+    return (
+      <ul className={isMenuOpen ? "active" : ""}>
+        {links.map((link) => (
+          <li key={link.name}>
+            <Link 
+              href={link.href} 
+              onClick={(e) => handleNavClick(e, link.section)}
             >
               {link.name}
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-blue transition-all group-hover:w-full"></span>
             </Link>
-          ))}
-        </nav>
-        <div className="flex items-center gap-4">
-          <ThemeToggle />
-          {/* Mobile Menu */}
-          <div className="md:hidden">
-            <Sheet>
-                <SheetTrigger asChild>
-                    <Button variant="ghost" size="icon">
-                        <Menu className="h-6 w-6" />
-                        <span className="sr-only">Toggle menu</span>
-                    </Button>
-                </SheetTrigger>
-                <SheetContent side="right">
-                    <nav className="flex flex-col gap-4 mt-8">
-                        {navLinks.map((link) => (
-                            <Link
-                                key={link.name}
-                                href={link.href}
-                                target={link.external ? "_blank" : undefined}
-                                className="text-lg font-medium hover:text-brand-blue transition-colors"
-                            >
-                                {link.name}
-                            </Link>
-                        ))}
-                    </nav>
-                </SheetContent>
-            </Sheet>
-          </div>
+          </li>
+        ))}
+        <li>
+          <Link href="/information">Full Story</Link>
+        </li>
+      </ul>
+    );
+  };
+
+  return (
+    <div className="pill-navbar-container">
+      <nav className="pill-navbar">
+        <button className="menu-btn" onClick={toggleMenu} aria-label="Toggle menu">
+          ☰
+        </button>
+        <Link href="/" className="logo">
+          ANBU<span>.</span>
+        </Link>
+        {getLinks()}
+        <div className="right-actions">
+          {mounted && (
+            <button
+              className="theme-toggle"
+              onClick={toggleTheme}
+              aria-label="Toggle theme"
+            >
+              {resolvedTheme === "dark" ? (
+                <i className="fas fa-sun"></i>
+              ) : (
+                <i className="fas fa-moon"></i>
+              )}
+            </button>
+          )}
         </div>
-      </div>
-      </header>
+      </nav>
     </div>
-  )
+  );
 }

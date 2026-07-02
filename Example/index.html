@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title> Anbu| Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+
+</head>
+</head>
+
+<body>
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="logo">SSS</div>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="#info">Information</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+        <i class="fas fa-moon"></i>
+        <i class="fas fa-sun" style="display: none;"></i>
+      </button>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1>Ciao, I'm Anbu Selvan.</h1>
+    <p>2026 University Graduate | Automation Expert and Software Developer</p>
+    <p>Your friendly neighbourhood software engineer </p>
+
+  </section>
+
+  <!-- Quote -->
+  <section class="quote">
+    <p>“No matter what the world says, I just walk my own path.”</p>
+    <span>- Roronoa Zoro</span>
+  </section>
+
+  <!-- Information Section -->
+  <section id="info" class="info">
+    <h2>Information</h2>
+    <p>
+      Hi there, I'm Anbu Selvan
+      I build my own products, alongside working with companies to help them build theirs.
+      Passionate about tech , problem-solving, and web development.
+    </p>
+
+
+
+    <!-- Action buttons -->
+    <div class="action-buttons">
+      <div class="read-more-wrap">
+        <a href="information.html" class="btn read-more-btn">Read More</a>
+      </div>
+      <div class="download-resume-wrap">
+        <a href="https://drive.google.com/file/d/1oNRSv2bMb68kEiEIjxi0pD1ea1ly6m18/view?usp=sharing"
+          class="btn download-resume-btn" target="_blank" rel="noopener">
+          <i class="fas fa-download"></i> Download Resume
+        </a>
+      </div>
+    </div>
+
+  </section>
+
+
+  <!-- Projects Section -->
+  <section id="projects" class="projects">
+    <h2>Personal Projects</h2>
+    <div class="project-grid">
+      <div class="project-card">
+        <!-- REPLACE THIS IMAGE: Replace 'img/moviedex-project.jpg' with your actual project screenshot/image -->
+        <img src="/img/movie.png" alt="MovieDex Project Screenshot" class="project-image">
+        <div class="project-content">
+          <h3>MovieDex</h3>
+          <p>Used React and OMDB api to show movie details and add favorites</p>
+          <!-- REPLACE THIS LINK: Replace '#' with your actual GitHub repository URL for MovieDex -->
+          <a href="https://github.com/anbu-max/Moviedex" class="github-link" target="_blank" rel="noopener"
+            aria-label="View MovieDex on GitHub">
+            <i class="fab fa-github"></i>
+          </a>
+        </div>
+      </div>
+      <div class="project-card">
+        <!-- REPLACE THIS IMAGE: Replace 'img/todo-auth-project.jpg' with your actual project screenshot/image -->
+        <img src="/img/registerTODO.png" alt="Todo Auth Project Screenshot" class="project-image">
+        <div class="project-content">
+          <h3>Todo - Auth</h3>
+          <p>Used SpringBoot , jpa/Hibernate , JWT for authentication, PostgreSQL and REST API for CRUD operations</p>
+          <!-- REPLACE THIS LINK: Replace '#' with your actual GitHub repository URL for Todo Auth -->
+          <a href="https://github.com/anbu-max/TodoJwtAuth" class="github-link" target="_blank" rel="noopener"
+            aria-label="View Todo Auth on GitHub">
+            <i class="fab fa-github"></i>
+          </a>
+        </div>
+      </div>
+      <div class="project-card">
+        <!-- REPLACE THIS IMAGE: Replace 'img/url-shortener-project.jpg' with your actual project screenshot/image -->
+        <img src="https://via.placeholder.com/400x250/ff6b6b/ffffff?text=URL+Shortener+Project"
+          alt="URL Shortener Project Screenshot" class="project-image">
+        <div class="project-content">
+          <h3>URL shortner</h3>
+          <p>Built a URL shortening service that converts long URLs into short, shareable links with optional expiration
+            support.
+            The application exposes RESTful APIs to generate short URLs and handle redirection requests efficiently.</p>
+          <!-- REPLACE THIS LINK: Replace '#' with your actual GitHub repository URL for URL Shortener -->
+          <a href="https://github.com/anbu-max/URLs-Simplifier" class="github-link" target="_blank" rel="noopener"
+            aria-label="View URL Shortener on GitHub">
+            <i class="fab fa-github"></i>
+          </a>
+        </div>
+      </div>
+      <div class="project-card">
+        <!-- REPLACE THIS IMAGE: Replace 'img/yapg-project.jpg' with your actual project screenshot/image -->
+        <img src="https://via.placeholder.com/400x250/ffd93d/000000?text=YAPG+Game+Project"
+          alt="YAPG Game Project Screenshot" class="project-image">
+        <div class="project-content">
+          <h3>yapg</h3>
+          <p>Yet Another Platform Game, made by me and my loneliness.</p>
+          <!-- REPLACE THIS LINK: Replace '#' with your actual GitHub repository URL for YAPG -->
+          <a href="#" class="github-link" target="_blank" rel="noopener" aria-label="View YAPG on GitHub">
+            <i class="fab fa-github"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills" class="skills">
+    <h2>Skills</h2>
+
+    <div class="skills-container">
+      <!-- Skill Item -->
+      <div class="skill">
+        <i class="fa-brands fa-java"></i>
+        <span>Java</span>
+      </div>
+
+      <div class="skill">
+        <i class="fa-brands fa-python"></i>
+        <span>Python</span>
+      </div>
+
+      <div class="skill">
+        <i class="fa-brands fa-html5"></i>
+        <span>HTML</span>
+      </div>
+
+      <div class="skill">
+        <i class="fa-brands fa-css3-alt"></i>
+        <span>CSS</span>
+      </div>
+
+      <div class="skill">
+        <i class="fa-brands fa-js"></i>
+        <span>JavaScript</span>
+      </div>
+
+      <div class="skill">
+        <i class="fa-brands fa-react"></i>
+        <span>React</span>
+      </div>
+
+      <div class="skill">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg" />
+        <span>Spring Boot</span>
+      </div>
+
+      <div class="skill">
+        <i class="fa-brands fa-git-alt"></i>
+        <span>Git</span>
+      </div>
+
+      <div class="skill">
+        <i class="fa-brands fa-github"></i>
+        <span>GitHub</span>
+      </div>
+
+      <div class="skill">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" />
+        <span>PostgreSQL</span>
+      </div>
+
+      <div class="skill">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postman/postman-original.svg" />
+        <span>Postman</span>
+      </div>
+
+      <div class="skill">
+        <i class="fas fa-database"></i>
+        <span>SQL</span>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Contact -->
+
+  <!-- Contact Section -->
+  <section id="contact" class="contact-container">
+    <h2>Contact</h2>
+    <p>If you'd like to get in touch, you can reach me using the following methods.
+      I'm also available for freelance projects.</p>
+
+    <div class="contact-links">
+      <a href="mailto:anbuselvan.devz@gmail.com">
+        <i class="fas fa-envelope"></i> Email
+      </a>
+      <a href="https://leetcode.com/u/AnbuselvanA/" target="_blank">
+        <i class="fas fa-code"></i> LeetCode
+      </a>
+      <a href="https://github.com/anbu-max" target="_blank">
+        <i class="fab fa-github"></i> GitHub
+      </a>
+      <a href="https://www.linkedin.com/in/anbuselvan01/" target="_blank">
+        <i class="fab fa-linkedin"></i> LinkedIn
+      </a>
+    </div>
+  </section>
+
+
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>© 2022- 2026 | Anbu</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+
+</html>

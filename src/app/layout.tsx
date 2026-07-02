@@ -1,19 +1,12 @@
 import type { Metadata } from "next";
-import { Outfit, Space_Grotesk } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
-import { ThemeProvider } from "@/components/theme-provider";
-import { Navbar } from "@/components/navbar";
-import { Footer } from "@/components/footer";
-import SceneWrapper from "@/components/scene-wrapper";
-import { HoverProvider } from "@/context/hover-context";
-import { CustomCursor } from "@/components/custom-cursor";
 
-const outfit = Outfit({ subsets: ["latin"], variable: "--font-outfit" });
-const spaceGrotesk = Space_Grotesk({ subsets: ["latin"], variable: "--font-space" });
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Anbu | Portfolio",
-  description: "Software Developer Portfolio",
+  description: "Software Developer Portfolio — Anbu Selvan",
 };
 
 export default function RootLayout({
@@ -23,23 +16,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning className="scroll-smooth">
-      <body className={`${outfit.variable} ${spaceGrotesk.variable} font-sans antialiased min-h-screen bg-background text-foreground overflow-x-hidden cursor-none`}>
-        <HoverProvider>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-            <CustomCursor />
-            <SceneWrapper />
-            <Navbar />
-            <main className="flex-grow">
-              {children}
-            </main>
-            <Footer />
-          </ThemeProvider>
-        </HoverProvider>
+      <head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+      </head>
+      <body className={`${inter.className} antialiased min-h-screen overflow-x-hidden`} style={{ margin: 0, padding: 0 }}>
+        <main>{children}</main>
       </body>
     </html>
   );
