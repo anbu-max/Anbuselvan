@@ -19,7 +19,7 @@ export default function Home() {
         const cx = r.left + r.width / 2, cy = r.top + r.height / 2;
         const nx = (e.clientX - cx) / (window.innerWidth / 2);
         const ny = (e.clientY - cy) / (window.innerHeight / 2);
-        const max = 18;
+        const max = 25; // Increased from 18 for a more pronounced head tilt
         setTilt({ ry: Math.max(-max, Math.min(max, nx * max)), rx: Math.max(-max, Math.min(max, -ny * max)) });
       }
     };
@@ -48,7 +48,20 @@ export default function Home() {
         <div style={{ pointerEvents: "none", position: "relative", zIndex: 10, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", minHeight: "100vh", padding: "3rem 1.5rem", maxWidth: 900, margin: "0 auto", userSelect: "none" }}>
           {/* Headings on top of image */}
           <h2 style={{ fontSize: 18, fontWeight: 500, color: "#6b7280", marginBottom: 4, textAlign: "center" }}>Hey, I&apos;m</h2>
-          <h1 style={{ fontSize: 72, fontWeight: 900, letterSpacing: "-0.04em", lineHeight: 1.1, background: "linear-gradient(135deg, #000, #4b5563)", WebkitBackgroundClip: "text", color: "transparent", marginBottom: 12, textAlign: "center", textTransform: "uppercase" }}>Anbu Selvan</h1>
+          <h1 style={{ 
+            fontSize: 72, 
+            fontWeight: 900, 
+            letterSpacing: "-0.04em", 
+            lineHeight: 1.1, 
+            background: "linear-gradient(135deg, #000, #4b5563)", 
+            WebkitBackgroundClip: "text", 
+            color: "transparent", 
+            marginBottom: 12, 
+            textAlign: "center", 
+            textTransform: "uppercase",
+            transition: "transform .15s ease-out",
+            transform: `translate(${tilt.ry * 0.4}px, ${-tilt.rx * 0.4}px)` // Cool little parallax shake effect
+          }}>Anbu Selvan</h1>
           <h3 style={{ fontSize: 20, fontWeight: 500, color: "#6b7280", marginBottom: 32, textAlign: "center", fontStyle: "italic" }}>Your fellow neighbourhood engineer</h3>
           
           {/* Avatar with 3D tilt */}
