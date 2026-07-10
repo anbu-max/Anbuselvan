@@ -37,7 +37,14 @@ export default function Home() {
     <>
       <style>{`@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
       .tabcard{transition:all .2s ease; user-select:none; text-decoration:none;} 
-      .tabcard:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(0,0,0,.06);border-color:rgba(0,0,0,.12);background:rgba(255,255,255,0.6)!important;}`}</style>
+      .tabcard:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(0,0,0,.06);border-color:rgba(0,0,0,.12);background:rgba(255,255,255,0.6)!important;}
+      .tabs-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; width: 100%; max-width: 680px; }
+      @media (max-width: 768px) {
+        .tabs-grid { grid-template-columns: repeat(3, 1fr); gap: 12px; }
+      }
+      @media (max-width: 480px) {
+        .tabs-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+      }`}</style>
       <div style={{ position: "relative", minHeight: "100vh", background: "#fafafa", fontFamily: "'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif", overflow: "hidden" }}>
         <FluidSimulation />
         {/* Faint watermark */}
@@ -70,7 +77,7 @@ export default function Home() {
           </div>
           
           {/* Tab cards */}
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", gap: 14, width: "100%", maxWidth: 680 }}>
+          <div className="tabs-grid">
             {TABS.map(tab => (
               <Link key={tab.key} href={tab.path} className="tabcard" style={{ pointerEvents: "auto", background: "rgba(255,255,255,.4)", backdropFilter: "blur(16px)", border: "1px solid rgba(255,255,255,0.5)", borderRadius: 20, padding: "20px 8px", display: "flex", flexDirection: "column", alignItems: "center", gap: 6, cursor: "pointer", boxShadow: "0 4px 15px rgba(0,0,0,.05)" }}>
                 <span style={{ color: tab.color, display: "flex" }}>{tab.icon}</span>
