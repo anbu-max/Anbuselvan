@@ -53,7 +53,7 @@ export default function Home() {
           
           {/* Avatar with 3D tilt */}
           <div ref={avatarRef} style={{ width: 200, height: 200, marginBottom: 20, transformStyle: "preserve-3d", transition: "transform .15s ease-out", transform: `perspective(800px) rotateX(${tilt.rx}deg) rotateY(${tilt.ry}deg)` }}>
-            <img src="/img/avatar.png" alt="Anbu Selvan" style={{ width: "100%", height: "100%", objectFit: "cover", borderRadius: "50%", mixBlendMode: "multiply", filter: "drop-shadow(0 16px 32px rgba(0,0,0,.12))", pointerEvents: "none", userSelect: "none" }} />
+            <img src="/img/MainAvt.png" alt="Anbu Selvan" style={{ width: "100%", height: "100%", objectFit: "contain", filter: "drop-shadow(0 16px 32px rgba(0,0,0,.15))", pointerEvents: "none", userSelect: "none" }} />
           </div>
           
           {/* Tab cards */}

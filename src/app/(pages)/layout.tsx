@@ -99,7 +99,7 @@ export default function PagesLayout({ children }: { children: React.ReactNode })
           {/* Header */}
           <header style={{ display: "flex", flexDirection: "column", alignItems: "center", padding: "14px 16px 12px", borderBottom: "1px solid #f0f0f0", background: "#fff", flexShrink: 0, position: "relative" }}>
             <Link href="/" className="home-btn" style={{ position: "absolute", left: 16, top: "50%", transform: "translateY(-50%)" }}><HomeIcon size={16} /> Home</Link>
-            <img src="/img/avatar.png" alt="Anbu Selvan" className="navbar-avatar" style={{ borderRadius: "50%", objectFit: "cover", border: "2px solid #fff", boxShadow: "0 2px 8px rgba(0,0,0,.1)" }} />
+            <img src="/img/MainAvt.png" alt="Anbu Selvan" className="navbar-avatar" style={{ borderRadius: "50%", objectFit: "cover", border: "2px solid #fff", boxShadow: "0 2px 8px rgba(0,0,0,.1)" }} />
             <div style={{ display: "flex", alignItems: "center", gap: 8, marginTop: 6 }}>
               <span style={{ fontWeight: 800, fontSize: 15, color: "#111" }}>Anbu Selvan</span>
               <span style={{ fontSize: 11, color: "#22c55e", fontWeight: 700, display: "flex", alignItems: "center", gap: 4 }}><span style={{ width: 6, height: 6, borderRadius: "50%", background: "#22c55e", display: "inline-block" }} /> Active Now</span>
