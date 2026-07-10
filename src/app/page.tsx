@@ -40,9 +40,10 @@ export default function Home() {
       .tabcard:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(0,0,0,.06);border-color:rgba(0,0,0,.12);background:rgba(255,255,255,0.6)!important;}
       .tabs-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; width: 100%; max-width: 680px; }
       .center-content { pointer-events: none; }
+      .mobile-scroll-capture { pointer-events: none; }
       @media (max-width: 768px) {
         .tabs-grid { grid-template-columns: repeat(3, 1fr); gap: 12px; }
-        .center-content { pointer-events: auto !important; }
+        .mobile-scroll-capture { pointer-events: auto !important; }
       }
       @media (max-width: 480px) {
         .tabs-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
@@ -56,8 +57,8 @@ export default function Home() {
         {/* Center content */}
         <div className="center-content" style={{ position: "relative", zIndex: 10, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", minHeight: "100vh", padding: "3rem 1.5rem", maxWidth: 900, margin: "0 auto", userSelect: "none" }}>
           {/* Headings on top of image */}
-          <h2 style={{ fontSize: 18, fontWeight: 500, color: "#6b7280", marginBottom: 4, textAlign: "center" }}>Hey, I&apos;m</h2>
-          <h1 style={{ 
+          <h2 className="mobile-scroll-capture" style={{ fontSize: 18, fontWeight: 500, color: "#6b7280", marginBottom: 4, textAlign: "center" }}>Hey, I&apos;m</h2>
+          <h1 className="mobile-scroll-capture" style={{ 
             fontSize: 72, 
             fontWeight: 900, 
             letterSpacing: "-0.04em", 
@@ -69,12 +70,12 @@ export default function Home() {
             textAlign: "center", 
             textTransform: "uppercase",
             transition: "transform .15s ease-out",
-            transform: `translate(${tilt.ry * 0.4}px, ${-tilt.rx * 0.4}px)` // Cool little parallax shake effect
+            transform: `translate(${tilt.ry * 0.4}px, ${-tilt.rx * 0.4}px)` 
           }}>Anbu Selvan</h1>
-          <h3 style={{ fontSize: 20, fontWeight: 500, color: "#6b7280", marginBottom: 32, textAlign: "center", fontStyle: "italic" }}>Your fellow neighbourhood engineer</h3>
+          <h3 className="mobile-scroll-capture" style={{ fontSize: 20, fontWeight: 500, color: "#6b7280", marginBottom: 32, textAlign: "center", fontStyle: "italic" }}>Your fellow neighbourhood engineer</h3>
           
           {/* Avatar with 3D tilt */}
-          <div ref={avatarRef} style={{ width: 200, height: 200, marginBottom: 20, transformStyle: "preserve-3d", transition: "transform .15s ease-out", transform: `perspective(800px) rotateX(${tilt.rx}deg) rotateY(${tilt.ry}deg)` }}>
+          <div ref={avatarRef} className="mobile-scroll-capture" style={{ width: 200, height: 200, marginBottom: 20, transformStyle: "preserve-3d", transition: "transform .15s ease-out", transform: `perspective(800px) rotateX(${tilt.rx}deg) rotateY(${tilt.ry}deg)` }}>
             <img src="/img/MainAvt.png" alt="Anbu Selvan" style={{ width: "100%", height: "100%", objectFit: "contain", filter: "drop-shadow(0 16px 32px rgba(0,0,0,.15))", pointerEvents: "none", userSelect: "none" }} />
           </div>
           
