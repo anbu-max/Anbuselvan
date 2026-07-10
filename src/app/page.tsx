@@ -39,20 +39,22 @@ export default function Home() {
       .tabcard{transition:all .2s ease; user-select:none; text-decoration:none;} 
       .tabcard:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(0,0,0,.06);border-color:rgba(0,0,0,.12);background:rgba(255,255,255,0.6)!important;}
       .tabs-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; width: 100%; max-width: 680px; }
+      .center-content { pointer-events: none; }
       @media (max-width: 768px) {
         .tabs-grid { grid-template-columns: repeat(3, 1fr); gap: 12px; }
+        .center-content { pointer-events: auto !important; }
       }
       @media (max-width: 480px) {
         .tabs-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
       }`}</style>
-      <div style={{ position: "relative", minHeight: "100vh", background: "#fafafa", fontFamily: "'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif", overflow: "hidden" }}>
+      <div style={{ position: "relative", minHeight: "100vh", background: "#fafafa", fontFamily: "'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif", overflowX: "hidden", overflowY: "auto" }}>
         <FluidSimulation />
         {/* Faint watermark */}
         <div style={{ position: "fixed", bottom: 0, left: 0, right: 0, display: "flex", justifyContent: "center", pointerEvents: "none", zIndex: 1, overflow: "hidden", userSelect: "none" }}>
           <span style={{ fontSize: "12rem", fontWeight: 900, lineHeight: 1, marginBottom: "-2rem", background: "linear-gradient(to bottom, rgba(0,0,0,0.02), rgba(0,0,0,0))", WebkitBackgroundClip: "text", color: "transparent" }}>ANBU</span>
         </div>
         {/* Center content */}
-        <div style={{ pointerEvents: "none", position: "relative", zIndex: 10, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", minHeight: "100vh", padding: "3rem 1.5rem", maxWidth: 900, margin: "0 auto", userSelect: "none" }}>
+        <div className="center-content" style={{ position: "relative", zIndex: 10, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", minHeight: "100vh", padding: "3rem 1.5rem", maxWidth: 900, margin: "0 auto", userSelect: "none" }}>
           {/* Headings on top of image */}
           <h2 style={{ fontSize: 18, fontWeight: 500, color: "#6b7280", marginBottom: 4, textAlign: "center" }}>Hey, I&apos;m</h2>
           <h1 style={{ 
