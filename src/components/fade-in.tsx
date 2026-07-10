@@ -15,7 +15,7 @@ export default function FadeIn({
   children,
   delay = 0,
   direction = "up",
-  duration = 0.6,
+  duration = 0.9,
   className,
   style,
 }: FadeInProps) {
@@ -33,7 +33,7 @@ export default function FadeIn({
           observer.unobserve(el);
         }
       },
-      { threshold: 0.1, rootMargin: "0px 0px -40px 0px" }
+      { threshold: 0.1, rootMargin: "0px 0px -60px 0px" }
     );
 
     observer.observe(el);
@@ -41,10 +41,10 @@ export default function FadeIn({
   }, []);
 
   const translateMap = {
-    up: "translateY(24px)",
-    down: "translateY(-24px)",
-    left: "translateX(24px)",
-    right: "translateX(-24px)",
+    up: "translateY(32px)",
+    down: "translateY(-32px)",
+    left: "translateX(32px)",
+    right: "translateX(-32px)",
     none: "none",
   };
 
@@ -55,7 +55,7 @@ export default function FadeIn({
       style={{
         opacity: isVisible ? 1 : 0,
         transform: isVisible ? "none" : translateMap[direction],
-        transition: `opacity ${duration}s cubic-bezier(0.16, 1, 0.3, 1) ${delay}s, transform ${duration}s cubic-bezier(0.16, 1, 0.3, 1) ${delay}s`,
+        transition: `opacity ${duration}s cubic-bezier(0.22, 1, 0.36, 1) ${delay}s, transform ${duration}s cubic-bezier(0.22, 1, 0.36, 1) ${delay}s`,
         willChange: "opacity, transform",
         ...style,
       }}

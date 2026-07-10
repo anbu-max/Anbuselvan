@@ -35,7 +35,7 @@ export default function ContactPage() {
       </div>
       <FadeIn delay={0.5} direction="up">
         <div style={{ marginTop: 8, display: "flex", flexDirection: "column", alignItems: "center" }}>
-          <a href="#" download className="dl-btn" style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "12px 24px", borderRadius: 999, textDecoration: "none", fontSize: 14, fontWeight: 700 }}><Download size={16} /> Download Resume</a>
+          <a href="/resume/anbu-selvan-resume.pdf" download="Anbu_Selvan_Resume.pdf" className="dl-btn" style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "12px 24px", borderRadius: 999, textDecoration: "none", fontSize: 14, fontWeight: 700 }}><Download size={16} /> Download Resume</a>
         </div>
       </FadeIn>
     </div>

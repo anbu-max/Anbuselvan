@@ -104,7 +104,7 @@ export default function PagesLayout({ children }: { children: React.ReactNode })
               <span style={{ fontWeight: 800, fontSize: 15, color: "#111" }}>Anbu Selvan</span>
               <span style={{ fontSize: 11, color: "#22c55e", fontWeight: 700, display: "flex", alignItems: "center", gap: 4 }}><span style={{ width: 6, height: 6, borderRadius: "50%", background: "#22c55e", display: "inline-block" }} /> Active Now</span>
             </div>
-            <a href="#" download className="resume-btn"><Download size={14} /> Resume</a>
+            <a href="/resume/anbu-selvan-resume.pdf" download="Anbu_Selvan_Resume.pdf" className="resume-btn"><Download size={14} /> Resume</a>
           </header>
           {/* Page Content */}
           <div className="portfolio-content" style={{ flex: 1, overflowY: "auto", padding: "24px 32px", display: "flex", flexDirection: "column" }}>
