@@ -22,13 +22,6 @@ export default function Home() {
         const max = 18;
         setTilt({ ry: Math.max(-max, Math.min(max, nx * max)), rx: Math.max(-max, Math.min(max, -ny * max)) });
       }
-      
-      // Forward mouse events to canvas so fluid works under buttons
-      const canvas = document.querySelector("canvas");
-      if (canvas && e.target !== canvas) {
-        const fakeEvent = new MouseEvent("mousemove", { clientX: e.clientX, clientY: e.clientY, bubbles: true });
-        canvas.dispatchEvent(fakeEvent);
-      }
     };
     
     const leave = () => setTilt({ rx: 0, ry: 0 });
@@ -52,20 +45,21 @@ export default function Home() {
           <span style={{ fontSize: "12rem", fontWeight: 900, lineHeight: 1, marginBottom: "-2rem", background: "linear-gradient(to bottom, rgba(0,0,0,0.02), rgba(0,0,0,0))", WebkitBackgroundClip: "text", color: "transparent" }}>ANBU</span>
         </div>
         {/* Center content */}
-        <div style={{ position: "relative", zIndex: 10, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", minHeight: "100vh", padding: "3rem 1.5rem", maxWidth: 900, margin: "0 auto", userSelect: "none" }}>
+        <div style={{ pointerEvents: "none", position: "relative", zIndex: 10, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", minHeight: "100vh", padding: "3rem 1.5rem", maxWidth: 900, margin: "0 auto", userSelect: "none" }}>
           {/* Headings on top of image */}
-          <h2 style={{ fontSize: 18, fontWeight: 500, color: "#6b7280", marginBottom: 4 }}>Hey, I'm Anbu Selvan 👋</h2>
-          <h1 style={{ fontSize: 56, fontWeight: 800, lineHeight: 1.1, background: "linear-gradient(135deg,#111827,#4b5563)", WebkitBackgroundClip: "text", color: "transparent", marginBottom: 32, textAlign: "center" }}>Automation and<br />Software Developer</h1>
+          <h2 style={{ fontSize: 18, fontWeight: 500, color: "#6b7280", marginBottom: 4, textAlign: "center" }}>Hey, I&apos;m</h2>
+          <h1 style={{ fontSize: 72, fontWeight: 900, letterSpacing: "-0.04em", lineHeight: 1.1, background: "linear-gradient(135deg, #000, #4b5563)", WebkitBackgroundClip: "text", color: "transparent", marginBottom: 12, textAlign: "center", textTransform: "uppercase" }}>Anbu Selvan</h1>
+          <h3 style={{ fontSize: 20, fontWeight: 500, color: "#6b7280", marginBottom: 32, textAlign: "center", fontStyle: "italic" }}>Your fellow neighbourhood engineer</h3>
           
           {/* Avatar with 3D tilt */}
           <div ref={avatarRef} style={{ width: 200, height: 200, marginBottom: 20, transformStyle: "preserve-3d", transition: "transform .15s ease-out", transform: `perspective(800px) rotateX(${tilt.rx}deg) rotateY(${tilt.ry}deg)` }}>
-            <img src="/img/avatar.png" alt="Anbu Selvan" style={{ width: "100%", height: "100%", objectFit: "cover", borderRadius: "50%", mixBlendMode: "multiply", filter: "drop-shadow(0 16px 32px rgba(0,0,0,.12))", pointerEvents: "none", userSelect: "none", WebkitUserDrag: "none" }} />
+            <img src="/img/avatar.png" alt="Anbu Selvan" style={{ width: "100%", height: "100%", objectFit: "cover", borderRadius: "50%", mixBlendMode: "multiply", filter: "drop-shadow(0 16px 32px rgba(0,0,0,.12))", pointerEvents: "none", userSelect: "none" }} />
           </div>
           
           {/* Tab cards */}
           <div style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", gap: 14, width: "100%", maxWidth: 680 }}>
             {TABS.map(tab => (
-              <Link key={tab.key} href={tab.path} className="tabcard" style={{ background: "rgba(255,255,255,.4)", backdropFilter: "blur(16px)", border: "1px solid rgba(255,255,255,0.5)", borderRadius: 20, padding: "20px 8px", display: "flex", flexDirection: "column", alignItems: "center", gap: 6, cursor: "pointer", boxShadow: "0 4px 15px rgba(0,0,0,.05)" }}>
+              <Link key={tab.key} href={tab.path} className="tabcard" style={{ pointerEvents: "auto", background: "rgba(255,255,255,.4)", backdropFilter: "blur(16px)", border: "1px solid rgba(255,255,255,0.5)", borderRadius: 20, padding: "20px 8px", display: "flex", flexDirection: "column", alignItems: "center", gap: 6, cursor: "pointer", boxShadow: "0 4px 15px rgba(0,0,0,.05)" }}>
                 <span style={{ color: tab.color, display: "flex" }}>{tab.icon}</span>
                 <span style={{ fontSize: 14, fontWeight: 600, color: "#1f2937" }}>{tab.label}</span>
               </Link>

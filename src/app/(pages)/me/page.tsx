@@ -1,39 +1,83 @@
+"use client";
+
 import React from "react";
-import { Calendar, MapPin, Briefcase, BookOpen } from "lucide-react";
+import { MapPin } from "lucide-react";
+import FadeIn from "@/components/fade-in";
 
 export default function MePage() {
+  const sectionTitle: React.CSSProperties = {
+    fontWeight: 700,
+    fontSize: 15,
+    color: "#111",
+    marginBottom: 6,
+    display: "flex",
+    alignItems: "center",
+    gap: 8,
+  };
+
+  const paragraph: React.CSSProperties = {
+    fontSize: 14.5,
+    color: "#1a1a1a",
+    lineHeight: 1.7,
+    margin: 0,
+    marginBottom: 10,
+  };
+
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
-      <div style={{ display: "flex", alignItems: "center", gap: 12, paddingBottom: 12, borderBottom: "1px solid #f0f0f0" }}>
-        <img src="/img/avatar.png" alt="" style={{ width: 48, height: 48, borderRadius: "50%", objectFit: "cover" }} />
-        <div>
-          <div style={{ fontWeight: 700, fontSize: 15, color: "#111" }}>Anbu Selvan</div>
-          <div style={{ fontSize: 11, color: "#888" }}>Software Developer</div>
-          <span style={{ display: "inline-flex", alignItems: "center", gap: 4, padding: "2px 8px", borderRadius: 999, background: "#ecfdf5", fontSize: 10, fontWeight: 700, color: "#059669", marginTop: 3 }}>
-            <span style={{ width: 5, height: 5, borderRadius: "50%", background: "#059669", display: "inline-block" }} /> Available
-          </span>
-        </div>
-      </div>
-      <div style={{ display: "flex", gap: 10, fontSize: 13, marginBottom: 8 }}>
-        <div style={{ display: "flex", gap: 8, alignItems: "center" }}><MapPin size={16} color="#22c55e" /><div><div style={{ fontSize: 10, color: "#aaa", fontWeight: 600, textTransform: "uppercase" }}>Location</div><div style={{ color: "#333", fontWeight: 500 }}>Chennai, Tamil Nadu</div></div></div>
-      </div>
-      <div>
-        <div style={{ fontWeight: 700, fontSize: 13, color: "#111", marginBottom: 4 }}>Automation & Software Developer</div>
-        <p style={{ fontSize: 13, color: "#555", lineHeight: 1.6, margin: 0 }}>
-          I am a 2026 Computer Science graduate with hands-on, real-world experience in designing scalable web applications, robust REST APIs, and efficient workflow automations. I specialize in leveraging SQL databases and modern backend architectures to deliver seamless digital experiences and intelligent automation solutions tailored for businesses.
-        </p>
-      </div>
-      <div style={{ borderTop: "1px solid #f0f0f0", paddingTop: 12 }}>
-        <div style={{ fontWeight: 700, fontSize: 13, color: "#111", marginBottom: 12, display: "flex", alignItems: "center", gap: 6 }}><BookOpen size={15} color="#3b82f6" /> Courses</div>
-        {[ { date: "3 Months", title: "Java Course", place: "Qspiders" } ].map((t, i) => (
-          <div key={i} style={{ position: "relative", paddingLeft: 18, borderLeft: "2px solid #e5e7eb", marginBottom: 14, paddingBottom: 2 }}>
-            <div style={{ position: "absolute", left: -6, top: 4, width: 10, height: 10, borderRadius: "50%", background: "#3b82f6" }} />
-            <div style={{ fontSize: 10, fontWeight: 700, color: "#2563eb", textTransform: "uppercase" }}>{t.date}</div>
-            <div style={{ fontWeight: 700, fontSize: 13, color: "#111" }}>{t.title}</div>
-            <div style={{ fontSize: 11, color: "#999" }}>{t.place}</div>
+
+      {/* Location */}
+      <FadeIn delay={0.1} direction="up">
+        <div className="section-para" style={{ display: "flex", gap: 10, fontSize: 14.5, marginBottom: 8 }}>
+          <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
+            <MapPin size={16} color="#22c55e" />
+            <div>
+              <div style={{ fontSize: 10, color: "#aaa", fontWeight: 600, textTransform: "uppercase" }}>Location</div>
+              <div style={{ color: "#333", fontWeight: 500 }}>Chennai, Tamil Nadu</div>
+            </div>
           </div>
-        ))}
-      </div>
+        </div>
+      </FadeIn>
+
+      {/* My Philosophy */}
+      <FadeIn delay={0.2} direction="up">
+        <div>
+          <div className="section-title" style={sectionTitle}>💡 My Philosophy</div>
+          <p style={{ ...paragraph, fontStyle: "italic", color: "#444", borderLeft: "3px solid #d0d0d0", paddingLeft: 12, marginBottom: 12 }}>
+            {`"The man who loves walking will walk further than the man who loves the destination."`}
+          </p>
+        </div>
+      </FadeIn>
+      <FadeIn delay={0.3} direction="up">
+        <p style={paragraph}>
+          I believe <b>consistency</b>, <b>curiosity</b>, and <b>embracing challenges</b> are what truly shape a person. 🚀 Difficult problems don&apos;t discourage me, they <em>motivate</em> me. The harder the journey, the more <b>meaningful the lessons</b> and the greater the satisfaction of finding a solution.
+        </p>
+      </FadeIn>
+      <FadeIn delay={0.4} direction="up">
+        <p style={paragraph}>
+          I care about building things that create <b>real impact</b>. Whether it's software, automation, or an idea, I want my work to <em>make someone's life easier</em> or help a business grow. 🌱 My goal is to become the kind of <b>engineer people can trust</b>, someone who keeps learning, keeps improving, and can always figure things out.
+        </p>
+      </FadeIn>
+
+      {/* About Me */}
+      <FadeIn delay={0.15} direction="up">
+        <div className="section-title" style={sectionTitle}>👋 About Me</div>
+      </FadeIn>
+      <FadeIn delay={0.2} direction="up">
+        <p style={paragraph}>
+          I&apos;m Anbu, a <b>Computer Science graduate</b> passionate about building <b>modern web applications</b>, <b>scalable backend systems</b>, and <b>intelligent automation solutions</b> that solve real business problems.
+        </p>
+      </FadeIn>
+      <FadeIn delay={0.25} direction="up">
+        <p style={paragraph}>
+          I enjoy designing software that goes beyond clean code by delivering <em>measurable value</em>. My interests span <b>full-stack development</b>, <b>REST APIs</b>, <b>workflow automation</b>, and the rapidly evolving world of <b>AI</b>. I spend much of my time exploring technologies like <b>Large Language Models (LLMs)</b>, <b>Retrieval-Augmented Generation (RAG)</b>, <b>AI agents</b>, and <b>automation platforms</b>, constantly experimenting with new ideas and applying them to <em>practical business use cases</em>.
+        </p>
+      </FadeIn>
+      <FadeIn delay={0.3} direction="up">
+        <p style={{ ...paragraph, marginBottom: 0 }}>
+          I&apos;m particularly interested in how <b>software engineering and AI</b> can work together to help businesses <em>eliminate repetitive work</em>, <em>improve customer experiences</em>, and create systems that continue <b>delivering value</b> long after they&apos;re deployed.
+        </p>
+      </FadeIn>
     </div>
   );
 }
