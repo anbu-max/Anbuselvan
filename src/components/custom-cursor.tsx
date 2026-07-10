@@ -13,10 +13,13 @@ export default function CustomCursor() {
   const ring = useRef({ x: 0, y: 0 });
 
   useEffect(() => {
-    // Hide native cursor on desktop
-    if (window.innerWidth > 768) {
-      document.body.style.cursor = "none";
+    // Disable entirely on mobile to save performance
+    if (typeof window !== "undefined" && window.innerWidth <= 768) {
+      return;
     }
+
+    // Hide native cursor on desktop
+    document.body.style.cursor = "none";
 
     const onMouseMove = (e: MouseEvent) => {
       mouse.current.x = e.clientX;

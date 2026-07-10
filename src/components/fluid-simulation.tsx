@@ -6,6 +6,11 @@ export default function FluidSimulation() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
+    // Disable WebGL fluid entirely on mobile to fix scroll lag
+    if (typeof window !== "undefined" && window.innerWidth < 768) {
+      return;
+    }
+
     if (!canvasRef.current) return;
 
     let isMounted = true;
@@ -56,7 +61,7 @@ export default function FluidSimulation() {
   }, []);
 
   return (
-    <div style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0, zIndex: 0 }}>
+    <div style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0, zIndex: 0, display: typeof window !== "undefined" && window.innerWidth < 768 ? "none" : "block" }}>
       <canvas 
         ref={canvasRef} 
         style={{ 
