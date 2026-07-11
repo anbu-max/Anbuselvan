@@ -14,6 +14,9 @@ export default function FluidSimulation() {
     // @ts-ignore
     import("webgl-fluid").then((module) => {
       if (!isMounted || !canvasRef.current) return;
+      if (canvasRef.current.dataset.init) return;
+      canvasRef.current.dataset.init = "true";
+      
       const webGLFluid = module.default;
 
       try {

@@ -11,7 +11,7 @@ export default function FunPage() {
       </FadeIn>
 
       <FadeIn delay={0.1} direction="up">
-        <p style={{ fontSize: 14.5, color: "#1a1a1a", fontStyle: "italic", margin: 0 }}>"No matter what the world says, I just walk my own path." — <b>Roronoa Zoro</b></p>
+        <p style={{ fontSize: 14.5, color: "#1a1a1a", fontStyle: "italic", margin: 0 }}>"As long as I am alive, there are infinite chances." — <b>Monkey D. Luffy</b></p>
       </FadeIn>
 
       {/* Beyond Coding */}
@@ -22,7 +22,7 @@ export default function FunPage() {
       </FadeIn>
       <FadeIn delay={0.2} direction="up">
         <p style={{ fontSize: 14.5, color: "#1a1a1a", lineHeight: 1.7, margin: "0 0 10px 0" }}>
-          When I take my hand off the mouse and step away from the keyboard, you&apos;ll probably find me playing with my cat, <b>Scar</b>. 🐈 He likes to remind me that I&apos;m living in <em>his</em> house, and, if we&apos;re being honest, I&apos;m probably just his human assistant.
+          When I take my hand off the mouse and step away from the keyboard, you&apos;ll probably find me playing with my cat, <b>Scar</b>. 🐈 He likes to remind me that I&apos;m living in <em>his</em> house, and, if we&apos;re being honest, I&apos;m probably just his human assistant. I also spend a good amount of time <b>watching anime</b>, getting lost in incredible stories and epic adventures. 🎌
         </p>
       </FadeIn>
       <FadeIn delay={0.25} direction="up">

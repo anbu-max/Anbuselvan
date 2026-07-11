@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
+import { motion, useScroll, useSpring } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ChevronDown, ChevronUp, Home as HomeIcon, Download } from "lucide-react";
@@ -10,10 +11,20 @@ export default function PagesLayout({ children }: { children: React.ReactNode })
   const [showQ, setShowQ] = useState(true);
   const pathname = usePathname();
   const activeSection = pathname.replace("/", "") || "me";
+  const contentRef = useRef<HTMLDivElement>(null);
+
+  const { scrollYProgress } = useScroll({ container: contentRef });
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
+  });
 
   return (
     <>
       <style>{`@keyframes slideUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+      .portfolio-content::-webkit-scrollbar { display: none; }
+      .portfolio-content { -ms-overflow-style: none; scrollbar-width: none; }
       .qb{user-select:none; transition:all .2s ease;}
       .qb:hover{border-color:#111!important;transform:translateY(-1px)}
       .home-btn{transition:all .2s ease; padding:6px 10px; border-radius:12px; color:#888; display:flex; align-items:center; gap:4px; font-size:12px; font-weight:600; text-decoration:none; cursor:pointer;}
@@ -97,7 +108,11 @@ export default function PagesLayout({ children }: { children: React.ReactNode })
       }
       `}</style>
       <div style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", background: "#fafafa", fontFamily: "'Inter',-apple-system,sans-serif", padding: "1rem" }}>
-        <div className="portfolio-shell" style={{ display: "flex", flexDirection: "column", width: "100%", maxWidth: 920, height: "92vh", background: "#fff", borderRadius: 24, boxShadow: "0 8px 60px rgba(0,0,0,.08)", overflow: "hidden", border: "1px solid rgba(0,0,0,.06)" }}>
+        <div className="portfolio-shell" style={{ display: "flex", flexDirection: "column", width: "100%", maxWidth: 920, height: "92vh", background: "#fff", borderRadius: 24, boxShadow: "0 8px 60px rgba(0,0,0,.08)", overflow: "hidden", border: "1px solid rgba(0,0,0,.06)", position: "relative" }}>
+          {/* Scroll Progress Bar */}
+          <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 4, background: "transparent", zIndex: 100 }}>
+            <motion.div style={{ height: "100%", background: "linear-gradient(90deg, #3b82f6, #10b981)", scaleX, transformOrigin: "0%" }} />
+          </div>
           {/* Header */}
           <header style={{ display: "flex", flexDirection: "column", alignItems: "center", padding: "14px 16px 12px", borderBottom: "1px solid #f0f0f0", background: "#fff", flexShrink: 0, position: "relative" }}>
             <Link href="/" className="home-btn" style={{ position: "absolute", left: 16, top: "50%", transform: "translateY(-50%)" }}><HomeIcon size={16} /> Home</Link>
@@ -109,7 +124,7 @@ export default function PagesLayout({ children }: { children: React.ReactNode })
             <a href="/resume/anbu-selvan-resume.pdf" download="Anbu_Selvan_Resume.pdf" className="resume-btn"><Download size={14} /> Resume</a>
           </header>
           {/* Page Content */}
-          <div className="portfolio-content" style={{ flex: 1, overflowY: "auto", padding: "24px 32px", display: "flex", flexDirection: "column" }}>
+          <div ref={contentRef} className="portfolio-content" style={{ flex: 1, overflowY: "auto", padding: "24px 32px", display: "flex", flexDirection: "column" }}>
             <div style={{ background: "#fff", color: "#1f2937", padding: "0", fontSize: 15, lineHeight: 1.6, animation: "slideUp .3s ease" }}>
               {children}
             </div>

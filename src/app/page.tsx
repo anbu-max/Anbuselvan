@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
+import { motion, useScroll, useSpring } from "framer-motion";
 import Link from "next/link";
 import FluidSimulation from "@/components/fluid-simulation";
 import { TABS } from "@/lib/data";
@@ -8,6 +9,14 @@ import { TABS } from "@/lib/data";
 export default function Home() {
   const [tilt, setTilt] = useState({ rx: 0, ry: 0 });
   const avatarRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const { scrollYProgress } = useScroll({ container: containerRef });
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
+  });
 
   // 3D tilt and manual canvas event forwarding
   useEffect(() => {
@@ -48,7 +57,11 @@ export default function Home() {
       @media (max-width: 480px) {
         .tabs-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
       }`}</style>
-      <div style={{ position: "relative", minHeight: "100vh", background: "#fafafa", fontFamily: "'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif", overflowX: "hidden", overflowY: "auto" }}>
+      <div ref={containerRef} style={{ position: "relative", minHeight: "100vh", background: "#fafafa", fontFamily: "'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif", overflowX: "hidden", overflowY: "auto" }}>
+        {/* Scroll Progress Bar */}
+        <div style={{ position: "fixed", top: 0, left: 0, right: 0, height: 4, background: "transparent", zIndex: 100 }}>
+          <motion.div style={{ height: "100%", background: "linear-gradient(90deg, #3b82f6, #10b981)", scaleX, transformOrigin: "0%" }} />
+        </div>
         <FluidSimulation />
         {/* Faint watermark */}
         <div style={{ position: "fixed", bottom: 0, left: 0, right: 0, display: "flex", justifyContent: "center", pointerEvents: "none", zIndex: 1, overflow: "hidden", userSelect: "none" }}>
