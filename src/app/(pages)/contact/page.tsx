@@ -14,9 +14,17 @@ export default function ContactPage() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.name || !formData.message) return;
+    
+    // Fire confetti
+    import("canvas-confetti").then(m => m.default({ particleCount: 100, spread: 80 }));
+
     const subject = encodeURIComponent(`Contact from ${formData.name}`);
     const body = encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`);
     window.location.href = `mailto:anbuselvan.devz@gmail.com?subject=${subject}&body=${body}`;
+  };
+
+  const handleDownload = () => {
+    import("canvas-confetti").then(m => m.default({ particleCount: 100, spread: 80 }));
   };
 
   const contacts = [
@@ -66,7 +74,7 @@ export default function ContactPage() {
 
       <FadeIn delay={0.5} direction="up">
         <div style={{ marginTop: 8, display: "flex", flexDirection: "column", alignItems: "center" }}>
-          <a href="/resume/anbu-selvan-resume.pdf" download="Anbu_Selvan_Resume.pdf" className="dl-btn" style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "12px 24px", borderRadius: 999, textDecoration: "none", fontSize: 14, fontWeight: 700 }}><Download size={16} /> Download Resume</a>
+          <a onClick={handleDownload} href="/resume/anbu-selvan-resume.pdf" download="Anbu_Selvan_Resume.pdf" className="dl-btn" style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "12px 24px", borderRadius: 999, textDecoration: "none", fontSize: 14, fontWeight: 700 }}><Download size={16} /> Download Resume</a>
         </div>
       </FadeIn>
     </div>

@@ -45,8 +45,8 @@ export default function CustomCursor() {
       }
     };
 
-    window.addEventListener("mousemove", onMouseMove);
-    window.addEventListener("mouseover", onMouseOver);
+    window.addEventListener("mousemove", onMouseMove, { capture: true });
+    window.addEventListener("mouseover", onMouseOver, { capture: true });
 
     let rafId: number;
     const render = () => {
@@ -63,8 +63,8 @@ export default function CustomCursor() {
     rafId = requestAnimationFrame(render);
 
     return () => {
-      window.removeEventListener("mousemove", onMouseMove);
-      window.removeEventListener("mouseover", onMouseOver);
+      window.removeEventListener("mousemove", onMouseMove, { capture: true });
+      window.removeEventListener("mouseover", onMouseOver, { capture: true });
       cancelAnimationFrame(rafId);
       document.body.style.cursor = "auto";
     };

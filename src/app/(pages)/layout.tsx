@@ -121,7 +121,7 @@ export default function PagesLayout({ children }: { children: React.ReactNode })
               <span style={{ fontWeight: 800, fontSize: 16, color: "#111", letterSpacing: "-0.02em" }}>Anbu</span>
               <span style={{ fontSize: 9, color: "#22c55e", fontWeight: 700, display: "flex", alignItems: "center", gap: 3, textTransform: "uppercase", letterSpacing: "0.05em" }}><span style={{ width: 5, height: 5, borderRadius: "50%", background: "#22c55e", display: "inline-block", boxShadow: "0 0 4px rgba(34,197,94,0.6)" }} /> Active Now</span>
             </div>
-            <a href="/resume/anbu-selvan-resume.pdf" download="Anbu_Selvan_Resume.pdf" className="resume-btn"><Download size={14} /> Resume</a>
+            <a onClick={() => import("canvas-confetti").then(m => m.default({ particleCount: 100, spread: 80 }))} href="/resume/anbu-selvan-resume.pdf" download="Anbu_Selvan_Resume.pdf" className="resume-btn"><Download size={14} /> Resume</a>
           </header>
           {/* Page Content */}
           <div ref={contentRef} className="portfolio-content" style={{ flex: 1, overflowY: "auto", padding: "24px 32px", display: "flex", flexDirection: "column" }}>
