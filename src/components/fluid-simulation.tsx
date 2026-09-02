@@ -34,7 +34,7 @@ export default function FluidSimulation() {
         const webGLFluid = module.default;
         try {
           webGLFluid(globalCanvas, {
-            IMMEDIATE: true,
+            IMMEDIATE: false,
             TRIGGER: "hover",
             SIM_RESOLUTION: isMobile ? 64 : 128,
             DYE_RESOLUTION: isMobile ? 256 : 512,
