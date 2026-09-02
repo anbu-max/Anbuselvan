@@ -60,7 +60,16 @@ export default function FluidSimulation() {
       });
     }
 
+    // Prevent spacebar keydown from triggering random webgl-fluid splats
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === " " || e.code === "Space") {
+        e.stopImmediatePropagation();
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown, { capture: true });
+
     return () => {
+      window.removeEventListener("keydown", handleKeyDown, { capture: true });
       if (globalCanvas && globalCanvas.parentNode) {
         globalCanvas.parentNode.removeChild(globalCanvas);
       }
