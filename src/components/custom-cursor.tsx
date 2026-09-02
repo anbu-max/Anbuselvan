@@ -82,9 +82,8 @@ export default function CustomCursor() {
         .ai-cursor-dot {
           position: fixed;
           top: 0; left: 0;
-          width: 8px; height: 8px;
-          background: #ffffff;
-          mix-blend-mode: difference;
+          width: 7px; height: 7px;
+          background: #18181b;
           border-radius: 50%;
           pointer-events: none;
           z-index: 999999;
@@ -94,7 +93,7 @@ export default function CustomCursor() {
         .ai-cursor-ring-wrapper {
           position: fixed;
           top: 0; left: 0;
-          width: 34px; height: 34px;
+          width: 36px; height: 36px;
           pointer-events: none;
           z-index: 999998;
           transition: width 0.2s, height 0.2s;
@@ -102,8 +101,8 @@ export default function CustomCursor() {
 
         .ai-cursor-ring-inner {
           width: 100%; height: 100%;
-          border: 1.8px solid #ffffff;
-          mix-blend-mode: difference;
+          border: 1.8px solid #18181b;
+          box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.8);
           border-radius: 50%;
           transition: border-color 0.2s, background 0.2s, border-style 0.2s;
         }
