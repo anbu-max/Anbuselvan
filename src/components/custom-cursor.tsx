@@ -82,26 +82,28 @@ export default function CustomCursor() {
         .ai-cursor-dot {
           position: fixed;
           top: 0; left: 0;
-          width: 6px; height: 6px;
-          background: #111;
+          width: 8px; height: 8px;
+          background: #ffffff;
+          mix-blend-mode: difference;
           border-radius: 50%;
           pointer-events: none;
-          z-index: 9999;
+          z-index: 999999;
           transition: width 0.2s, height 0.2s, background 0.2s, box-shadow 0.2s;
         }
         
         .ai-cursor-ring-wrapper {
           position: fixed;
           top: 0; left: 0;
-          width: 32px; height: 32px;
+          width: 34px; height: 34px;
           pointer-events: none;
-          z-index: 9998;
+          z-index: 999998;
           transition: width 0.2s, height 0.2s;
         }
 
         .ai-cursor-ring-inner {
           width: 100%; height: 100%;
-          border: 1.5px solid rgba(17, 17, 17, 0.2);
+          border: 1.8px solid #ffffff;
+          mix-blend-mode: difference;
           border-radius: 50%;
           transition: border-color 0.2s, background 0.2s, border-style 0.2s;
         }

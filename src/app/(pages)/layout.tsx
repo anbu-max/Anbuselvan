@@ -1,17 +1,58 @@
 "use client";
 
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { motion, useScroll, useSpring } from "framer-motion";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { ChevronDown, ChevronUp, Home as HomeIcon, Download } from "lucide-react";
+import { usePathname, useRouter } from "next/navigation";
+import { ChevronDown, ChevronUp, Home as HomeIcon, ArrowLeft, Download, Sparkles } from "lucide-react";
 import { TABS } from "@/lib/data";
+
+import { TextRoll } from "@/components/text-roll";
+import { VercelTooltipNav } from "@/components/vercel-tooltip-nav";
+import { ProgressiveBlur } from "@/components/progressive-blur";
+
+import { MouseFollowingEyes } from "@/components/ui/mouse-following-eyes";
+
+const MotionLink = motion.create(Link);
+const MotionA = motion.a;
 
 export default function PagesLayout({ children }: { children: React.ReactNode }) {
   const [showQ, setShowQ] = useState(true);
   const pathname = usePathname();
-  const activeSection = pathname.replace("/", "") || "me";
+  const router = useRouter();
+  const activeSection = pathname.split("/")[1] || "me";
   const contentRef = useRef<HTMLDivElement>(null);
+  const avatarRef = useRef<HTMLDivElement>(null);
+
+  // Check if current route is a subpage (e.g., /projects/moviedex)
+  const isSubpage = pathname.split("/").length > 2 || (pathname.startsWith("/projects/") && pathname !== "/projects");
+
+  // Eyeball cursor tracking
+  const [eyeOffset, setEyeOffset] = useState({ x: 0, y: 0 });
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      if (avatarRef.current) {
+        const rect = avatarRef.current.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+
+        const deltaX = e.clientX - centerX;
+        const deltaY = e.clientY - centerY;
+
+        const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+        const maxOffset = 4; // max pixels for pupil shift
+
+        const shiftX = distance > 0 ? (deltaX / distance) * Math.min(Math.abs(deltaX / 30), maxOffset) : 0;
+        const shiftY = distance > 0 ? (deltaY / distance) * Math.min(Math.abs(deltaY / 30), maxOffset) : 0;
+
+        setEyeOffset({ x: shiftX, y: shiftY });
+      }
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, []);
 
   const { scrollYProgress } = useScroll({ container: contentRef });
   const scaleX = useSpring(scrollYProgress, {
@@ -27,11 +68,11 @@ export default function PagesLayout({ children }: { children: React.ReactNode })
       .portfolio-content { -ms-overflow-style: none; scrollbar-width: none; }
       .qb{user-select:none; transition:all .2s ease;}
       .qb:hover{border-color:#111!important;transform:translateY(-1px)}
-      .home-btn{transition:all .2s ease; padding:6px 10px; border-radius:12px; color:#888; display:flex; align-items:center; gap:4px; font-size:12px; font-weight:600; text-decoration:none; cursor:pointer;}
+      .home-btn{transition:all .2s ease; padding:4px 8px; border-radius:10px; color:#666; display:flex; align-items:center; gap:4px; font-size:12px; font-weight:600; text-decoration:none; cursor:pointer; background:none; border:none;}
       .home-btn:hover{background:#111; color:#fff; transform:translateY(-1px);}
       
-      .resume-btn { position: absolute; right: 16px; top: 50%; transform: translateY(-50%); transition: all 0.2s ease; background: #111; color: #fff; display: flex; align-items: center; gap: 4px; padding: 6px 12px; border-radius: 12px; text-decoration: none; font-size: 12px; font-weight: 700; }
-      .resume-btn:hover { background: #333; color: #fff; transform: translateY(calc(-50% - 2px)); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+      .resume-btn { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); transition: all 0.2s ease; background: #111; color: #fff; display: flex; align-items: center; gap: 4px; padding: 5px 10px; border-radius: 10px; text-decoration: none; font-size: 11.5px; font-weight: 700; }
+      .resume-btn:hover { background: #333; color: #fff; transform: translateY(calc(-50% - 1px)); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
 
       .flip-card { background-color: transparent; perspective: 1000px; height: 130px; }
       .flip-card-inner { position: relative; width: 100%; height: 100%; transition: transform 0.6s; transform-style: preserve-3d; }
@@ -75,36 +116,36 @@ export default function PagesLayout({ children }: { children: React.ReactNode })
       .github-btn { background: rgba(255,255,255,0.15); transition: background 0.2s; }
       .github-btn:hover { background: rgba(255,255,255,0.25); }
 
-      .navbar-avatar { width: 44px; height: 44px; transition: all 0.2s ease; }
+      .navbar-avatar { width: 34px; height: 34px; transition: all 0.2s ease; }
 
       /* Responsive: Laptop screens */
       @media (min-width: 1024px) {
         .portfolio-shell { max-width: 920px !important; }
-        .portfolio-content { padding: 28px 40px !important; font-size: 15.5px !important; }
+        .portfolio-content { padding: 24px 36px !important; font-size: 15.5px !important; }
         .portfolio-content p, .portfolio-content .section-para { font-size: 15.5px !important; line-height: 1.75 !important; }
         .portfolio-content .section-title { font-size: 17px !important; }
-        .home-btn { padding: 8px 14px !important; font-size: 14px !important; left: 20px !important; }
-        .resume-btn { padding: 8px 16px !important; font-size: 14px !important; right: 20px !important; }
-        .navbar-avatar { width: 56px !important; height: 56px !important; }
+        .home-btn { padding: 5px 10px !important; font-size: 13px !important; left: 16px !important; }
+        .resume-btn { padding: 5px 12px !important; font-size: 13px !important; right: 16px !important; }
+        .navbar-avatar { width: 36px !important; height: 36px !important; }
       }
 
       /* Responsive: Large desktop */
       @media (min-width: 1440px) {
         .portfolio-shell { max-width: 1040px !important; }
-        .portfolio-content { padding: 32px 48px !important; font-size: 16.5px !important; }
+        .portfolio-content { padding: 28px 44px !important; font-size: 16.5px !important; }
         .portfolio-content p, .portfolio-content .section-para { font-size: 16.5px !important; line-height: 1.8 !important; }
         .portfolio-content .section-title { font-size: 18px !important; }
-        .home-btn { padding: 10px 16px !important; font-size: 15px !important; left: 24px !important; }
-        .resume-btn { padding: 10px 18px !important; font-size: 15px !important; right: 24px !important; }
-        .navbar-avatar { width: 64px !important; height: 64px !important; }
+        .home-btn { padding: 6px 12px !important; font-size: 14px !important; left: 20px !important; }
+        .resume-btn { padding: 6px 14px !important; font-size: 14px !important; right: 20px !important; }
+        .navbar-avatar { width: 40px !important; height: 40px !important; }
       }
 
       /* Responsive: Small screens */
       @media (max-width: 640px) {
         .portfolio-shell { border-radius: 0 !important; height: 100vh !important; }
         .portfolio-content { padding: 16px 18px !important; font-size: 13.5px !important; }
-        .home-btn { left: 10px !important; padding: 6px 8px !important; font-size: 11px !important; gap: 4px !important; }
-        .resume-btn { right: 10px !important; padding: 6px 8px !important; font-size: 11px !important; gap: 4px !important; }
+        .home-btn { left: 8px !important; padding: 4px 6px !important; font-size: 11px !important; gap: 3px !important; }
+        .resume-btn { right: 8px !important; padding: 4px 6px !important; font-size: 11px !important; gap: 3px !important; }
       }
       `}</style>
       <div style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", background: "#fafafa", fontFamily: "'Inter',-apple-system,sans-serif", padding: "1rem" }}>
@@ -113,15 +154,40 @@ export default function PagesLayout({ children }: { children: React.ReactNode })
           <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 4, background: "transparent", zIndex: 100 }}>
             <motion.div style={{ height: "100%", background: "linear-gradient(90deg, #3b82f6, #10b981)", scaleX, transformOrigin: "0%" }} />
           </div>
-          {/* Header */}
-          <header style={{ display: "flex", flexDirection: "column", alignItems: "center", padding: "14px 16px 12px", borderBottom: "1px solid #f0f0f0", background: "#fff", flexShrink: 0, position: "relative" }}>
-            <Link href="/" className="home-btn" style={{ position: "absolute", left: 16, top: "50%", transform: "translateY(-50%)" }}><HomeIcon size={16} /> Home</Link>
-            <img src="/img/MainAvt.png" alt="Anbu Selvan" className="navbar-avatar" style={{ borderRadius: "50%", objectFit: "cover", border: "2px solid #fff", boxShadow: "0 2px 8px rgba(0,0,0,.1)" }} />
-            <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 2, marginTop: 4 }}>
-              <span style={{ fontWeight: 800, fontSize: 16, color: "#111", letterSpacing: "-0.02em" }}>Anbu</span>
-              <span style={{ fontSize: 9, color: "#22c55e", fontWeight: 700, display: "flex", alignItems: "center", gap: 3, textTransform: "uppercase", letterSpacing: "0.05em" }}><span style={{ width: 5, height: 5, borderRadius: "50%", background: "#22c55e", display: "inline-block", boxShadow: "0 0 4px rgba(34,197,94,0.6)" }} /> Active Now</span>
+          {/* Header - Compact Half-Size */}
+          <header style={{ display: "flex", alignItems: "center", justifyContent: "center", padding: "8px 16px", borderBottom: "1px solid #f0f0f0", background: "#fff", flexShrink: 0, position: "relative", minHeight: 48 }}>
+            {/* Dynamic Home vs Back button */}
+            {isSubpage ? (
+              <button 
+                onClick={() => router.back()} 
+                className="home-btn" 
+                style={{ position: "absolute", left: 14, top: "50%", transform: "translateY(-50%)" }}
+              >
+                <ArrowLeft size={15} /> <TextRoll>Back</TextRoll>
+              </button>
+            ) : (
+              <MotionLink href="/" initial="initial" whileHover="hovered" className="home-btn" style={{ position: "absolute", left: 14, top: "50%", transform: "translateY(-50%)" }}>
+                <HomeIcon size={15} /> <TextRoll>Home</TextRoll>
+              </MotionLink>
+            )}
+
+            {/* Compact Avatar with Interactive Mouse Following Eyes */}
+            <div ref={avatarRef} style={{ display: "flex", alignItems: "center", gap: 8 }}>
+              <div style={{ padding: "2px 6px", borderRadius: 999, background: "#f8fafc", border: "1.5px solid #18181b", boxShadow: "2px 2px 0px #18181b", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                <MouseFollowingEyes size={16} />
+              </div>
+              <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
+                <span style={{ fontWeight: 800, fontSize: 13, color: "#111", letterSpacing: "-0.02em", lineHeight: 1.2 }}>Anbu</span>
+                <span style={{ fontSize: 8.5, color: "#22c55e", fontWeight: 700, display: "flex", alignItems: "center", gap: 3, textTransform: "uppercase", letterSpacing: "0.04em" }}>
+                  <span style={{ width: 4, height: 4, borderRadius: "50%", background: "#22c55e", display: "inline-block", boxShadow: "0 0 4px rgba(34,197,94,0.6)" }} /> Active
+                </span>
+              </div>
             </div>
-            <a onClick={() => import("canvas-confetti").then(m => m.default({ particleCount: 100, spread: 80 }))} href="/resume/anbu-selvan-resume.pdf" download="Anbu_Selvan_Resume.pdf" className="resume-btn"><Download size={14} /> Resume</a>
+
+            {/* Connect Button */}
+            <MotionLink href="/contact" initial="initial" whileHover="hovered" className="resume-btn">
+              <Sparkles size={13} color="#f59e0b" /> <TextRoll>Connect</TextRoll>
+            </MotionLink>
           </header>
           {/* Page Content */}
           <div ref={contentRef} className="portfolio-content" style={{ flex: 1, overflowY: "auto", padding: "24px 32px", display: "flex", flexDirection: "column" }}>
@@ -129,18 +195,15 @@ export default function PagesLayout({ children }: { children: React.ReactNode })
               {children}
             </div>
           </div>
-          {/* Footer */}
+
+          {/* Footer with Vercel Tooltip Nav */}
           <footer style={{ padding: "10px 16px 14px", borderTop: "1px solid #f0f0f0", background: "#fff", display: "flex", flexDirection: "column", alignItems: "center", gap: 8, flexShrink: 0 }}>
             <div style={{ fontSize: 12, fontWeight: 600, color: "#888", cursor: "pointer", display: "flex", alignItems: "center", gap: 3, userSelect: "none" }} onClick={() => setShowQ(!showQ)}>
               {showQ ? "Hide quick sections" : "Show quick sections"} {showQ ? <ChevronDown size={14} /> : <ChevronUp size={14} />}
             </div>
             {showQ && (
-              <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: 6, padding: "2px 0" }}>
-                {TABS.map(tab => (
-                  <Link key={tab.key} href={tab.path} className="qb" style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: 5, padding: "7px 14px", borderRadius: 999, border: "1px solid #e5e7eb", background: activeSection === tab.key ? "#f3f4f6" : "#fff", fontSize: 12, fontWeight: 600, color: "#374151", cursor: "pointer" }}>
-                    <span style={{ color: tab.color, display: "flex", alignItems: "center" }}>{tab.icon}</span> {tab.label}
-                  </Link>
-                ))}
+              <div style={{ padding: "4px 0" }}>
+                <VercelTooltipNav activeSection={activeSection} />
               </div>
             )}
           </footer>

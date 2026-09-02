@@ -1,14 +1,13 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
 import CustomCursor from "@/components/custom-cursor";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Anbu | Portfolio",
   description: "Software Developer Portfolio — Anbu Selvan",
 };
+
+import { ThemeProvider } from "@/components/theme-provider";
 
 export default function RootLayout({
   children,
@@ -20,9 +19,11 @@ export default function RootLayout({
       <head>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
       </head>
-      <body className={`${inter.className} antialiased min-h-screen overflow-x-hidden`} style={{ margin: 0, padding: 0 }}>
-        <CustomCursor />
-        <main>{children}</main>
+      <body className="antialiased min-h-screen overflow-x-hidden" style={{ margin: 0, padding: 0, fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" }}>
+        <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
+          <CustomCursor />
+          <main>{children}</main>
+        </ThemeProvider>
       </body>
     </html>
   );

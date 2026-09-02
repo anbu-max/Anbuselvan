@@ -1,11 +1,11 @@
 "use client";
 
 import React, { useState } from "react";
-import { Mail, Linkedin, Github, Download, Send } from "lucide-react";
+import { Mail, Linkedin, Github, Download, Send, PhoneCall, Sparkles, HelpCircle } from "lucide-react";
 import FadeIn from "@/components/fade-in";
 
 export default function ContactPage() {
-  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+  const [formData, setFormData] = useState({ name: "", email: "", phone: "", message: "" });
   
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -18,9 +18,9 @@ export default function ContactPage() {
     // Fire confetti
     import("canvas-confetti").then(m => m.default({ particleCount: 100, spread: 80 }));
 
-    const subject = encodeURIComponent(`Contact from ${formData.name}`);
-    const body = encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`);
-    window.location.href = `mailto:anbuselvan.devz@gmail.com?subject=${subject}&body=${body}`;
+    const subject = encodeURIComponent(`Free Demo Request from ${formData.name}`);
+    const body = encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\nPhone/WhatsApp: ${formData.phone}\n\nMessage / Demo Request:\n${formData.message}`);
+    window.location.href = `mailto:anbuselvandzz@gmail.com?subject=${subject}&body=${body}`;
   };
 
   const handleDownload = () => {
@@ -28,53 +28,78 @@ export default function ContactPage() {
   };
 
   const contacts = [
-    { href: "mailto:anbuselvan.devz@gmail.com", icon: <Mail size={16} />, bg: "#fef3c7", c: "#d97706", l: "Email", s: "anbuselvan.devz", cls: "c-email" },
-    { href: "https://www.linkedin.com/in/anbuselvan01/", icon: <Linkedin size={16} />, bg: "#dbeafe", c: "#2563eb", l: "LinkedIn", s: "anbuselvan01", cls: "c-linkedin" },
-    { href: "https://github.com/anbu-max", icon: <Github size={16} />, bg: "#f3f4f6", c: "#111", l: "GitHub", s: "anbu-max", cls: "c-github" },
+    { href: "mailto:anbuselvandzz@gmail.com", icon: <Mail size={18} />, bg: "#fef3c7", c: "#d97706", l: "Email", s: "anbuselvandzz@gmail.com" },
+    { href: "https://wa.me/919361952703", icon: <PhoneCall size={18} />, bg: "#dcfce7", c: "#15803d", l: "WhatsApp / Call", s: "+91 9361952703" },
+    { href: "https://www.linkedin.com/in/anbuselvan01/", icon: <Linkedin size={18} />, bg: "#dbeafe", c: "#2563eb", l: "LinkedIn", s: "anbuselvan01" },
+    { href: "https://github.com/anbu-max", icon: <Github size={18} />, bg: "#f1f5f9", c: "#0f172a", l: "GitHub", s: "anbu-max" },
   ];
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
+    <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
       <div>
         <FadeIn delay={0} direction="none" duration={0.5}>
-          <div className="section-title" style={{ fontWeight: 700, fontSize: 15, color: "#111", marginBottom: 8 }}>Let&apos;s Connect</div>
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 12, marginBottom: 8 }}>
+            <div className="section-title" style={{ fontWeight: 800, fontSize: 18, color: "#111", margin: 0, display: "flex", alignItems: "center", gap: 8 }}>
+              🤝 Let&apos;s Connect
+            </div>
+
+            {/* Resume Button */}
+            <a onClick={handleDownload} href="/resume/anbu-selvan-resume.pdf" download="Anbu_Selvan_Resume.pdf" className="dl-btn" style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "8px 18px", borderRadius: 999, textDecoration: "none", fontSize: 12.5, fontWeight: 800, border: "2px solid #18181b", boxShadow: "3px 3px 0px #18181b", background: "#ffffff", color: "#18181b" }}>
+              <Download size={15} /> Download Resume
+            </a>
+          </div>
         </FadeIn>
+
         <FadeIn delay={0.1} direction="up">
-          <p style={{ fontSize: 14.5, color: "#1a1a1a", lineHeight: 1.6, marginBottom: 16 }}>
-            Want to <b>power your business with AI</b> and <b>automate repetitive boring tasks</b>? I&apos;m always open to discussing <b>product design work</b> or <b>partnership opportunities</b>. Feel free to reach out to me!
+          <p style={{ fontSize: 14.5, color: "#1a1a1a", lineHeight: 1.6, marginBottom: 16, fontWeight: 500 }}>
+            Want to <b>power your business with AI</b> and <b>automate repetitive tasks</b>? I&apos;m always open to building custom AI agents, web applications, or discussing partnership opportunities. Reach out to me directly!
           </p>
         </FadeIn>
-        <div className="contact-grid">
+
+        {/* Contact Method Cards */}
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: 12 }}>
           {contacts.map((c, i) => (
-            <FadeIn key={i} delay={0.15 + i * 0.1} direction="up">
-              <a href={c.href} target="_blank" rel="noopener noreferrer" className={`contact-card ${c.cls}`} style={{ display: "flex", alignItems: "center", gap: 12, padding: 14, borderRadius: 16, background: "#fafafa", border: "1px solid #eee", textDecoration: "none", color: "inherit" }}>
-                <div className="icon-box" style={{ width: 38, height: 38, borderRadius: 12, display: "flex", alignItems: "center", justifyContent: "center", background: c.bg, color: c.c }}>{c.icon}</div>
-                <div><div className="contact-title" style={{ fontWeight: 700, fontSize: 14, marginBottom: 2 }}>{c.l}</div><div className="subtitle" style={{ fontSize: 11, color: "#888", fontFamily: "monospace" }}>{c.s}</div></div>
+            <FadeIn key={i} delay={0.15 + i * 0.08} direction="up">
+              <a href={c.href} target="_blank" rel="noopener noreferrer" style={{ display: "flex", alignItems: "center", gap: 12, padding: 14, borderRadius: 16, background: "#ffffff", border: "2px solid #18181b", boxShadow: "4px 4px 0px #18181b", textDecoration: "none", color: "inherit", transition: "transform 0.15s ease" }}>
+                <div style={{ width: 40, height: 40, borderRadius: 12, display: "flex", alignItems: "center", justifyContent: "center", background: c.bg, color: c.c, border: "1.5px solid #18181b", flexShrink: 0 }}>{c.icon}</div>
+                <div style={{ minWidth: 0 }}><div style={{ fontWeight: 800, fontSize: 13.5, marginBottom: 2, color: "#111" }}>{c.l}</div><div style={{ fontSize: 11, color: "#555", fontFamily: "monospace", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{c.s}</div></div>
               </a>
             </FadeIn>
           ))}
         </div>
       </div>
 
+      {/* Book Free Demo Form Card */}
       <FadeIn delay={0.3} direction="up">
-        <div style={{ background: "#fafafa", border: "1px solid #eee", borderRadius: 16, padding: 20 }}>
-          <div style={{ fontWeight: 600, fontSize: 14, color: "#111", marginBottom: 12 }}>Send me a message</div>
+        <div style={{ background: "#ffffff", border: "2px solid #18181b", boxShadow: "6px 6px 0px #18181b", borderRadius: 24, padding: 22 }}>
+          <div style={{ fontWeight: 800, fontSize: 16, color: "#111", marginBottom: 4, display: "flex", alignItems: "center", gap: 8 }}>
+            <Sparkles size={18} color="#f59e0b" /> Book your free demo or message me
+          </div>
+          <p style={{ fontSize: 13.5, color: "#444", marginBottom: 14, lineHeight: 1.5, fontWeight: 500 }}>
+            Tell me what kind of demo or AI automation you want, and I will build it for you!
+          </p>
+
           <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: 12 }}>
             <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
-              <input type="text" name="name" value={formData.name} onChange={handleChange} placeholder="Your Name *" required style={{ flex: "1 1 200px", padding: "10px 14px", borderRadius: 10, border: "1px solid #e5e7eb", fontSize: 13, outline: "none", fontFamily: "inherit", boxSizing: "border-box" }} />
-              <input type="email" name="email" value={formData.email} onChange={handleChange} placeholder="Your Email" style={{ flex: "1 1 200px", padding: "10px 14px", borderRadius: 10, border: "1px solid #e5e7eb", fontSize: 13, outline: "none", fontFamily: "inherit", boxSizing: "border-box" }} />
+              <input type="text" name="name" value={formData.name} onChange={handleChange} placeholder="Your Name *" required style={{ flex: "1 1 180px", padding: "10px 14px", borderRadius: 10, border: "1.5px solid #18181b", fontSize: 13, outline: "none", fontFamily: "inherit", boxSizing: "border-box" }} />
+              <input type="email" name="email" value={formData.email} onChange={handleChange} placeholder="Your Email *" required style={{ flex: "1 1 180px", padding: "10px 14px", borderRadius: 10, border: "1.5px solid #18181b", fontSize: 13, outline: "none", fontFamily: "inherit", boxSizing: "border-box" }} />
+              <input type="tel" name="phone" value={formData.phone} onChange={handleChange} placeholder="Phone / WhatsApp Number *" required style={{ flex: "1 1 180px", padding: "10px 14px", borderRadius: 10, border: "1.5px solid #18181b", fontSize: 13, outline: "none", fontFamily: "inherit", boxSizing: "border-box" }} />
             </div>
-            <textarea name="message" value={formData.message} onChange={handleChange} placeholder="Your Message *" required rows={4} style={{ width: "100%", padding: "10px 14px", borderRadius: 10, border: "1px solid #e5e7eb", fontSize: 13, outline: "none", resize: "vertical", fontFamily: "inherit", boxSizing: "border-box" }} />
-            <button type="submit" style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 8, padding: "10px 20px", borderRadius: 10, background: "#111", color: "#fff", border: "none", fontSize: 13, fontWeight: 600, cursor: "pointer", transition: "all 0.2s" }} onMouseOver={e => e.currentTarget.style.background = "#333"} onMouseOut={e => e.currentTarget.style.background = "#111"}>
-              <Send size={14} /> Send Message
+
+            <textarea name="message" value={formData.message} onChange={handleChange} placeholder="What kind of demo or AI automation do you want built? *" required rows={4} style={{ width: "100%", padding: "10px 14px", borderRadius: 10, border: "1.5px solid #18181b", fontSize: 13, outline: "none", resize: "vertical", fontFamily: "inherit", boxSizing: "border-box" }} />
+
+            {/* Workflow Audit Helper Note */}
+            <div style={{ display: "flex", alignItems: "flex-start", gap: 8, padding: "10px 12px", borderRadius: 12, background: "#f8fafc", border: "1px dashed #94a3b8", fontSize: 12, color: "#475569", lineHeight: 1.5 }}>
+              <HelpCircle size={16} color="#3b82f6" style={{ flexShrink: 0, marginTop: 2 }} />
+              <div>
+                <b>Don&apos;t know what to automate?</b> No problem! Tell me about your daily business processes, and I&apos;ll audit your workflows, suggest high-ROI automations, and build a custom demo for you.
+              </div>
+            </div>
+
+            <button type="submit" style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 8, padding: "12px 20px", borderRadius: 12, background: "#18181b", color: "#fff", border: "2px solid #18181b", boxShadow: "3px 3px 0px #000", fontSize: 13.5, fontWeight: 700, cursor: "pointer", transition: "all 0.2s" }}>
+              <Send size={14} /> Request Free Demo
             </button>
           </form>
-        </div>
-      </FadeIn>
-
-      <FadeIn delay={0.5} direction="up">
-        <div style={{ marginTop: 8, display: "flex", flexDirection: "column", alignItems: "center" }}>
-          <a onClick={handleDownload} href="/resume/anbu-selvan-resume.pdf" download="Anbu_Selvan_Resume.pdf" className="dl-btn" style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "12px 24px", borderRadius: 999, textDecoration: "none", fontSize: 14, fontWeight: 700 }}><Download size={16} /> Download Resume</a>
         </div>
       </FadeIn>
     </div>

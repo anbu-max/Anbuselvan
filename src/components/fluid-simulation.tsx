@@ -2,7 +2,6 @@
 
 import React, { useEffect, useRef } from "react";
 
-// Preserve the canvas globally so we only initialize webgl-fluid exactly once
 let globalCanvas: HTMLCanvasElement | null = null;
 let isInitialized = false;
 
@@ -14,9 +13,14 @@ export default function FluidSimulation() {
 
     if (!globalCanvas) {
       globalCanvas = document.createElement("canvas");
-      globalCanvas.style.width = "100%";
-      globalCanvas.style.height = "100%";
-      globalCanvas.style.opacity = "0.7";
+      globalCanvas.style.position = "fixed";
+      globalCanvas.style.top = "0";
+      globalCanvas.style.left = "0";
+      globalCanvas.style.width = "100vw";
+      globalCanvas.style.height = "100vh";
+      globalCanvas.style.opacity = "0.85";
+      globalCanvas.style.pointerEvents = "auto";
+      globalCanvas.style.zIndex = "0";
     }
 
     containerRef.current.appendChild(globalCanvas);
@@ -30,33 +34,25 @@ export default function FluidSimulation() {
         const webGLFluid = module.default;
         try {
           webGLFluid(globalCanvas, {
-            IMMEDIATE: false,
+            IMMEDIATE: true,
             TRIGGER: "hover",
             SIM_RESOLUTION: isMobile ? 64 : 128,
             DYE_RESOLUTION: isMobile ? 256 : 512,
             CAPTURE_RESOLUTION: isMobile ? 256 : 512,
-            DENSITY_DISSIPATION: 0.95,
-            VELOCITY_DISSIPATION: 0.95,
+            DENSITY_DISSIPATION: 1.8, // Longer lasting cloud smoke trails
+            VELOCITY_DISSIPATION: 0.98,
             PRESSURE: 0.8,
             PRESSURE_ITERATIONS: isMobile ? 10 : 20,
-            CURL: 30,
-            SPLAT_RADIUS: isMobile ? 0.2 : 0.12, 
-            SPLAT_FORCE: 6000,
+            CURL: 35, // High curl for cloud-like swirls
+            SPLAT_RADIUS: isMobile ? 0.38 : 0.28, 
+            SPLAT_FORCE: 9000,
             SHADING: !isMobile,
             COLORFUL: true,
-            COLOR_UPDATE_SPEED: 10,
+            COLOR_UPDATE_SPEED: 15,
             PAUSED: false,
-            BACK_COLOR: { r: 252, g: 252, b: 252 },
-            TRANSPARENT: false,
+            BACK_COLOR: { r: 250, g: 250, b: 250 },
+            TRANSPARENT: true,
             BLOOM: false,
-            BLOOM_ITERATIONS: 8,
-            BLOOM_RESOLUTION: 256,
-            BLOOM_INTENSITY: 0.8,
-            BLOOM_THRESHOLD: 0.4,
-            BLOOM_SOFT_KNEE: 0.7,
-            SUNRAYS: false,
-            SUNRAYS_RESOLUTION: 196,
-            SUNRAYS_WEIGHT: 1.0,
           });
         } catch (err) {
           console.error("Fluid simulation init error:", err);
@@ -74,7 +70,7 @@ export default function FluidSimulation() {
   return (
     <div 
       ref={containerRef}
-      style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0, zIndex: 0 }}
+      style={{ position: "fixed", top: 0, left: 0, right: 0, bottom: 0, zIndex: 0, pointerEvents: "auto" }}
     />
   );
 }
