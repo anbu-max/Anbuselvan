@@ -213,15 +213,15 @@ ${
 
       // --- REACT / NEXT.JS ---
       } else if ((lower.includes("react") || lower.includes("next.js") || lower.includes("nextjs") || lower.includes("next js")) && !lower.includes("whatsapp")) {
-        candidateText = "React & Next.js are core to Anbu's stack! \u269b\ufe0f\n\n\u2022 This portfolio itself is built with **Next.js 16 + Turbopack**.\n\u2022 **Thriven Blog** uses Next.js, Tailwind, MongoDB, and a custom admin CMS.\n\u2022 **MovieDex** is a React + OMDB API movie catalog.\n\nAnbu builds production Next.js apps with SSR, API routes, and modern UI patterns.";
+        candidateText = "Anbu is an expert in React and Next.js, but honestly, the specific tech stack doesn't matter if it doesn't get you results! \ud83d\ude80\n\nIt's better to contact him directly to identify your bottlenecks and goals before worrying about the framework. Head over to the Connect page to start the conversation.";
 
       // --- JAVA / SPRING BOOT ---
       } else if (lower.includes("java") || lower.includes("spring boot") || lower.includes("spring security") || lower.includes("backend api")) {
-        candidateText = "Anbu has strong Java Spring Boot expertise! \u2615\n\n\u2022 **Todo Security API**: Spring Boot 3, Spring Security 6, JWT auth, PostgreSQL, Swagger UI.\n\u2022 **Scalable URL Shortener**: Spring Boot microservice, Redis caching (sub-5ms redirects), MongoDB TTL expiration, Docker + Nginx.\n\nEnterprise-grade backend APIs with auth, caching, and scalability.";
+        candidateText = "Anbu has strong Java Spring Boot expertise for enterprise backends. However, the exact tech stack or app features don't matter if they don't drive business improvements. \u26a1\n\nIt's best to contact him to discuss your specific goals and bottlenecks before creating something.";
 
       // --- KOTLIN / ANDROID / MOBILE ---
       } else if (lower.includes("kotlin") || lower.includes("android") || lower.includes("mobile app") || lower.includes("jetpack") || lower.includes("ballz") || lower.includes("dialer") || lower.includes("cold call") || lower.includes("power dialer")) {
-        candidateText = "Anbu built **Ballz** \u2014 a 100% offline-first native Android Power Dialer & CRM! \ud83d\udcf1\n\n\u2022 **Tech**: Kotlin 2.2, Jetpack Compose (Material 3), Twilio WebRTC VoIP SDK, Room DB.\n\u2022 **Features**: Auto-dials CSV leads, shows prospect Contact & Business Name live on screen.\n\u2022 **Analytics**: Built-in Value Per Dial ($) charts for tracking call ROI.\n\nFully offline-capable \u2014 no internet needed for local data operations.";
+        candidateText = "Anbu builds native Android apps (like his offline-first CRM, Ballz), but he focuses on the output, not just the code. \ud83d\udcf1\n\nIf an app doesn't solve a real bottleneck or increase revenue, the tech doesn't matter. Contact him on the Connect page to talk about your business goals first.";
 
       // --- AI RECEPTIONIST / VOICE AI ---
       } else if (lower.includes("receptionist") || lower.includes("voice ai") || lower.includes("retell") || lower.includes("inbound call") || lower.includes("outbound call") || lower.includes("voice agent") || lower.includes("ai call")) {
@@ -345,7 +345,7 @@ ${
 
       // --- GENERIC FALLBACK ---
       } else {
-        candidateText = "Anbu Selvan is an Expert Full-Stack & AI Solutions Developer working with SMBs, founders, and international clients across the UK and US. \ud83d\udee0\ufe0f\n\n\u2022 **Core Stack**: React, Next.js, Java Spring Boot, Jetpack Compose, n8n, Twilio, Retell AI.\n\u2022 **11 Production Projects**: AI voice agents, WhatsApp bots, Android CRM, automation systems, and more.\n\nAsk me about any specific project or skill \u2014 or check the Projects page!";
+        candidateText = "The specific tech stack or app features don't matter if they don't get you results! \ud83d\udd25\n\nIt's better to contact Anbu directly to identify your bottlenecks and goals before building something. Head over to the Connect page to start a conversation and see how he can help improve your business output.";
       }
     }
 
