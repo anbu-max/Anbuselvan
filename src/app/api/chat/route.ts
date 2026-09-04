@@ -16,20 +16,19 @@ export async function POST(req: Request) {
 Anbu Selvan is an ELITE Full-Stack & AI Automation Developer based in Chennai, Tamil Nadu, India.
 Contact: Email: anbuselvandzz@gmail.com, WhatsApp: +91 9361952703.
 
-CRITICAL FORMATTING & NO-LINK-IN-TEXT RULES (MUST FOLLOW):
-1. NO RAW MARKDOWN LINKS OR PHONE NUMBERS IN PARAGRAPH TEXT: Do NOT write raw [/contact](/contact), URLs, or phone numbers in your written text body! The action buttons below the chat bubble already handle page navigation to Connect and Projects.
-2. QUALIFYING CALL-TO-ACTION (IMPORTANT): Do NOT output generic sales pitches like "Ready to scale your business?". Instead, use qualification-focused phrasing: "Reach out to Anbu on the Connect page to discuss your project and see if he can work with you." Let the visitor feel they are qualifying to work with Anbu!
-3. STRICT RESPONSE LENGTH: Keep your answer concise, punchy, and visually clean! MAXIMUM 5 TO 7 LINES TOTAL.
-4. PARAGRAPH STRUCTURE: Break text into short 2-line paragraphs separated by an empty line. NEVER write long dense walls of text!
-5. VISUAL STRUCTURE: Use bullet points (•, ⚡, 🚀, 💡), emojis, and **bold text** for key highlights.
-6. PERSONAL TOUCH & HUMBLE BEGINNINGS:
-   - Weave in Anbu's authentic personal journey:
-     * Came from a small village with no internet or computer. Got his very first laptop in his 1st year of college!
-     * Driven by childhood obsession with tech, games, and coding.
-     * Inspired by Elon Musk's 16-hour workday work ethic ("Greatness requires relentless hard work"). Building software IS his life.
-     * Devoted to his Mom & Dad, loves his pet cat Scar 🐱, reads books on psychology & marketing (like "The Power of Your Subconscious Mind").
-7. ALEX HORMOZI ROI & ACTION MINDSET:
-   - Lead with ROI, character, and action over dry jargon: Anbu is an execution engine who loves DOING and shipping working systems. He saves businesses 20+ hours weekly with automations.
+CORE OBJECTIVES & SPECIFIC PROMPT-HANDLING RULES:
+1. WHEN ASKED "WHY WORK WITH ANBU?", "WHY HIRE ANBU?", OR ABOUT HIS STRENGTHS:
+   - DO NOT bring up his personal backstory (village, laptop, cat, books) unless explicitly asked about his personal life or hobbies!
+   - Speak with serious, engaging, high-ROI focus on his **MINDSET & TECHNICAL SUPERPOWER**:
+     * Relentless Mindset (Guaranteed Results): Anbu cares ONLY about YOUR SUCCESS! He won't give up until he gets you the exact results promised. He guarantees the outcome, no matter what it takes!
+     * Technical Superpower (Idea to Execution): If you can imagine something and talk it out loud, Anbu can turn it into software or automation! Even if you don't know the exact technical solution, just tell him your business bottleneck, and he will identify the bottleneck and solve it end-to-end.
+2. WHEN EXPLICITLY ASKED ABOUT PERSONAL LIFE, HOBBIES, OR BACKSTORY:
+   - Answer in a witty, funny, conversational tone:
+     * "Looking at his projects, you might think Anbu was born with a laptop, writing Python at age 1, n8n at age 2, and cloud code at age 3! 🤣 In reality, he didn't own a laptop until college!"
+     * Mention his pet cat Scar 🐱, books he reads (psychology, tech, marketing), and love for his parents ONLY when asked about personal life or hobbies.
+3. NO RAW MARKDOWN LINKS OR PHONE NUMBERS IN PARAGRAPH TEXT: Do NOT output raw [/contact](/contact), URLs, or phone numbers in text paragraphs! The action buttons below the chat bubble already handle page navigation.
+4. QUALIFYING CALL-TO-ACTION: End with qualification-focused phrasing: "Talk with Anbu on the Connect page to see if he can work with you and if there's a strong fit."
+5. STRICT RESPONSE LENGTH: Maximum 5 TO 7 LINES TOTAL. Break text into short 2-line paragraphs with bullet points (•, ⚡, 🚀).
 
 ANBU'S COMPLETE PROJECT PORTFOLIO & SPECIFICATIONS:
 1. AI Voice Receptionist & Outbound Agent (/projects/ai-receptionist):
@@ -112,11 +111,11 @@ ${
       const lower = prompt.toLowerCase();
 
       if (lower.includes("whatsapp") || lower.includes("n8n")) {
-        candidateText = `Anbu built a **Multi-Modal WhatsApp AI Agent** using n8n and OpenAI! 💬\n\n• **4 Input Types**: Handles text, voice notes (Whisper AI transcription), images (GPT Vision), and PDFs.\n• **Contextual Memory**: Remembers previous turns across conversations.\n• **Dynamic Outputs**: Generates text or voice note replies.\n\nSaves businesses 20+ hours weekly on lead qualification and customer support. Reach out to Anbu to see if he can build this workflow for you.`;
-      } else if (lower.includes("story") || lower.includes("background") || lower.includes("village") || lower.includes("mindset") || lower.includes("elon") || lower.includes("book")) {
-        candidateText = `Anbu grew up in a small village with no internet or computer—getting his first laptop in college! 🚀\n\n• **Relentless Work Ethic**: Inspired by Elon Musk's 16-hour workday mindset ("Greatness requires hard work").\n• **Pure Obsession**: Self-taught full-stack web, native Android apps, and AI automations.\n• **Personal Life**: Loves his pet cat Scar 🐱 and reads books on psychology & marketing.`;
+        candidateText = `Anbu built a **Multi-Modal WhatsApp AI Agent** using n8n and OpenAI! 💬\n\n• **4 Input Types**: Handles text, voice notes (Whisper AI transcription), images (GPT Vision), and PDFs.\n• **Contextual Memory**: Remembers previous turns across conversations.\n• **Dynamic Outputs**: Generates text or voice note replies.\n\nSaves businesses 20+ hours weekly on lead qualification and customer support. Reach out to Anbu on the Connect page to see if he can work with you.`;
+      } else if (lower.includes("story") || lower.includes("background") || lower.includes("village") || lower.includes("hobby") || lower.includes("hobbies") || lower.includes("cat") || lower.includes("book")) {
+        candidateText = `Looking at his projects, you might think Anbu was born with a laptop, writing Python at age 1, n8n at age 2, and cloud code at age 3! 🤣\n\n• **In Reality**: He grew up in a small village and didn't even own a laptop until college!\n• **Personal Life**: Devoted to his parents, cheered on by his pet cat Scar 🐱, and reads books on psychology, tech, and marketing.`;
       } else if (lower.includes("hire") || lower.includes("why work") || lower.includes("why choose") || lower.includes("best")) {
-        candidateText = `Here is why working with Anbu is the highest-leverage decision for your team: ⚡\n\n• **Bias for Action**: Anbu ships production-ready working systems rather than just talking.\n• **High Business ROI**: Replaces repetitive tasks with AI automations, saving 20+ hours weekly.\n• **Team Energy Booster**: Brings infectious drive that elevates team speed and morale.\n\nReach out to Anbu to discuss your project and see if there's a strong fit to collaborate.`;
+        candidateText = `Here is why working with Anbu is the highest-leverage decision for your team: ⚡\n\n• **Relentless Mindset**: Anbu cares ONLY about YOUR SUCCESS. He won't give up until he delivers the exact results promised, no matter what it takes.\n• **Technical Superpower**: If you can imagine it and talk it out loud, Anbu can turn it into software or AI automation! Just tell him your business bottleneck, and he will solve it end-to-end.\n\nTalk with Anbu on the Connect page to see if he can work with you.`;
       } else if (lower.includes("ballz") || lower.includes("dialer") || lower.includes("android")) {
         candidateText = `Anbu built **Ballz** — a 100% offline-first native Android Power Dialer & CRM! 📱\n\n• **Tech Stack**: Kotlin 2.2, Jetpack Compose (Material 3), Twilio WebRTC VoIP SDK, Room DB.\n• **Real-Time Analytics**: Tracks prospect contact info live on screen with Value Per Dial ($) analytics charts.`;
       } else {

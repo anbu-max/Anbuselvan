@@ -282,9 +282,9 @@ async function queryGeminiApi(
           { label: "🤝 Get in Touch", url: "/contact" },
           { label: "📁 Explore Projects", url: "/projects" },
         ];
-      } else if (lower.includes("story") || lower.includes("background") || lower.includes("village") || lower.includes("mindset") || lower.includes("book") || lower.includes("elon")) {
-        thoughtSteps = "1. Identified query intent: Anbu's Personal Story & Background.\n2. Retrieved backstory: Small village roots, first laptop in 1st yr college, Elon Musk 16-hr work ethic, books, cat Scar.\n3. Formatted authentic response.";
-        aiText = "Anbu came from a small village with no internet or computer growing up—he got his very first laptop in his 1st year of college! Driven by an obsession with tech, games, and coding, he self-taught full-stack development and AI automation. Inspired by Elon Musk's beast-mode 16-hour workday, Anbu believes deeply that 'greatness requires relentless hard work'. He loves his pet cat Scar 🐱, adores his mom and dad, and reads books on human psychology and marketing!";
+      } else if (lower.includes("hobby") || lower.includes("hobbies") || lower.includes("cat") || lower.includes("book") || lower.includes("story") || lower.includes("village")) {
+        thoughtSteps = "1. Identified query intent: Anbu's Personal Hobbies & Backstory.\n2. Retrieved backstory: Cat Scar, books on psychology & marketing, small village origins.\n3. Formatted authentic witty response.";
+        aiText = "Looking at his projects, you might think Anbu was born with a laptop, writing Python at age 1, n8n at age 2, and cloud code at age 3! 🤣 In reality, he grew up in a small village and didn't even own a laptop until college! Devoted to his mom and dad, cheered on by his pet cat Scar 🐱, and reads books on psychology, tech, and marketing!";
         links = [
           { label: "👋 About Anbu", url: "/me" },
           { label: "🤝 Connect with Anbu", url: "/contact" },
@@ -297,8 +297,8 @@ async function queryGeminiApi(
           { label: "📁 Explore Projects", url: "/projects" },
         ];
       } else if (lower.includes("hire") || lower.includes("why need") || lower.includes("why should") || lower.includes("best") || lower.includes("why work")) {
-        thoughtSteps = "1. Identified query intent: Why Work With Anbu?\n2. Evaluated value through Alex Hormozi ROI & Character lens.\n3. Highlighted bias for action, high energy, time savings, and productivity boost.";
-        aiText = "You should work with Anbu because he is an unstoppable execution engine! Growing up without a computer in a small village, Anbu built a relentless hunger for action—he ships real working solutions rather than just talking. He brings an Elon Musk-inspired 16-hour work ethic, saves businesses 20+ hours weekly, and injects high energy that makes teams more productive!";
+        thoughtSteps = "1. Identified query intent: Why Work With Anbu?\n2. Evaluated value through Mindset & Technical Superpower lens.\n3. Highlighted guaranteed results, idea-to-execution ability, and bottleneck solving.";
+        aiText = "Here is why working with Anbu is the highest-leverage decision for your team: ⚡\n\n• **Relentless Mindset (Guaranteed Results)**: Anbu cares ONLY about YOUR SUCCESS. He won't give up until he delivers the exact results promised, no matter what it takes.\n• **Technical Superpower (Idea to Execution)**: If you can imagine it and talk it out loud, Anbu can turn it into software or AI automation! Just tell him your business bottleneck, and he will solve it end-to-end.\n\nTalk with Anbu on the Connect page to see if he can work with you.";
         links = [
           { label: "🤝 Connect & Work with Anbu", url: "/contact" },
           { label: "⚡ View Skills", url: "/skills" },
