@@ -115,7 +115,7 @@ const ALL_QUESTION_PROMPTS = [
   "Why work with Anbu?",
   "Anbu's top skills",
   "Top 3 Automation Projects",
-  "What is Ballz Power Dialer?",
+  "Why choose Anbu?",
   "Multi-Modal WhatsApp AI Agent",
   "24/7 AI Voice Receptionist",
   "Anbu's work ethic & mindset",
@@ -360,6 +360,12 @@ async function queryGeminiApi(
         links = [
           { label: "👋 About Anbu", url: "/me" },
           { label: "📁 Explore Projects", url: "/projects" },
+        ];
+      } else if (lower.includes("why choose") || lower.includes("why work") || lower.includes("hire")) {
+        thoughtSteps = "1. Identified query intent: Why choose Anbu?\n2. Extracted core value proposition (problem-solving & automation).\n3. Formatted response.";
+        aiText = "If you are looking for someone who prioritizes your problems and your bottlenecks, and focuses every second to solve that and automate that... then you have found the right person. ⚡\n\nAnbu doesn't just write code; he builds solutions designed to scale your business.";
+        links = [
+          { label: "🤝 Let's work together", url: "/contact" },
         ];
       } else {
         thoughtSteps = "1. Analyzing general prompt.\n2. Summarizing core expertise: AI Agents, Web & Android Apps, Workflow Automations.\n3. Providing relevant quick links.";
