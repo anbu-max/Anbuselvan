@@ -113,8 +113,8 @@ function FormattedMarkdownText({ content }: { content: string }) {
 const ALL_QUESTION_PROMPTS = [
   "Who is Anbu Selvan?",
   "Why work with Anbu?",
-  "Anbu's background & story",
-  "Anbu's top AI & Web projects",
+  "Anbu's top skills",
+  "Top 3 Automation Projects",
   "What is Ballz Power Dialer?",
   "Multi-Modal WhatsApp AI Agent",
   "24/7 AI Voice Receptionist",
@@ -342,6 +342,20 @@ async function queryGeminiApi(
         links = [
           { label: "💬 View WhatsApp AI Agent Project", url: "/projects/whatsapp-agent" },
           { label: "🤝 Connect with Anbu", url: "/contact" },
+        ];
+      } else if (lower.includes("skill") || lower.includes("stack") || lower.includes("technolog")) {
+        thoughtSteps = "1. Identified query intent: Anbu's Top Skills.\n2. Listed technical proficiency across frontend, backend, mobile, and AI.\n3. Added formatted icons.";
+        aiText = "Here are Anbu's core skills and technologies: ⚡\n\n• 🌐 **Frontend**: React, Next.js, Tailwind CSS\n• ⚙️ **Backend**: Java Spring Boot, Node.js\n• 📱 **Mobile**: Kotlin, Jetpack Compose\n• 🤖 **AI & Automation**: n8n, OpenAI, Retell AI, Twilio\n• 🗄️ **Databases**: PostgreSQL, MongoDB, Redis\n\nIf you have a business bottleneck, Anbu can use these tools to build a custom solution for you!";
+        links = [
+          { label: "⚡ View Skills", url: "/skills" },
+          { label: "🤝 Connect with Anbu", url: "/contact" },
+        ];
+      } else if (lower.includes("top 3") || lower.includes("top project") || lower.includes("automation project")) {
+        thoughtSteps = "1. Identified query intent: Top 3 Automation Projects.\n2. Extracted top automated AI workflows from portfolio.\n3. Formatted list and attached project link.";
+        aiText = "Here are Anbu's Top 3 Automation Projects: 🚀\n\n1. **24/7 AI Voice Receptionist**: Built with Retell AI & n8n to automatically handle inbound business calls and book meetings.\n2. **Multi-Modal WhatsApp AI Agent**: An n8n workflow that processes text, voice notes, and images via OpenAI in a single chat.\n3. **SEO Blog Agent**: Fully automates research and article generation directly to WordPress using Perplexity and ChatGPT.\n\nCheck out the Projects page to see them in action!";
+        links = [
+          { label: "📁 View All Projects", url: "/projects" },
+          { label: "📞 AI Receptionist", url: "/projects/ai-receptionist" },
         ];
       } else if (lower.includes("who") || lower.includes("anbu") || lower.includes("about")) {
         thoughtSteps = "1. Identified query intent: Who is Anbu Selvan?\n2. Summarized technical abilities & engineering superpowers.\n3. Formatted response with links.";
