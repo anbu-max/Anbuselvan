@@ -6,7 +6,27 @@ export default function FluidSimulation() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
-    if (typeof window === "undefined" || !canvasRef.current) return;
+    // Intercept window keydown in capture phase to prevent webgl-fluid from catching Spacebar (splats) and P (pausing/freezing)
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (
+        e.key === " " ||
+        e.code === "Space" ||
+        e.key === "Spacebar" ||
+        e.key === "p" ||
+        e.key === "P" ||
+        e.code === "KeyP"
+      ) {
+        e.stopImmediatePropagation();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown, true);
+
+    if (typeof window === "undefined" || !canvasRef.current) {
+      return () => {
+        window.removeEventListener("keydown", handleKeyDown, true);
+      };
+    }
 
     let isMounted = true;
     const isMobile = window.innerWidth < 768;
@@ -23,12 +43,12 @@ export default function FluidSimulation() {
         webGLFluid(canvasRef.current, {
           IMMEDIATE: false,
           TRIGGER: "hover", // responds to touch on mobile too
-          // Drastically reduce resolution and iterations on mobile to maintain 60FPS scroll performance
+          // Resolution tuned for smooth performance
           SIM_RESOLUTION: isMobile ? 64 : 128,
           DYE_RESOLUTION: isMobile ? 256 : 512,
           CAPTURE_RESOLUTION: isMobile ? 256 : 512,
-          DENSITY_DISSIPATION: 0.95,
-          VELOCITY_DISSIPATION: 0.95,
+          DENSITY_DISSIPATION: 3.5, // Smooth clean fade out so colors do not get stuck
+          VELOCITY_DISSIPATION: 2.0,
           PRESSURE: 0.8,
           PRESSURE_ITERATIONS: isMobile ? 10 : 20,
           CURL: 30,
@@ -57,6 +77,7 @@ export default function FluidSimulation() {
 
     return () => {
       isMounted = false;
+      window.removeEventListener("keydown", handleKeyDown, true);
     };
   }, []);
 
@@ -67,7 +88,7 @@ export default function FluidSimulation() {
         style={{ 
           width: "100%", 
           height: "100%", 
-          opacity: 0.7 // Slight opacity to keep it subtle and not overdone
+          opacity: 0.7
         }} 
       />
     </div>
