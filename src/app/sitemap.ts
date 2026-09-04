@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://anbuselvan.com'; // Change to actual production URL if different
+  const baseUrl = 'https://anbu-aiportfolio.vercel.app'; // Change to actual production URL if different
 
   // Define all static routes
   const routes = [
