@@ -244,7 +244,7 @@ async function queryGeminiApi(
     */
     setIsThinking(true);
 
-    const thoughtTime = Math.floor(Math.random() * 3) + 3; // 3-5s
+    const thoughtTime = 1; // Optimized ultra-fast 1s thought timing
     const isFinal = false; // Rate limiter disabled during testing
 
     // First attempt Gemini API call
@@ -264,7 +264,7 @@ async function queryGeminiApi(
       return;
     }
 
-    // Fallback: Smart Client-Side JSON Answering Engine
+    // Fallback: Fast Client-Side JSON Answering Engine
     setTimeout(() => {
       const lower = query.toLowerCase();
       let aiText = "";
@@ -289,6 +289,20 @@ async function queryGeminiApi(
           { label: "🤝 Connect with Anbu", url: "/contact" },
           { label: "📁 Explore Projects", url: "/projects" },
         ];
+      } else if (lower.includes("guarantee") || lower.includes("offer") || lower.includes("price") || lower.includes("cost") || lower.includes("negotiat") || lower.includes("contract") || lower.includes("custom project")) {
+        thoughtSteps = "1. Identified query intent: Custom Project Terms / Guarantees / Pricing.\n2. Redirected to direct contact for custom business proposals.\n3. Attached contact page link.";
+        aiText = "For custom project terms, guarantees, pricing, or specific business offers, reach out directly to Anbu via WhatsApp (+91 9361952703) or Email (anbuselvandzz@gmail.com) on the Connect page to discuss your project requirements and see if there's a strong fit to work together. 🤝";
+        links = [
+          { label: "🤝 Contact Anbu Directly", url: "/contact" },
+          { label: "📁 View Projects", url: "/projects" },
+        ];
+      } else if (lower.includes("smb") || lower.includes("client") || lower.includes("who does") || lower.includes("business owner") || lower.includes("founder")) {
+        thoughtSteps = "1. Identified query intent: Target Clients & Business Focus.\n2. Evaluated clientele: SMBs, Founders, and International Clients.\n3. Formatted response with action links.";
+        aiText = "Anbu works primarily with Small to Medium-Sized Businesses (SMBs), business owners, founders, and international clients across the UK, US, and India! 🚀\n\n• **Core Focus**: Identifies operational bottlenecks and builds tailored Full-Stack & AI agent solutions that automate manual tasks and scale revenue.\n\nReach out to Anbu on the Connect page to see if you can work with him and if your project is a strong mutual fit.";
+        links = [
+          { label: "🤝 Connect with Anbu", url: "/contact" },
+          { label: "📁 View Projects", url: "/projects" },
+        ];
       } else if (lower.includes("hobby") || lower.includes("hobbies") || lower.includes("cat") || lower.includes("book") || lower.includes("story") || lower.includes("village")) {
         thoughtSteps = "1. Identified query intent: Anbu's Personal Hobbies & Backstory.\n2. Retrieved backstory: Cat Scar, books on psychology & marketing, small village origins.\n3. Formatted authentic witty response.";
         aiText = "Looking at his projects, you might think Anbu was born with a laptop, writing Python at age 1, n8n at age 2, and cloud code at age 3! 🤣 In reality, he grew up in a small village and didn't even own a laptop until college! Devoted to his mom and dad, cheered on by his pet cat Scar 🐱, and reads books on psychology, tech, and marketing!";
@@ -305,7 +319,7 @@ async function queryGeminiApi(
         ];
       } else if (lower.includes("hire") || lower.includes("why need") || lower.includes("why should") || lower.includes("best") || lower.includes("why work")) {
         thoughtSteps = "1. Identified query intent: Why Work With Anbu?\n2. Evaluated value through Mindset & Technical Superpower lens.\n3. Highlighted guaranteed results, idea-to-execution ability, and bottleneck solving.";
-        aiText = "Here is why working with Anbu is the highest-leverage decision for your team: ⚡\n\n• **Relentless Mindset (Guaranteed Results)**: Anbu cares ONLY about YOUR SUCCESS. If you want something built, he has the execution mindset to deliver it for you end-to-end.\n• **Technical Superpower (Idea to Execution)**: Specializing in Next.js, React, Java Spring Boot, Kotlin Android, and n8n AI workflows. Tell him your business bottleneck, and he turns it into software.\n\nTalk with Anbu on the Connect page to see if you can work with him and if there's a strong fit.";
+        aiText = "Here is why working with Anbu is the highest-leverage decision for your team: ⚡\n\n• **Relentless Mindset (Guaranteed Results)**: Anbu cares ONLY about YOUR SUCCESS. If you want something built, he has the execution mindset to deliver it for you end-to-end.\n• **Target Clients**: SMBs, founders, and international clients looking to eliminate bottlenecks.\n• **Technical Superpower (Idea to Execution)**: Specializing in Next.js, React, Java Spring Boot, Kotlin Android, and n8n AI workflows. Tell him your business bottleneck, and he turns it into software.\n\nTalk with Anbu on the Connect page to see if you can work with him and if there's a strong fit.";
         links = [
           { label: "🤝 Connect & Work with Anbu", url: "/contact" },
           { label: "⚡ View Skills", url: "/skills" },
@@ -331,14 +345,14 @@ async function queryGeminiApi(
         ];
       } else if (lower.includes("who") || lower.includes("anbu") || lower.includes("about")) {
         thoughtSteps = "1. Identified query intent: Who is Anbu Selvan?\n2. Summarized technical abilities & engineering superpowers.\n3. Formatted response with links.";
-        aiText = "Anbu Selvan is an Elite Full-Stack & AI Automation Developer based in Chennai, India. He builds high-performance web applications, native Android apps, and AI agent workflows (n8n, Retell AI, OpenAI) that eliminate manual business bottlenecks.\n\nReach out to Anbu on the Connect page to see if you can work with him and if your project is a strong mutual fit.";
+        aiText = "Anbu Selvan is an Elite Full-Stack & AI Automation Developer working with SMBs, founders, and international clients. He builds high-performance web applications, native Android apps, and AI agent workflows (n8n, Retell AI, OpenAI) that eliminate manual business bottlenecks.\n\nReach out to Anbu on the Connect page to see if you can work with him and if your project is a strong mutual fit.";
         links = [
           { label: "👋 About Anbu", url: "/me" },
           { label: "📁 Explore Projects", url: "/projects" },
         ];
       } else {
         thoughtSteps = "1. Analyzing general prompt.\n2. Summarizing core expertise: AI Agents, Web & Android Apps, Workflow Automations.\n3. Providing relevant quick links.";
-        aiText = "Anbu Selvan specializes in Full-Stack Web Development, Native Android Apps, and AI Agent Automations. If you have a business bottleneck or custom software idea, he can turn it into production code end-to-end.\n\nReach out to Anbu on the Connect page to see if you can work with him and if your project is a strong mutual fit.";
+        aiText = "Anbu Selvan specializes in Full-Stack Web Development, Native Android Apps, and AI Agent Automations for SMBs and international clients. If you have a business bottleneck or custom software idea, he can turn it into production code end-to-end.\n\nReach out to Anbu on the Connect page to see if you can work with him and if your project is a strong mutual fit.";
         links = [
           { label: "🚀 View Featured Projects", url: "/projects" },
           { label: "🤝 Get in Touch", url: "/contact" },
@@ -356,7 +370,7 @@ async function queryGeminiApi(
 
       setMessages((prev) => [...prev, aiMsg]);
       setIsThinking(false);
-    }, 1200);
+    }, 200);
   };
 
   useEffect(() => {

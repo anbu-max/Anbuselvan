@@ -44,7 +44,7 @@ export default function MePage() {
         <div style={{ background: "#ffffff", border: "2px solid #18181b", boxShadow: "6px 6px 0px #18181b", borderRadius: 20, padding: 22 }}>
           <div className="section-title" style={sectionTitle}>👋 About Me</div>
           <p style={paragraph}>
-            I&apos;m <b>Anbu Selvan</b> — Full-Stack &amp; Automation Developer specializing in building <DoodleHighlight color="#38bdf8">web applications</DoodleHighlight>, <DoodleHighlight color="#a855f7">mobile apps (Android)</DoodleHighlight>, and especially <DoodleHighlight color="#f59e0b">AI Automations &amp; Agentic Workflows</DoodleHighlight> with no-code tools and AI-accelerated development. I approach robust software development with an engineering mindset.
+            I&apos;m <b>Anbu Selvan</b> — Full-Stack &amp; AI Automation Developer working with <b>Small to Medium-Sized Businesses (SMBs)</b>, <b>Founders</b>, and <b>International Clients</b>. I specialize in building <DoodleHighlight color="#38bdf8">web applications</DoodleHighlight>, <DoodleHighlight color="#a855f7">native mobile apps (Android)</DoodleHighlight>, and <DoodleHighlight color="#f59e0b">AI Automations &amp; Agentic Workflows</DoodleHighlight> to scale operations, remove business bottlenecks, and save teams 20+ hours per week.
           </p>
           <p style={{ ...paragraph, margin: 0 }}>
             I specialize in transforming complex business bottlenecks into seamless automated systems. Working with cutting-edge platforms and tools like <b>n8n</b>, <b>Claude</b>, <b>Hermes</b>, and custom AI agents, I design production-ready solutions spanning web development, voice AI, automated lead capture, and intelligent messaging pipelines.
@@ -63,7 +63,7 @@ export default function MePage() {
             <span style={{ fontSize: 12, color: "#15803d", fontWeight: 800, background: "#f0fdf4", border: "1.5px solid #18181b", boxShadow: "2px 2px 0px #18181b", padding: "3px 12px", borderRadius: 999 }}>2025 - Present</span>
           </div>
           <p style={{ ...paragraph, fontSize: 14, color: "#333", fontWeight: 500, marginBottom: 16 }}>
-            Partnering directly with business leaders, clients, and agencies across Industrial, Healthcare, and Real Estate sectors to eliminate operational bottlenecks, automate customer acquisitions, and build high-performance applications.
+            Partnering directly with business owners, SMB founders, and international clients across the UK, US, and India to eliminate operational bottlenecks, automate customer acquisition, and engineer high-performance systems.
           </p>
 
           <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
