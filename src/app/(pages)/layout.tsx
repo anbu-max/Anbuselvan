@@ -35,11 +35,11 @@ export default function PagesLayout({ children }: { children: React.ReactNode })
       .portfolio-content { -ms-overflow-style: none; scrollbar-width: none; scroll-behavior: smooth; overscroll-behavior-y: auto; -webkit-overflow-scrolling: touch; }
       .qb{user-select:none; transition:all .2s ease;}
       .qb:hover{border-color:#111!important;transform:translateY(-1px)}
-      .home-btn{transition:all .2s ease; padding:4px 8px; border-radius:10px; color:#666; display:flex; align-items:center; gap:4px; font-size:12px; font-weight:600; text-decoration:none; cursor:pointer; background:none; border:none;}
-      .home-btn:hover{background:#111; color:#fff; transform:translateY(-1px);}
+      .home-btn{transition:all .2s ease; padding:7px 14px; border-radius:12px; color:#18181b; display:flex; align-items:center; gap:6px; font-size:13.5px; font-weight:700; text-decoration:none; cursor:pointer; background:#f4f4f5; border:1.5px solid #e4e4e7;}
+      .home-btn:hover{background:#18181b; color:#fff; border-color:#18181b; transform:translateY(calc(-50% - 1px));}
       
-      .resume-btn { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); transition: all 0.2s ease; background: #111; color: #fff; display: flex; align-items: center; gap: 4px; padding: 5px 10px; border-radius: 10px; text-decoration: none; font-size: 11.5px; font-weight: 700; }
-      .resume-btn:hover { background: #333; color: #fff; transform: translateY(calc(-50% - 1px)); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+      .resume-btn { position: absolute; right: 16px; top: 50%; transform: translateY(-50%); transition: all 0.2s ease; background: #18181b; border: 1.5px solid #18181b; color: #fff; display: flex; align-items: center; gap: 6px; padding: 7px 16px; border-radius: 12px; text-decoration: none; font-size: 13.5px; font-weight: 800; box-shadow: 0 2px 8px rgba(0,0,0,0.12); }
+      .resume-btn:hover { background: #000; color: #fff; transform: translateY(calc(-50% - 1px)); box-shadow: 0 4px 14px rgba(0,0,0,0.2); }
 
       .flip-card { background-color: transparent; perspective: 1000px; height: 130px; }
       .flip-card-inner { position: relative; width: 100%; height: 100%; transition: transform 0.6s; transform-style: preserve-3d; }
@@ -91,8 +91,8 @@ export default function PagesLayout({ children }: { children: React.ReactNode })
         .portfolio-content { padding: 24px 36px !important; font-size: 15.5px !important; }
         .portfolio-content p, .portfolio-content .section-para { font-size: 15.5px !important; line-height: 1.75 !important; }
         .portfolio-content .section-title { font-size: 17px !important; }
-        .home-btn { padding: 5px 10px !important; font-size: 13px !important; left: 16px !important; }
-        .resume-btn { padding: 5px 12px !important; font-size: 13px !important; right: 16px !important; }
+        .home-btn { padding: 8px 16px !important; font-size: 14px !important; left: 16px !important; }
+        .resume-btn { padding: 8px 18px !important; font-size: 14px !important; right: 16px !important; }
         .navbar-avatar { width: 36px !important; height: 36px !important; }
       }
 
@@ -102,8 +102,8 @@ export default function PagesLayout({ children }: { children: React.ReactNode })
         .portfolio-content { padding: 28px 44px !important; font-size: 16.5px !important; }
         .portfolio-content p, .portfolio-content .section-para { font-size: 16.5px !important; line-height: 1.8 !important; }
         .portfolio-content .section-title { font-size: 18px !important; }
-        .home-btn { padding: 6px 12px !important; font-size: 14px !important; left: 20px !important; }
-        .resume-btn { padding: 6px 14px !important; font-size: 14px !important; right: 20px !important; }
+        .home-btn { padding: 9px 18px !important; font-size: 14.5px !important; left: 20px !important; }
+        .resume-btn { padding: 9px 20px !important; font-size: 14.5px !important; right: 20px !important; }
         .navbar-avatar { width: 40px !important; height: 40px !important; }
       }
 
@@ -111,8 +111,8 @@ export default function PagesLayout({ children }: { children: React.ReactNode })
       @media (max-width: 640px) {
         .portfolio-shell { border-radius: 0 !important; height: 100vh !important; }
         .portfolio-content { padding: 16px 18px !important; font-size: 13.5px !important; }
-        .home-btn { left: 8px !important; padding: 4px 6px !important; font-size: 11px !important; gap: 3px !important; }
-        .resume-btn { right: 8px !important; padding: 4px 6px !important; font-size: 11px !important; gap: 3px !important; }
+        .home-btn { left: 10px !important; padding: 6px 12px !important; font-size: 12.5px !important; gap: 5px !important; }
+        .resume-btn { right: 10px !important; padding: 6px 12px !important; font-size: 12.5px !important; gap: 5px !important; }
       }
       `}</style>
       <div style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", background: "#fafafa", fontFamily: "'Inter',-apple-system,sans-serif", padding: "1rem" }}>
@@ -121,34 +121,34 @@ export default function PagesLayout({ children }: { children: React.ReactNode })
           <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 4, background: "transparent", zIndex: 100 }}>
             <motion.div style={{ height: "100%", background: "linear-gradient(90deg, #3b82f6, #10b981)", scaleX, transformOrigin: "0%" }} />
           </div>
-          {/* Header - Compact Half-Size */}
-          <header style={{ display: "flex", alignItems: "center", justifyContent: "center", padding: "8px 16px", borderBottom: "1px solid #f0f0f0", background: "#fff", flexShrink: 0, position: "relative", minHeight: 52 }}>
+          {/* Header - Enlarged, Prominent & Spacious */}
+          <header style={{ display: "flex", alignItems: "center", justifyContent: "center", padding: "12px 20px", borderBottom: "1.5px solid #eaeaea", background: "#fff", flexShrink: 0, position: "relative", minHeight: 64 }}>
             {/* Dynamic Home vs Back button */}
             {isSubpage ? (
               <button 
                 onClick={() => router.back()} 
                 className="home-btn" 
-                style={{ position: "absolute", left: 14, top: "50%", transform: "translateY(-50%)" }}
+                style={{ position: "absolute", left: 16, top: "50%", transform: "translateY(-50%)" }}
               >
-                <ArrowLeft size={15} /> <TextRoll>Back</TextRoll>
+                <ArrowLeft size={17} /> <TextRoll>Back</TextRoll>
               </button>
             ) : (
-              <MotionLink href="/" initial="initial" whileHover="hovered" className="home-btn" style={{ position: "absolute", left: 14, top: "50%", transform: "translateY(-50%)" }}>
-                <HomeIcon size={15} /> <TextRoll>Home</TextRoll>
+              <MotionLink href="/" initial="initial" whileHover="hovered" className="home-btn" style={{ position: "absolute", left: 16, top: "50%", transform: "translateY(-50%)" }}>
+                <HomeIcon size={17} /> <TextRoll>Home</TextRoll>
               </MotionLink>
             )}
 
             {/* Clean Header Avatar / Title */}
-            <div ref={avatarRef} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 1 }}>
-              <span style={{ fontWeight: 800, fontSize: 14, color: "#111", letterSpacing: "-0.02em" }}>Anbu</span>
-              <span style={{ fontSize: 9, color: "#16a34a", fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.05em", display: "flex", alignItems: "center", gap: 3 }}>
-                <span style={{ width: 5, height: 5, borderRadius: "50%", background: "#16a34a", display: "inline-block", boxShadow: "0 0 4px rgba(22,163,74,0.6)" }} /> ACTIVE
+            <div ref={avatarRef} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 2 }}>
+              <span style={{ fontWeight: 900, fontSize: 16, color: "#111", letterSpacing: "-0.02em" }}>Anbu</span>
+              <span style={{ fontSize: 10.5, color: "#16a34a", fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.06em", display: "flex", alignItems: "center", gap: 4 }}>
+                <span style={{ width: 6, height: 6, borderRadius: "50%", background: "#16a34a", display: "inline-block", boxShadow: "0 0 5px rgba(22,163,74,0.7)" }} /> ACTIVE
               </span>
             </div>
 
             {/* Connect Button */}
             <MotionLink href="/contact" initial="initial" whileHover="hovered" className="resume-btn">
-              <Sparkles size={13} color="#f59e0b" /> <TextRoll>Connect</TextRoll>
+              <Sparkles size={16} color="#f59e0b" /> <TextRoll>Connect</TextRoll>
             </MotionLink>
           </header>
           {/* Page Content */}

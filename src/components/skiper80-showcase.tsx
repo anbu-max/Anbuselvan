@@ -145,7 +145,7 @@ export function Skiper80Showcase() {
       </div>
 
       {/* Mobile / Tablet Square Cards Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:hidden">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:hidden pb-6">
         {PROJECTS.map((project, index) => (
           <motion.div
             key={project.slug}
@@ -157,9 +157,9 @@ export function Skiper80Showcase() {
               borderRadius: 20,
               overflow: "hidden",
               border: "2px solid #18181b",
-              boxShadow: "6px 6px 0px #18181b",
+              boxShadow: "5px 5px 0px #18181b",
               cursor: "pointer",
-              background: "#111",
+              background: "#18181b",
             }}
           >
             {/* Background Cover Image */}
@@ -169,12 +169,34 @@ export function Skiper80Showcase() {
               style={{ width: "100%", height: "100%", objectFit: "cover" }}
             />
 
-            {/* Gradient Overlay & Bottom Content */}
+            {/* Top-Left Display Index Badge (01, 02, 03...) */}
+            <div
+              style={{
+                position: "absolute",
+                top: 12,
+                left: 12,
+                background: "rgba(18, 18, 18, 0.75)",
+                backdropFilter: "blur(8px)",
+                border: "1.5px solid rgba(255, 255, 255, 0.3)",
+                color: "#ffffff",
+                fontSize: 12,
+                fontWeight: 900,
+                padding: "3px 10px",
+                borderRadius: 999,
+                letterSpacing: "0.02em",
+                boxShadow: "0 2px 8px rgba(0,0,0,0.3)",
+                zIndex: 2,
+              }}
+            >
+              {index + 1 < 10 ? `0${index + 1}` : index + 1}
+            </div>
+
+            {/* Gradient Overlay & Bottom Content - Lightened for maximum image visibility */}
             <div
               style={{
                 position: "absolute",
                 inset: 0,
-                background: "linear-gradient(to top, rgba(0,0,0,0.95) 15%, rgba(0,0,0,0.6) 60%, transparent)",
+                background: "linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.45) 50%, rgba(0,0,0,0.1) 85%)",
                 padding: 16,
                 display: "flex",
                 flexDirection: "column",
@@ -183,19 +205,19 @@ export function Skiper80Showcase() {
               }}
             >
               <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8 }}>
-                <span style={{ fontWeight: 800, fontSize: 16, color: "#fff", letterSpacing: "-0.01em" }}>
+                <span style={{ fontWeight: 800, fontSize: 15.5, color: "#fff", letterSpacing: "-0.01em", textShadow: "0 1px 3px rgba(0,0,0,0.8)" }}>
                   {project.title}
                 </span>
-                <div style={{ width: 28, height: 28, borderRadius: "50%", background: "#fff", color: "#111", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-                  <ArrowRight size={14} />
+                <div style={{ width: 30, height: 30, borderRadius: "50%", background: "#fff", color: "#111", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, boxShadow: "0 2px 6px rgba(0,0,0,0.3)" }}>
+                  <ArrowRight size={15} />
                 </div>
               </div>
-              <p style={{ fontSize: 12, color: "rgba(255,255,255,0.85)", margin: 0, lineHeight: 1.4, display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden" }}>
+              <p style={{ fontSize: 12, color: "rgba(255,255,255,0.9)", margin: 0, lineHeight: 1.4, display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden" }}>
                 {project.desc}
               </p>
-              <div style={{ display: "flex", gap: 4, flexWrap: "wrap", marginTop: 2 }}>
+              <div style={{ display: "flex", gap: 4, flexWrap: "wrap", marginTop: 4 }}>
                 {project.tags.slice(0, 3).map((t, j) => (
-                  <span key={j} style={{ padding: "2px 8px", borderRadius: 999, background: "rgba(255,255,255,0.15)", border: "1px solid rgba(255,255,255,0.2)", color: "#fff", fontSize: 10, fontWeight: 600 }}>
+                  <span key={j} style={{ padding: "3px 9px", borderRadius: 999, background: "rgba(0, 0, 0, 0.65)", backdropFilter: "blur(6px)", border: "1px solid rgba(255,255,255,0.25)", color: "#fff", fontSize: 10.5, fontWeight: 700 }}>
                     {t}
                   </span>
                 ))}

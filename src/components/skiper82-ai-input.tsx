@@ -298,14 +298,14 @@ async function queryGeminiApi(
         ];
       } else if (lower.includes("smb") || lower.includes("client") || lower.includes("who does") || lower.includes("business owner") || lower.includes("founder")) {
         thoughtSteps = "1. Identified query intent: Target Clients & Business Focus.\n2. Evaluated clientele: SMBs, Founders, and International Clients.\n3. Formatted response with action links.";
-        aiText = "Anbu works primarily with Small to Medium-Sized Businesses (SMBs), business owners, founders, and international clients across the UK, US, and India! 🚀\n\n• **Core Focus**: Identifies operational bottlenecks and builds tailored Full-Stack & AI agent solutions that automate manual tasks and scale revenue.\n\nReach out to Anbu on the Connect page to see if you can work with him and if your project is a strong mutual fit.";
+        aiText = "Anbu works primarily with Small to Medium-Sized Businesses (SMBs), business owners, founders, and international clients across the UK and US! 🚀\n\n• **Core Focus**: Identifies operational bottlenecks and builds tailored Full-Stack & AI agent solutions that automate manual tasks and scale revenue.\n\nReach out to Anbu on the Connect page to see if you can work with him and if your project is a strong mutual fit.";
         links = [
           { label: "🤝 Connect with Anbu", url: "/contact" },
           { label: "📁 View Projects", url: "/projects" },
         ];
-      } else if (lower.includes("hobby") || lower.includes("hobbies") || lower.includes("cat") || lower.includes("book") || lower.includes("story") || lower.includes("village")) {
-        thoughtSteps = "1. Identified query intent: Anbu's Personal Hobbies & Backstory.\n2. Retrieved backstory: Cat Scar, books on psychology & marketing, small village origins.\n3. Formatted authentic witty response.";
-        aiText = "Looking at his projects, you might think Anbu was born with a laptop, writing Python at age 1, n8n at age 2, and cloud code at age 3! 🤣 In reality, he grew up in a small village and didn't even own a laptop until college! Devoted to his mom and dad, cheered on by his pet cat Scar 🐱, and reads books on psychology, tech, and marketing!";
+      } else if (lower.includes("hobby") || lower.includes("hobbies") || lower.includes("cat") || lower.includes("book") || lower.includes("story") || lower.includes("village") || lower.includes("kallakurichi")) {
+        thoughtSteps = "1. Identified query intent: Anbu's Personal Hobbies & Backstory.\n2. Retrieved backstory: Small town Kallakurichi roots, self-taught dev (1st Android app at 19, multiple apps at 20, AI apps today), Elon Musk inspiration, pet cat Scar 🐱.\n3. Formatted authentic witty response.";
+        aiText = "Looking at his projects, you might think Anbu was born with a compiler pre-installed! 🤣 In reality, he's a self-taught developer from a small town in Kallakurichi, Tamil Nadu who taught himself how to use the internet, coding, and automation tools. He coded his first Android app at 19, built multiple applications at 20, and is now developing cutting-edge AI applications! Driven by inspiration from Elon Musk... and the vital daily duty of feeding his pet cat, Scar 🐱.";
         links = [
           { label: "👋 About Anbu", url: "/me" },
           { label: "🤝 Connect with Anbu", url: "/contact" },
@@ -319,7 +319,7 @@ async function queryGeminiApi(
         ];
       } else if (lower.includes("hire") || lower.includes("why need") || lower.includes("why should") || lower.includes("best") || lower.includes("why work")) {
         thoughtSteps = "1. Identified query intent: Why Work With Anbu?\n2. Evaluated value through Mindset & Technical Superpower lens.\n3. Highlighted guaranteed results, idea-to-execution ability, and bottleneck solving.";
-        aiText = "Here is why working with Anbu is the highest-leverage decision for your team: ⚡\n\n• **Relentless Mindset (Guaranteed Results)**: Anbu cares ONLY about YOUR SUCCESS. If you want something built, he has the execution mindset to deliver it for you end-to-end.\n• **Target Clients**: SMBs, founders, and international clients looking to eliminate bottlenecks.\n• **Technical Superpower (Idea to Execution)**: Specializing in Next.js, React, Java Spring Boot, Kotlin Android, and n8n AI workflows. Tell him your business bottleneck, and he turns it into software.\n\nTalk with Anbu on the Connect page to see if you can work with him and if there's a strong fit.";
+        aiText = "Here is why working with Anbu is the highest-leverage decision for your team: ⚡\n\n• **Relentless Mindset (Guaranteed Results)**: Inspired by Elon Musk's work ethic, Anbu cares ONLY about YOUR SUCCESS. If you want something built, he has the execution mindset to deliver it for you end-to-end.\n• **Target Clients**: SMBs, founders, and international clients (UK, US) looking to eliminate bottlenecks.\n• **Technical Superpower (Idea to Execution)**: Specializing in Next.js, React, Java Spring Boot, Kotlin Android, and n8n AI workflows. Tell him your business bottleneck, and he turns it into software.\n\nTalk with Anbu on the Connect page to see if you can work with him and if there's a strong fit.";
         links = [
           { label: "🤝 Connect & Work with Anbu", url: "/contact" },
           { label: "⚡ View Skills", url: "/skills" },

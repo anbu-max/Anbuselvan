@@ -24,6 +24,17 @@ export default function FluidSimulation() {
     };
     window.addEventListener("error", handleGlobalError, true);
 
+    const handleUnhandledRejection = (event: PromiseRejectionEvent) => {
+      if (
+        event.reason?.message?.includes("setting 'down'") ||
+        event.reason?.message?.includes("webgl-fluid") ||
+        String(event.reason).includes("setting 'down'")
+      ) {
+        event.preventDefault();
+      }
+    };
+    window.addEventListener("unhandledrejection", handleUnhandledRejection, true);
+
     if (!globalCanvas) {
       globalCanvas = document.createElement("canvas");
       globalCanvas.style.position = "fixed";
@@ -41,6 +52,32 @@ export default function FluidSimulation() {
     if (!isInitialized) {
       isInitialized = true;
       const isMobile = window.innerWidth < 768;
+
+      // Wrap window.addEventListener while webgl-fluid attaches mouse/touch listeners
+      const origAddEventListener = window.addEventListener;
+      window.addEventListener = function (type: string, listener: any, options?: any) {
+        if (
+          typeof listener === "function" &&
+          (type.startsWith("mouse") || type.startsWith("touch") || type.startsWith("pointer"))
+        ) {
+          const safeListener = function (this: any, event: Event) {
+            try {
+              return listener.call(this, event);
+            } catch (err: any) {
+              if (
+                err?.message?.includes("setting 'down'") ||
+                err?.message?.includes("undefined") ||
+                String(err).includes("setting 'down'")
+              ) {
+                return;
+              }
+              throw err;
+            }
+          };
+          return origAddEventListener.call(window, type, safeListener, options);
+        }
+        return origAddEventListener.call(window, type, listener, options);
+      };
 
       // @ts-ignore
       import("webgl-fluid").then((module) => {
@@ -69,8 +106,13 @@ export default function FluidSimulation() {
           });
         } catch (err) {
           console.error("Fluid simulation init error:", err);
+        } finally {
+          window.addEventListener = origAddEventListener;
         }
-      }).catch((e) => console.error("webgl-fluid load error", e));
+      }).catch((e) => {
+        window.addEventListener = origAddEventListener;
+        console.error("webgl-fluid load error", e);
+      });
     }
 
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -82,6 +124,7 @@ export default function FluidSimulation() {
 
     return () => {
       window.removeEventListener("error", handleGlobalError, true);
+      window.removeEventListener("unhandledrejection", handleUnhandledRejection, true);
       window.removeEventListener("keydown", handleKeyDown, { capture: true });
       if (globalCanvas && globalCanvas.parentNode) {
         globalCanvas.parentNode.removeChild(globalCanvas);

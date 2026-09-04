@@ -33,7 +33,7 @@ export default function MePage() {
             <MapPin size={16} color="#22c55e" />
             <div>
               <div style={{ fontSize: 10, color: "#888", fontWeight: 700, textTransform: "uppercase" }}>Location</div>
-              <div style={{ color: "#111", fontWeight: 700 }}>Chennai, Tamil Nadu, India</div>
+              <div style={{ color: "#111", fontWeight: 700 }}>Kallakurichi, Tamil Nadu, India</div>
             </div>
           </div>
         </div>
@@ -63,7 +63,7 @@ export default function MePage() {
             <span style={{ fontSize: 12, color: "#15803d", fontWeight: 800, background: "#f0fdf4", border: "1.5px solid #18181b", boxShadow: "2px 2px 0px #18181b", padding: "3px 12px", borderRadius: 999 }}>2025 - Present</span>
           </div>
           <p style={{ ...paragraph, fontSize: 14, color: "#333", fontWeight: 500, marginBottom: 16 }}>
-            Partnering directly with business owners, SMB founders, and international clients across the UK, US, and India to eliminate operational bottlenecks, automate customer acquisition, and engineer high-performance systems.
+            Partnering directly with business owners, SMB founders, and international clients across the UK and US to eliminate operational bottlenecks, automate customer acquisition, and engineer high-performance systems.
           </p>
 
           <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
