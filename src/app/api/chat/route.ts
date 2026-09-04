@@ -195,12 +195,20 @@ ${
       } else if (lower.includes("who is anbu") || lower.includes("who are you") || lower.includes("tell me about") || lower.includes("about anbu") || lower.includes("introduce") || lower.includes("who's anbu") || lower.includes("whos anbu")) {
         candidateText = "Anbu Selvan is an Expert Full-Stack & AI Solutions Developer from Kallakurichi, Tamil Nadu, India. \ud83d\ude80\n\n\u2022 **Full-Stack**: Next.js, React, Java Spring Boot, Kotlin Android (Jetpack Compose).\n\u2022 **AI & Automation**: n8n, Retell AI, OpenAI, Twilio, Whisper AI.\n\u2022 **Focus**: Builds production-grade software and AI agents for SMBs, founders, and international clients (UK, US) to automate workflows and eliminate bottlenecks.";
 
-      // --- WHAT CAN YOU BUILD / SERVICES ---
-      } else if (lower.includes("what can you build") || lower.includes("what do you offer") || lower.includes("services") || lower.includes("what can anbu") || lower.includes("capabilities") || lower.includes("what kind of") || lower.includes("what type of")) {
+      // --- WHAT CAN YOU BUILD / SERVICES / SOLUTIONS ---
+      } else if (lower.includes("what can you build") || lower.includes("what do you offer") || lower.includes("services") || lower.includes("what can anbu") || lower.includes("capabilities") || lower.includes("what kind of") || lower.includes("what type of") || lower.includes("provide solutions") || lower.includes("solutions for")) {
         candidateText = "Anbu builds end-to-end solutions across these areas: \ud83d\udee0\ufe0f\n\n\u2022 **AI Agents & Automation**: Voice AI receptionists, WhatsApp AI agents, automated workflows (n8n, Retell AI, OpenAI).\n\u2022 **Full-Stack Web Apps**: Next.js, React, Java Spring Boot \u2014 dashboards, SaaS, CRMs.\n\u2022 **Native Android Apps**: Kotlin, Jetpack Compose, Twilio VoIP.\n\u2022 **Business Automation**: Missed call text-back, review management, SEO blog agents, lead capture systems.";
 
-      // --- TECH STACK / SKILLS ---
-      } else if (lower.includes("tech stack") || lower.includes("technologies") || lower.includes("what language") || lower.includes("programming language") || lower.includes("skill") || lower.includes("tools") || lower.includes("framework")) {
+      // --- EXPERTISE / KNOWLEDGE / SPECIALTY ---
+      } else if (lower.includes("expertise") || lower.includes("knowledge") || lower.includes("special at") || lower.includes("speciality") || lower.includes("specialty") || lower.includes("expert at")) {
+        candidateText = "Anbu's core expertise is in building **AI-powered Automations** and **Full-Stack Web Applications**. \ud83e\udde0\n\nHe specializes in bridging the gap between cutting-edge AI (OpenAI, Retell AI) and practical business operations (Next.js, Java Spring Boot, n8n) to eliminate bottlenecks and scale revenue.";
+
+      // --- CANNOT DO / LIMITATIONS ---
+      } else if (lower.includes("cannot do") || lower.includes("can't do") || lower.includes("limitations") || lower.includes("not do") || lower.includes("doesn't know") || lower.includes("what can't he do")) {
+        candidateText = "Anbu is highly focused on his core stack (React, Next.js, Java Spring Boot, Kotlin, AI Agents, n8n). \ud83d\udeab\n\nHe typically avoids projects outside this stack (like PHP, Ruby, or low-level C++ game dev) to ensure he only delivers 10x quality where he's an absolute expert.";
+
+      // --- TECH STACK / SKILLS / BEST SKILL STACK ---
+      } else if (lower.includes("tech stack") || lower.includes("technologies") || lower.includes("what language") || lower.includes("programming language") || lower.includes("skill") || lower.includes("tools") || lower.includes("framework") || lower.includes("best stack") || lower.includes("best skill stack")) {
         candidateText = "Here's Anbu's core tech stack: \u2699\ufe0f\n\n\u2022 **Frontend**: React, Next.js, Tailwind CSS.\n\u2022 **Backend**: Java Spring Boot 3, Node.js, REST APIs.\n\u2022 **Mobile**: Kotlin, Jetpack Compose (Material 3), Twilio VoIP SDK.\n\u2022 **AI & Automation**: n8n, Retell AI, OpenAI (GPT, Whisper, Vision), Twilio.\n\u2022 **Databases**: PostgreSQL, MongoDB, Redis, Room DB.\n\u2022 **DevOps**: Docker, Nginx, Vercel, Git.";
 
       // --- REACT / NEXT.JS ---
@@ -259,8 +267,8 @@ ${
       } else if (lower.includes("thriven") || lower.includes("blog") || lower.includes("cms") || lower.includes("admin console")) {
         candidateText = "**Thriven Blog** is Anbu's personal blog platform! \ud83d\udcbb\n\n\u2022 Built with **Next.js, Tailwind, MongoDB, Vercel Blob**.\n\u2022 Custom **/admin CMS console** with role-based auth & middleware.\n\u2022 Full content management system built from scratch.";
 
-      // --- ALL PROJECTS / HOW MANY ---
-      } else if (lower.includes("all project") || lower.includes("how many project") || lower.includes("list project") || lower.includes("show project") || lower.includes("project list") || lower.includes("your project") || lower.includes("his project") || lower.includes("portfolio")) {
+      // --- ALL PROJECTS / HOW MANY / BEST CREATED ---
+      } else if (lower.includes("all project") || lower.includes("how many project") || lower.includes("list project") || lower.includes("show project") || lower.includes("project list") || lower.includes("your project") || lower.includes("his project") || lower.includes("portfolio") || lower.includes("best thing") || lower.includes("best created") || lower.includes("greatest project") || lower.includes("proudest")) {
         candidateText = "Anbu has **11 production projects** spanning Full-Stack, AI, and Automation: \ud83d\udcc2\n\n1. AI Voice Receptionist & Outbound Agent\n2. Ballz \u2014 Android Power Dialer & CRM\n3. Multi-Modal WhatsApp AI Agent\n4. Automated SEO Blog Agent\n5. Thriven Blog (Next.js CMS)\n6. Missed Call Text-Back System\n7. Reputation Management System\n8. Viral Hunter\n9. MovieDex\n10. Todo Security API\n11. Scalable URL Shortener\n\nCheck them all out on the Projects page!";
 
       // --- PRICING / COST / GUARANTEE ---
@@ -287,12 +295,16 @@ ${
       } else if (lower.includes("available") || lower.includes("freelance") || lower.includes("full time") || lower.includes("full-time") || lower.includes("part time") || lower.includes("part-time") || lower.includes("open to work") || lower.includes("taking on")) {
         candidateText = "Anbu is currently open to working with serious business owners and founders on high-impact projects! \ud83d\udca1\n\nHead over to the Connect page to discuss your project and see if it's a strong fit.";
 
+      // --- WHY SHOULDN'T I CHOOSE HIM ---
+      } else if (lower.includes("why shouldn't") || lower.includes("why not to choose") || lower.includes("not choose")) {
+        candidateText = "You shouldn't choose Anbu if you're looking for an agency that takes 6 months to ship an MVP, or if you want legacy stacks like PHP or jQuery. \ud83d\udeab\n\nHe moves fast and builds modern AI workflows and React/Next.js/Kotlin apps for founders who value speed and execution.";
+
       // --- HIRE / WHY WORK WITH ANBU ---
       } else if (lower.includes("hire") || lower.includes("why work") || lower.includes("why choose") || lower.includes("the best") || lower.includes("why anbu") || lower.includes("what makes")) {
         candidateText = "Here is why working with Anbu is the highest-leverage decision for your team: \u26a1\n\n\u2022 **Execution Mindset**: Inspired by Elon Musk's work ethic, Anbu cares about your success and delivers end-to-end.\n\u2022 **Target Clients**: SMBs, founders, and international clients (UK, US) looking to eliminate bottlenecks.\n\u2022 **Technical Superpower**: If you can imagine it and talk it out loud, Anbu can turn it into software or AI automation!\n\nInterested? The Connect page is the fastest way to get the ball rolling.";
 
-      // --- SMB / CLIENTS ---
-      } else if (lower.includes("smb") || lower.includes("client") || lower.includes("who does") || lower.includes("business owner") || lower.includes("founder") || lower.includes("who do you work")) {
+      // --- SMB / CLIENTS / PEOPLE WORKED WITH ---
+      } else if (lower.includes("smb") || lower.includes("client") || lower.includes("who does") || lower.includes("business owner") || lower.includes("founder") || lower.includes("who do you work") || lower.includes("people he worked with") || lower.includes("who he worked with") || lower.includes("people worked with")) {
         candidateText = "Anbu works primarily with Small to Medium-Sized Businesses (SMBs), business owners, founders, and international clients across the UK and US! \ud83d\ude80\n\n\u2022 **Core Focus**: Identifies operational bottlenecks and builds tailored Full-Stack & AI agent solutions that automate manual tasks and scale revenue.\n\nHead over to the Connect page to start a conversation with Anbu.";
 
       // --- BACKSTORY / PERSONAL ---
