@@ -205,11 +205,11 @@ ${
 
       // --- CANNOT DO / LIMITATIONS ---
       } else if (lower.includes("cannot do") || lower.includes("can't do") || lower.includes("limitations") || lower.includes("not do") || lower.includes("doesn't know") || lower.includes("what can't he do")) {
-        candidateText = "Anbu is highly focused on his core stack (React, Next.js, Java Spring Boot, Kotlin, AI Agents, n8n). \ud83d\udeab\n\nHe typically avoids projects outside this stack (like PHP, Ruby, or low-level C++ game dev) to ensure he only delivers 10x quality where he's an absolute expert.";
+        candidateText = "Anbu doesn't just write code \u2014 he builds solutions that drive business revenue. \ud83d\udeab\n\nIf you want someone to blindly follow instructions without caring about the end result, he's not the guy. He identifies bottlenecks and solves them. If a project doesn't lead to a measurable business improvement, he typically won't take it on.";
 
       // --- TECH STACK / SKILLS / BEST SKILL STACK ---
       } else if (lower.includes("tech stack") || lower.includes("technologies") || lower.includes("what language") || lower.includes("programming language") || lower.includes("skill") || lower.includes("tools") || lower.includes("framework") || lower.includes("best stack") || lower.includes("best skill stack")) {
-        candidateText = "Here's Anbu's core tech stack: \u2699\ufe0f\n\n\u2022 **Frontend**: React, Next.js, Tailwind CSS.\n\u2022 **Backend**: Java Spring Boot 3, Node.js, REST APIs.\n\u2022 **Mobile**: Kotlin, Jetpack Compose (Material 3), Twilio VoIP SDK.\n\u2022 **AI & Automation**: n8n, Retell AI, OpenAI (GPT, Whisper, Vision), Twilio.\n\u2022 **Databases**: PostgreSQL, MongoDB, Redis, Room DB.\n\u2022 **DevOps**: Docker, Nginx, Vercel, Git.";
+        candidateText = "Anbu focuses on **business revenue and improvements** \u2014 the tech stack is just a tool to get you results! \ud83d\udd25\n\nWhile he is highly proficient in **React, Next.js, n8n, and various automation tools**, what he really cares about is pure output. He plays on the offensive: whatever the problem is, he will build the right system to get you the desired results.";
 
       // --- REACT / NEXT.JS ---
       } else if ((lower.includes("react") || lower.includes("next.js") || lower.includes("nextjs") || lower.includes("next js")) && !lower.includes("whatsapp")) {
