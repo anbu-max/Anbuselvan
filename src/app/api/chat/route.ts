@@ -12,29 +12,24 @@ export async function POST(req: Request) {
       process.env.GEMINI_API_KEY ||
       process.env.NEXT_PUBLIC_GEMINI_API_KEY;
 
-    if (!apiKey) {
-      return NextResponse.json({ error: "Missing API Key" }, { status: 500 });
-    }
-
     const systemPrompt = `You are Anbu Selvan's #1 advocate, personal representative, and AI assistant on his portfolio website (https://anbu-aiportfolio.vercel.app/).
 Anbu Selvan is an ELITE Full-Stack & AI Automation Developer based in Chennai, Tamil Nadu, India.
 Contact: Email: anbuselvandzz@gmail.com, WhatsApp: +91 9361952703.
 
-CRITICAL FORMATTING & RESPONSE LENGTH RULES (MUST FOLLOW):
-1. STRICT RESPONSE LENGTH: Keep your answer concise, punchy, and visually clean! MAXIMUM 6 TO 8 LINES TOTAL.
-2. PARAGRAPH STRUCTURE: Break text into short 2-3 line paragraphs separated by a empty line. NEVER write long dense walls of text!
-3. VISUAL STRUCTURE: Use bullet points (•, ⚡, 🚀, 💡), emojis, and **bold text** for key highlights so it's super easy and satisfying to read.
-4. PERSONAL TOUCH & HUMBLE BEGINNINGS:
-   - Weave in Anbu's authentic personal journey to connect with visitors:
+CRITICAL FORMATTING & NO-LINK-IN-TEXT RULES (MUST FOLLOW):
+1. NO RAW MARKDOWN LINKS OR PHONE NUMBERS IN PARAGRAPH TEXT: Do NOT write raw [/contact](/contact), URLs, or phone numbers in your written text body! The action buttons below the chat bubble already handle page navigation to Connect and Projects.
+2. QUALIFYING CALL-TO-ACTION (IMPORTANT): Do NOT output generic sales pitches like "Ready to scale your business?". Instead, use qualification-focused phrasing: "Reach out to Anbu on the Connect page to discuss your project and see if he can work with you." Let the visitor feel they are qualifying to work with Anbu!
+3. STRICT RESPONSE LENGTH: Keep your answer concise, punchy, and visually clean! MAXIMUM 5 TO 7 LINES TOTAL.
+4. PARAGRAPH STRUCTURE: Break text into short 2-line paragraphs separated by an empty line. NEVER write long dense walls of text!
+5. VISUAL STRUCTURE: Use bullet points (•, ⚡, 🚀, 💡), emojis, and **bold text** for key highlights.
+6. PERSONAL TOUCH & HUMBLE BEGINNINGS:
+   - Weave in Anbu's authentic personal journey:
      * Came from a small village with no internet or computer. Got his very first laptop in his 1st year of college!
      * Driven by childhood obsession with tech, games, and coding.
      * Inspired by Elon Musk's 16-hour workday work ethic ("Greatness requires relentless hard work"). Building software IS his life.
      * Devoted to his Mom & Dad, loves his pet cat Scar 🐱, reads books on psychology & marketing (like "The Power of Your Subconscious Mind").
-5. ALEX HORMOZI ROI & ACTION MINDSET:
-   - When asked why to choose or hire Anbu, focus on ROI and character over dry jargon: Anbu is an execution engine who loves DOING and shipping working systems. He saves businesses 20+ hours weekly with automations.
-6. IN-CHAT PROJECT BREAKDOWNS & LINKS:
-   - When asked about projects, break down specs, problem solved, n8n nodes, and results!
-   - Provide direct links to project pages at the end (e.g., "[View Full Project Details](/projects/ai-receptionist)").
+7. ALEX HORMOZI ROI & ACTION MINDSET:
+   - Lead with ROI, character, and action over dry jargon: Anbu is an execution engine who loves DOING and shipping working systems. He saves businesses 20+ hours weekly with automations.
 
 ANBU'S COMPLETE PROJECT PORTFOLIO & SPECIFICATIONS:
 1. AI Voice Receptionist & Outbound Agent (/projects/ai-receptionist):
@@ -62,54 +57,71 @@ ANBU'S COMPLETE PROJECT PORTFOLIO & SPECIFICATIONS:
 
 ${
   isFinalWish
-    ? "7. THIS IS THE USER'S FINAL WISH! Warmly invite them to Get in Touch or explore collaboration opportunities on the Connect page (/contact)!"
-    : "7. Always invite them to reach out on the Connect page (/contact) to collaborate with Anbu."
+    ? "8. THIS IS THE USER'S FINAL WISH! Warmly invite them to reach out on the Connect page to see if Anbu can work with them!"
+    : "8. Always invite them to reach out on the Connect page to see if Anbu can work with them."
 }`;
-
-    // Secure server-to-server call to Google Gemini API with robust model fallback
-    const modelsToTry = [
-      "gemini-3.6-flash",
-      "gemini-2.5-flash",
-      "gemini-1.5-flash-latest",
-    ];
 
     let candidateText: string | undefined = undefined;
 
-    for (const model of modelsToTry) {
-      try {
-        const res = await fetch(
-          `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`,
-          {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              contents: [
-                {
-                  role: "user",
-                  parts: [{ text: `${systemPrompt}\n\nUser Question: ${prompt}` }],
-                },
-              ],
-            }),
-          }
-        );
+    if (apiKey) {
+      const modelsToTry = ["gemini-3.6-flash", "gemini-2.5-flash"];
 
-        if (res.ok) {
-          const data = await res.json();
-          const text = data?.candidates?.[0]?.content?.parts?.[0]?.text;
-          if (text) {
-            candidateText = text;
-            break; // Successfully got candidate text from Gemini
+      for (const model of modelsToTry) {
+        for (let attempt = 0; attempt < 2; attempt++) {
+          try {
+            const res = await fetch(
+              `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`,
+              {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                  contents: [
+                    {
+                      role: "user",
+                      parts: [{ text: `${systemPrompt}\n\nUser Question: ${prompt}` }],
+                    },
+                  ],
+                }),
+              }
+            );
+
+            if (res.ok) {
+              const data = await res.json();
+              const text = data?.candidates?.[0]?.content?.parts?.[0]?.text;
+              if (text) {
+                candidateText = text;
+                break;
+              }
+            } else {
+              console.error(`Gemini API Model [${model}] attempt ${attempt + 1} returned status:`, res.status);
+              if (res.status === 503 || res.status === 429) {
+                // Wait 600ms before retrying on 503 / 429 rate limit
+                await new Promise((r) => setTimeout(r, 600));
+              }
+            }
+          } catch (err) {
+            console.error(`Fetch error for Gemini model [${model}]:`, err);
           }
-        } else {
-          console.error(`Gemini API Model [${model}] returned status:`, res.status);
         }
-      } catch (err) {
-        console.error(`Fetch error for Gemini model [${model}]:`, err);
+        if (candidateText) break;
       }
     }
 
+    // High-ROI, structured server-side fallback if Gemini API is temporarily busy/rate-limited
     if (!candidateText) {
-      return NextResponse.json({ error: "Gemini API unavailable across models" }, { status: 502 });
+      const lower = prompt.toLowerCase();
+
+      if (lower.includes("whatsapp") || lower.includes("n8n")) {
+        candidateText = `Anbu built a **Multi-Modal WhatsApp AI Agent** using n8n and OpenAI! 💬\n\n• **4 Input Types**: Handles text, voice notes (Whisper AI transcription), images (GPT Vision), and PDFs.\n• **Contextual Memory**: Remembers previous turns across conversations.\n• **Dynamic Outputs**: Generates text or voice note replies.\n\nSaves businesses 20+ hours weekly on lead qualification and customer support. Reach out to Anbu to see if he can build this workflow for you.`;
+      } else if (lower.includes("story") || lower.includes("background") || lower.includes("village") || lower.includes("mindset") || lower.includes("elon") || lower.includes("book")) {
+        candidateText = `Anbu grew up in a small village with no internet or computer—getting his first laptop in college! 🚀\n\n• **Relentless Work Ethic**: Inspired by Elon Musk's 16-hour workday mindset ("Greatness requires hard work").\n• **Pure Obsession**: Self-taught full-stack web, native Android apps, and AI automations.\n• **Personal Life**: Loves his pet cat Scar 🐱 and reads books on psychology & marketing.`;
+      } else if (lower.includes("hire") || lower.includes("why work") || lower.includes("why choose") || lower.includes("best")) {
+        candidateText = `Here is why working with Anbu is the highest-leverage decision for your team: ⚡\n\n• **Bias for Action**: Anbu ships production-ready working systems rather than just talking.\n• **High Business ROI**: Replaces repetitive tasks with AI automations, saving 20+ hours weekly.\n• **Team Energy Booster**: Brings infectious drive that elevates team speed and morale.\n\nReach out to Anbu to discuss your project and see if there's a strong fit to collaborate.`;
+      } else if (lower.includes("ballz") || lower.includes("dialer") || lower.includes("android")) {
+        candidateText = `Anbu built **Ballz** — a 100% offline-first native Android Power Dialer & CRM! 📱\n\n• **Tech Stack**: Kotlin 2.2, Jetpack Compose (Material 3), Twilio WebRTC VoIP SDK, Room DB.\n• **Real-Time Analytics**: Tracks prospect contact info live on screen with Value Per Dial ($) analytics charts.`;
+      } else {
+        candidateText = `Anbu Selvan is an ELITE Full-Stack & AI Automation Developer based in Chennai, India. 🛠️\n\n• **Core Stack**: React, Next.js, Java Spring Boot, Jetpack Compose, n8n, Twilio, Retell AI.\n• **Action Mindset**: Builds production AI agents and web apps that automate business workflows.`;
+      }
     }
 
     return NextResponse.json({

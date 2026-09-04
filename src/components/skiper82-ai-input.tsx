@@ -14,10 +14,39 @@ interface Message {
   links?: { label: string; url: string }[];
 }
 
-// Clean inline Markdown parser & renderer for bolding, subheaders, lists and paragraph breaks
+// Clean inline Markdown parser & renderer for bolding, links, subheaders, lists and paragraph breaks
 function parseInlineMarkdown(text: string): React.ReactNode[] {
-  const parts = text.split(/(\*\*[^*]+\*\*|\*[^*]+\*)/g);
+  // Strip raw redundant link patterns like `[/contact](/contact)` or `(/contact)` or phone numbers in raw text
+  let cleaned = text
+    .replace(/\[\s*\/contact\s*\]\(\s*\/contact\s*\)/gi, "the Connect page")
+    .replace(/\(\/contact\)/gi, "")
+    .replace(/\(\+91\s*9361952703\)/gi, "");
+
+  // Match Markdown links [label](url) and **bold** / *italic*
+  const parts = cleaned.split(/(\[[^\]]+\]\([^)]+\)|\*\*[^*]+\*\*|\*[^*]+\*)/g);
+
   return parts.map((part, idx) => {
+    // Markdown link [label](url)
+    const linkMatch = part.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
+    if (linkMatch) {
+      const label = linkMatch[1];
+      const url = linkMatch[2];
+      return (
+        <Link
+          key={idx}
+          href={url}
+          style={{
+            color: "#0284c7",
+            fontWeight: 700,
+            textDecoration: "underline",
+            textUnderlineOffset: 3,
+          }}
+        >
+          {label}
+        </Link>
+      );
+    }
+
     if (part.startsWith("**") && part.endsWith("**") && part.length > 4) {
       return <strong key={idx} style={{ fontWeight: 800, color: "#09090b" }}>{part.slice(2, -2)}</strong>;
     }
