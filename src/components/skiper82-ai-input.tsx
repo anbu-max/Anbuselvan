@@ -30,14 +30,14 @@ const ALL_QUESTION_PROMPTS = [
   "n8n & Twilio automations",
 ];
 
-// Helper to get stored wish count from localStorage or cookies
+// Helper to get stored wish count from localStorage or cookies (v5 key to refresh limit)
 function getStoredWishCount(): number {
   if (typeof window === "undefined") return 0;
   try {
-    const localVal = localStorage.getItem("anbu_ai_wishes_count");
+    const localVal = localStorage.getItem("anbu_ai_wishes_v5");
     if (localVal !== null) return parseInt(localVal, 10) || 0;
 
-    const match = document.cookie.match(/(?:^|; )anbu_ai_wishes_count=([^;]*)/);
+    const match = document.cookie.match(/(?:^|; )anbu_ai_wishes_v5=([^;]*)/);
     if (match) return parseInt(match[1], 10) || 0;
   } catch {
     // fallback
@@ -49,9 +49,9 @@ function getStoredWishCount(): number {
 function saveStoredWishCount(count: number) {
   if (typeof window === "undefined") return;
   try {
-    localStorage.setItem("anbu_ai_wishes_count", count.toString());
+    localStorage.setItem("anbu_ai_wishes_v5", count.toString());
     const expires = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toUTCString();
-    document.cookie = `anbu_ai_wishes_count=${count}; expires=${expires}; path=/; SameSite=Lax`;
+    document.cookie = `anbu_ai_wishes_v5=${count}; expires=${expires}; path=/; SameSite=Lax`;
   } catch {
     // fallback
   }
@@ -60,7 +60,7 @@ function saveStoredWishCount(count: number) {
 export function Skiper82AiInput() {
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState<Message[]>([]);
-  const [remainingWishes, setRemainingWishes] = useState(3);
+  const [remainingWishes, setRemainingWishes] = useState(5);
   const [isThinking, setIsThinking] = useState(false);
   const [expandedThoughtId, setExpandedThoughtId] = useState<string | null>(null);
   const [activePrompts, setActivePrompts] = useState<string[]>([]);
@@ -74,7 +74,7 @@ export function Skiper82AiInput() {
     window.addEventListener("resize", checkMobile);
 
     const used = getStoredWishCount();
-    const remaining = Math.max(0, 3 - used);
+    const remaining = Math.max(0, 5 - used);
     setRemainingWishes(remaining);
 
     const shuffled = [...ALL_QUESTION_PROMPTS].sort(() => 0.5 - Math.random());
@@ -144,11 +144,11 @@ async function queryGeminiApi(
     setMessages((prev) => [...prev, userMsg]);
     const newUsedCount = getStoredWishCount() + 1;
     saveStoredWishCount(newUsedCount);
-    setRemainingWishes(Math.max(0, 3 - newUsedCount));
+    setRemainingWishes(Math.max(0, 5 - newUsedCount));
     setIsThinking(true);
 
     const thoughtTime = Math.floor(Math.random() * 3) + 3; // 3-5s
-    const isFinal = newUsedCount >= 3;
+    const isFinal = newUsedCount >= 5;
 
     // First attempt Gemini API call
     const geminiRes = await queryGeminiApi(query, isFinal);
@@ -158,7 +158,7 @@ async function queryGeminiApi(
         id: `ai-${Date.now()}`,
         sender: "ai",
         text: geminiRes.text,
-        thought: "1. Prompted Google Gemini 2.0 Flash Model.\n2. Processed user prompt against Anbu's portfolio context & hiring strengths.\n3. Generated personalized high-energy response with action links.",
+        thought: "1. Prompted Google Gemini 2.0 Flash Model.\n2. Evaluated prompt with Alex Hormozi ROI & Character mindset principles.\n3. Generated personalized high-energy response with action links.",
         thoughtTime,
         links: geminiRes.links,
       };
@@ -180,23 +180,23 @@ async function queryGeminiApi(
 
       if (isGreeting) {
         thoughtSteps = "1. Detected greeting intent.\n2. Formatted polite welcome response.\n3. Prompted visitor for their name & business needs.";
-        aiText = "Hey there! 👋 Welcome to Anbu's portfolio. May I know your name and what kind of AI automation, web app, or free demo you're looking for today?";
+        aiText = "Hey there! 👋 Welcome to Anbu's portfolio. What kind of AI automation, web app, or high-ROI workflow are you exploring today?";
         links = [
-          { label: "🤝 Book Free Demo", url: "/contact" },
+          { label: "🤝 Get in Touch", url: "/contact" },
           { label: "📁 Explore Projects", url: "/projects" },
         ];
       } else if (lower.includes("model") || lower.includes("what ai") || lower.includes("who are you")) {
         thoughtSteps = "1. Identified query intent: AI Model Identity.\n2. Stated Google Gemini AI architecture.\n3. Formatted response with contact link.";
-        aiText = "I am powered by Google Gemini AI, customized specifically to showcase Anbu Selvan's full-stack & AI automation portfolio! Anbu is an top-tier engineer who builds custom AI agents and web apps.";
+        aiText = "I am powered by Google Gemini AI, customized specifically to showcase Anbu Selvan's engineering projects, high-character mindset, and automation systems!";
         links = [
-          { label: "🤝 Hire / Connect with Anbu", url: "/contact" },
+          { label: "🤝 Connect with Anbu", url: "/contact" },
           { label: "📁 Explore Projects", url: "/projects" },
         ];
-      } else if (lower.includes("hire") || lower.includes("why need") || lower.includes("why should") || lower.includes("best")) {
-        thoughtSteps = "1. Identified query intent: Why Hire Anbu Selvan?\n2. Highlighted top strengths: Full-Stack Next.js, Android SDK 36, n8n & Twilio AI Agent workflows.\n3. Attached direct booking link.";
-        aiText = "You should hire Anbu Selvan because he is a powerhouse developer! He builds production-ready web apps (Next.js, Spring Boot), native Android apps (Ballz Power Dialer), and AI agent workflows (n8n, Twilio, Retell AI) that save 15+ hours weekly and boost business revenue!";
+      } else if (lower.includes("hire") || lower.includes("why need") || lower.includes("why should") || lower.includes("best") || lower.includes("why work")) {
+        thoughtSteps = "1. Identified query intent: Why Work With Anbu?\n2. Evaluated value through Alex Hormozi ROI & Character lens.\n3. Highlighted bias for action, high energy, time savings, and productivity boost.";
+        aiText = "You should work with Anbu because he is an unstoppable execution engine! Rather than just talking about ideas, Anbu is obsessed with DOING and shipping high-impact solutions. He brings a relentless growth mindset, saves businesses 20+ hours weekly, and injects contagious high energy that elevates team productivity!";
         links = [
-          { label: "🤝 Book Free Demo / Hire Anbu", url: "/contact" },
+          { label: "🤝 Connect & Work with Anbu", url: "/contact" },
           { label: "⚡ View Skills", url: "/skills" },
         ];
       } else if (lower.includes("ballz") || lower.includes("dialer") || (lower.includes("android") && lower.includes("app"))) {
@@ -301,7 +301,7 @@ async function queryGeminiApi(
       >
         <Sparkles size={14} />
         {remainingWishes > 0
-          ? `🧞‍♂️ Make your 3 wishes (${remainingWishes}/3 available)`
+          ? `🧞‍♂️ Make your 5 wishes (${remainingWishes}/5 available)`
           : "Wish limit reached! Explore the page yourself below 🚀"}
       </div>
 
