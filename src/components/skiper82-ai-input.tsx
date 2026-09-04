@@ -14,20 +14,83 @@ interface Message {
   links?: { label: string; url: string }[];
 }
 
+// Clean inline Markdown parser & renderer for bolding, subheaders, lists and paragraph breaks
+function parseInlineMarkdown(text: string): React.ReactNode[] {
+  const parts = text.split(/(\*\*[^*]+\*\*|\*[^*]+\*)/g);
+  return parts.map((part, idx) => {
+    if (part.startsWith("**") && part.endsWith("**") && part.length > 4) {
+      return <strong key={idx} style={{ fontWeight: 800, color: "#09090b" }}>{part.slice(2, -2)}</strong>;
+    }
+    if (part.startsWith("*") && part.endsWith("*") && part.length > 2) {
+      return <em key={idx}>{part.slice(1, -1)}</em>;
+    }
+    return part;
+  });
+}
+
+function FormattedMarkdownText({ content }: { content: string }) {
+  const cleanContent = content.replace(/\r\n/g, "\n").trim();
+  const blocks = cleanContent.split(/\n{2,}/);
+
+  return (
+    <div style={{ display: "flex", flexDirection: "column", gap: 8, lineHeight: 1.6, fontSize: 13.5, color: "#18181b" }}>
+      {blocks.map((block, bIdx) => {
+        const trimmed = block.trim();
+        if (!trimmed) return null;
+
+        if (trimmed === "***" || trimmed === "---" || trimmed === "___") {
+          return <div key={bIdx} style={{ height: 1, background: "#e2e8f0", margin: "4px 0" }} />;
+        }
+
+        if (trimmed.startsWith("#")) {
+          const headerText = trimmed.replace(/^#+\s*/, "");
+          return (
+            <div key={bIdx} style={{ fontWeight: 800, fontSize: 14, color: "#09090b", marginTop: 2 }}>
+              {parseInlineMarkdown(headerText)}
+            </div>
+          );
+        }
+
+        const lines = trimmed.split("\n");
+        const isList = lines.length > 1 && lines.every(l => /^[*\-•\d\.]+\s+/.test(l.trim()));
+
+        if (isList) {
+          return (
+            <ul key={bIdx} style={{ margin: 0, paddingLeft: 18, display: "flex", flexDirection: "column", gap: 4 }}>
+              {lines.map((l, lIdx) => {
+                const cleanLine = l.replace(/^[*\-•\d\.]+\s+/, "");
+                return <li key={lIdx}>{parseInlineMarkdown(cleanLine)}</li>;
+              })}
+            </ul>
+          );
+        }
+
+        return (
+          <p key={bIdx} style={{ margin: 0 }}>
+            {lines.map((line, lIdx) => (
+              <React.Fragment key={lIdx}>
+                {lIdx > 0 && <br />}
+                {parseInlineMarkdown(line)}
+              </React.Fragment>
+            ))}
+          </p>
+        );
+      })}
+    </div>
+  );
+}
+
 // Concise 1-line question prompts designed to sit side-by-side in a horizontal row
 const ALL_QUESTION_PROMPTS = [
   "Who is Anbu Selvan?",
-  "What is Ballz CRM?",
-  "Anbu's AI & Tech Stack",
-  "How 24/7 Voice AI works",
-  "Book a free AI demo",
-  "Custom workflow automations",
-  "How to contact Anbu",
-  "Backend & DB skills",
-  "Google Review System",
-  "Native Android apps",
-  "Where is Anbu based?",
-  "n8n & Twilio automations",
+  "Why work with Anbu?",
+  "Anbu's background & story",
+  "Anbu's top AI & Web projects",
+  "What is Ballz Power Dialer?",
+  "Multi-Modal WhatsApp AI Agent",
+  "24/7 AI Voice Receptionist",
+  "Anbu's work ethic & mindset",
+  "How to get in touch with Anbu",
 ];
 
 // Helper to get stored wish count from localStorage or cookies (v5 key to refresh limit)
@@ -163,7 +226,7 @@ async function queryGeminiApi(
         id: `ai-${Date.now()}`,
         sender: "ai",
         text: geminiRes.text,
-        thought: "1. Prompted Google Gemini Flash Model.\n2. Evaluated prompt with Alex Hormozi ROI & Character mindset principles.\n3. Generated personalized high-energy response with action links.",
+        thought: `1. Analyzing prompt: "${query.length > 45 ? query.slice(0, 45) + "..." : query}"\n2. Evaluated Anbu's personal background (small village roots, Elon Musk 16-hr work ethic, cat Scar 🐱, books).\n3. Formulated structured 6-line high-ROI response with action links.`,
         thoughtTime,
         links: geminiRes.links,
       };
@@ -190,6 +253,13 @@ async function queryGeminiApi(
           { label: "🤝 Get in Touch", url: "/contact" },
           { label: "📁 Explore Projects", url: "/projects" },
         ];
+      } else if (lower.includes("story") || lower.includes("background") || lower.includes("village") || lower.includes("mindset") || lower.includes("book") || lower.includes("elon")) {
+        thoughtSteps = "1. Identified query intent: Anbu's Personal Story & Background.\n2. Retrieved backstory: Small village roots, first laptop in 1st yr college, Elon Musk 16-hr work ethic, books, cat Scar.\n3. Formatted authentic response.";
+        aiText = "Anbu came from a small village with no internet or computer growing up—he got his very first laptop in his 1st year of college! Driven by an obsession with tech, games, and coding, he self-taught full-stack development and AI automation. Inspired by Elon Musk's beast-mode 16-hour workday, Anbu believes deeply that 'greatness requires relentless hard work'. He loves his pet cat Scar 🐱, adores his mom and dad, and reads books on human psychology and marketing!";
+        links = [
+          { label: "👋 About Anbu", url: "/me" },
+          { label: "🤝 Connect with Anbu", url: "/contact" },
+        ];
       } else if (lower.includes("model") || lower.includes("what ai") || lower.includes("who are you")) {
         thoughtSteps = "1. Identified query intent: AI Model Identity.\n2. Stated Google Gemini AI architecture.\n3. Formatted response with contact link.";
         aiText = "I am powered by Google Gemini AI, customized specifically to showcase Anbu Selvan's engineering projects, high-character mindset, and automation systems!";
@@ -199,7 +269,7 @@ async function queryGeminiApi(
         ];
       } else if (lower.includes("hire") || lower.includes("why need") || lower.includes("why should") || lower.includes("best") || lower.includes("why work")) {
         thoughtSteps = "1. Identified query intent: Why Work With Anbu?\n2. Evaluated value through Alex Hormozi ROI & Character lens.\n3. Highlighted bias for action, high energy, time savings, and productivity boost.";
-        aiText = "You should work with Anbu because he is an unstoppable execution engine! Rather than just talking about ideas, Anbu is obsessed with DOING and shipping high-impact solutions. He brings a relentless growth mindset, saves businesses 20+ hours weekly, and injects contagious high energy that elevates team productivity!";
+        aiText = "You should work with Anbu because he is an unstoppable execution engine! Growing up without a computer in a small village, Anbu built a relentless hunger for action—he ships real working solutions rather than just talking. He brings an Elon Musk-inspired 16-hour work ethic, saves businesses 20+ hours weekly, and injects high energy that makes teams more productive!";
         links = [
           { label: "🤝 Connect & Work with Anbu", url: "/contact" },
           { label: "⚡ View Skills", url: "/skills" },
@@ -216,38 +286,26 @@ async function queryGeminiApi(
         links = [
           { label: "📞 View AI Voice Receptionist", url: "/projects/ai-receptionist" },
         ];
-      } else if (lower.includes("demo") || lower.includes("audit") || lower.includes("automate")) {
-        thoughtSteps = "1. Identified query intent: Custom Free AI Demo & Business Workflow Audit.\n2. Retrieved contact workflow options.\n3. Attached direct booking form link.";
-        aiText = "Anbu offers custom free AI demos! Whether you know your exact automation requirements or need a workflow audit to identify high-ROI bottlenecks, Anbu will build a tailored working prototype for you.";
+      } else if (lower.includes("whatsapp") || lower.includes("n8n")) {
+        thoughtSteps = "1. Identified query intent: WhatsApp Multi-Modal AI Agent.\n2. Retrieved specs: n8n, OpenAI Whisper, GPT Vision, PDF extraction, Voice notes.\n3. Attached project detail link.";
+        aiText = "Anbu built a Multi-Modal WhatsApp AI Agent in n8n that processes text, voice notes (Whisper transcription), images (AI vision), and PDFs in one conversation thread, responding in either text or generated voice notes!";
         links = [
-          { label: "🤝 Book Free Demo on Connect Page", url: "/contact" },
-        ];
-      } else if (lower.includes("skill") || lower.includes("stack") || lower.includes("tech") || lower.includes("n8n") || lower.includes("backend") || lower.includes("frontend")) {
-        thoughtSteps = "1. Identified query intent: Technical Skills & Stack.\n2. Listed core tech: React, Next.js, Java, Spring Boot, Python, Twilio, Retell AI, n8n, MongoDB, Redis, Docker.\n3. Formatted response.";
-        aiText = "Anbu's stack spans React, Next.js, TypeScript, Java, Spring Boot, Python, Twilio Voice SDK, Retell AI, and n8n workflow automations for enterprise-grade applications.";
-        links = [
-          { label: "⚡ Explore Skills Showcase", url: "/skills" },
-          { label: "💼 View Work Experience", url: "/me" },
-        ];
-      } else if (lower.includes("contact") || lower.includes("email") || lower.includes("phone") || lower.includes("whatsapp") || lower.includes("reach")) {
-        thoughtSteps = "1. Identified query intent: Contact Details.\n2. Retrieved contact info: Email (anbuselvandzz@gmail.com), WhatsApp (+91 9361952703).\n3. Attached direct links.";
-        aiText = "You can contact Anbu Selvan directly via email at anbuselvandzz@gmail.com or on WhatsApp at +91 9361952703. You can also request a free demo directly on the Connect page!";
-        links = [
-          { label: "🤝 Go to Connect Page", url: "/contact" },
+          { label: "💬 View WhatsApp AI Agent Project", url: "/projects/whatsapp-agent" },
+          { label: "🤝 Connect with Anbu", url: "/contact" },
         ];
       } else if (lower.includes("who") || lower.includes("anbu") || lower.includes("about")) {
-        thoughtSteps = "1. Identified query intent: Who is Anbu Selvan?\n2. Summarized background: Full-Stack & AI Automation Developer based in Chennai, India.\n3. Formatted response with links.";
-        aiText = "Anbu Selvan is a Full-Stack & Automation Developer based in Chennai, Tamil Nadu, India. He builds high-performance web applications, native Android apps, and AI agent workflows that automate business operations.";
+        thoughtSteps = "1. Identified query intent: Who is Anbu Selvan?\n2. Summarized background: Full-Stack & AI Automation Developer from Chennai.\n3. Formatted response with links.";
+        aiText = "Anbu Selvan is a Full-Stack & Automation Developer based in Chennai, India. Born in a small village, he got his first laptop in college and self-taught full-stack development, native Android apps, and AI agent workflows that automate business operations!";
         links = [
           { label: "👋 About Anbu", url: "/me" },
           { label: "📁 Explore Projects", url: "/projects" },
         ];
       } else {
         thoughtSteps = "1. Analyzing general prompt.\n2. Summarizing core expertise: AI Agents, Web & Android Apps, Workflow Automations.\n3. Providing relevant quick links.";
-        aiText = "Anbu Selvan specializes in Full-Stack Web Development, Native Android Apps, and AI Agent Automations. He builds custom solutions that eliminate manual business tasks and boost conversions.";
+        aiText = "Anbu Selvan specializes in Full-Stack Web Development, Native Android Apps, and AI Agent Automations. Driven by a relentless work ethic, he builds custom solutions that eliminate manual business tasks and boost conversions.";
         links = [
           { label: "🚀 View Featured Projects", url: "/projects" },
-          { label: "🤝 Book Free Demo", url: "/contact" },
+          { label: "🤝 Get in Touch", url: "/contact" },
         ];
       }
 
@@ -431,7 +489,8 @@ async function queryGeminiApi(
                       </div>
                     )}
 
-                    <div>{msg.text}</div>
+                    {/* Clean Formatted Markdown Text */}
+                    <FormattedMarkdownText content={msg.text} />
 
                     {/* Action Links */}
                     {msg.links && msg.links.length > 0 && (
