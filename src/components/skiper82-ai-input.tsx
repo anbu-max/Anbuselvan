@@ -255,7 +255,7 @@ async function queryGeminiApi(
         id: `ai-${Date.now()}`,
         sender: "ai",
         text: geminiRes.text,
-        thought: `1. Analyzing prompt: "${query.length > 45 ? query.slice(0, 45) + "..." : query}"\n2. Evaluated Anbu's personal background (small village roots, Elon Musk 16-hr work ethic, cat Scar 🐱, books).\n3. Formulated structured 6-line high-ROI response with action links.`,
+        thought: `1. Analyzing prompt intent: "${query.length > 45 ? query.slice(0, 45) + "..." : query}"\n2. Evaluated Anbu's technical stack, relentless execution mindset, and high-status qualification CTA.\n3. Formulated structured response with action links.`,
         thoughtTime,
         links: geminiRes.links,
       };
@@ -271,15 +271,22 @@ async function queryGeminiApi(
       let links: { label: string; url: string }[] = [];
       let thoughtSteps = "";
 
-      const isGreeting = ["hi", "hello", "hey", "good morning", "good evening", "namaste", "yo", "sup"].some(
+      const isGreeting = ["hi", "hello", "hlo", "hey", "good morning", "good evening", "namaste", "yo", "sup"].some(
         (g) => lower === g || lower.startsWith(g + " ")
       );
 
       if (isGreeting) {
-        thoughtSteps = "1. Detected greeting intent.\n2. Formatted polite welcome response.\n3. Prompted visitor for their name & business needs.";
-        aiText = "Hey there! 👋 Welcome to Anbu's portfolio. What kind of AI automation, web app, or high-ROI workflow are you exploring today?";
+        thoughtSteps = "1. Detected greeting intent.\n2. Formatted polite welcome response.\n3. Prompted visitor for their business workflow or project needs.";
+        aiText = "Hey there! 👋 Welcome to Anbu's portfolio. What kind of AI automation, web app, or business workflow are you looking to build today?";
         links = [
           { label: "🤝 Get in Touch", url: "/contact" },
+          { label: "📁 Explore Projects", url: "/projects" },
+        ];
+      } else if (lower.includes("fuck") || lower.includes("shit") || lower.includes("bitch") || lower.includes("asshole")) {
+        thoughtSteps = "1. Detected abusive / troll input.\n2. Maintained unbothered, high-status professional boundary.\n3. Directed to Connect page for serious inquiries.";
+        aiText = "Anbu works exclusively with serious business owners, founders, and engineering teams looking for high-ROI software and AI automations. ⚡\n\nReach out to Anbu on the Connect page to see if you can work with him and if your project is a strong mutual fit.";
+        links = [
+          { label: "🤝 Connect with Anbu", url: "/contact" },
           { label: "📁 Explore Projects", url: "/projects" },
         ];
       } else if (lower.includes("hobby") || lower.includes("hobbies") || lower.includes("cat") || lower.includes("book") || lower.includes("story") || lower.includes("village")) {
@@ -298,7 +305,7 @@ async function queryGeminiApi(
         ];
       } else if (lower.includes("hire") || lower.includes("why need") || lower.includes("why should") || lower.includes("best") || lower.includes("why work")) {
         thoughtSteps = "1. Identified query intent: Why Work With Anbu?\n2. Evaluated value through Mindset & Technical Superpower lens.\n3. Highlighted guaranteed results, idea-to-execution ability, and bottleneck solving.";
-        aiText = "Here is why working with Anbu is the highest-leverage decision for your team: ⚡\n\n• **Relentless Mindset (Guaranteed Results)**: Anbu cares ONLY about YOUR SUCCESS. He won't give up until he delivers the exact results promised, no matter what it takes.\n• **Technical Superpower (Idea to Execution)**: If you can imagine it and talk it out loud, Anbu can turn it into software or AI automation! Just tell him your business bottleneck, and he will solve it end-to-end.\n\nTalk with Anbu on the Connect page to see if he can work with you.";
+        aiText = "Here is why working with Anbu is the highest-leverage decision for your team: ⚡\n\n• **Relentless Mindset (Guaranteed Results)**: Anbu cares ONLY about YOUR SUCCESS. If you want something built, he has the execution mindset to deliver it for you end-to-end.\n• **Technical Superpower (Idea to Execution)**: Specializing in Next.js, React, Java Spring Boot, Kotlin Android, and n8n AI workflows. Tell him your business bottleneck, and he turns it into software.\n\nTalk with Anbu on the Connect page to see if you can work with him and if there's a strong fit.";
         links = [
           { label: "🤝 Connect & Work with Anbu", url: "/contact" },
           { label: "⚡ View Skills", url: "/skills" },
@@ -323,15 +330,15 @@ async function queryGeminiApi(
           { label: "🤝 Connect with Anbu", url: "/contact" },
         ];
       } else if (lower.includes("who") || lower.includes("anbu") || lower.includes("about")) {
-        thoughtSteps = "1. Identified query intent: Who is Anbu Selvan?\n2. Summarized background: Full-Stack & AI Automation Developer from Chennai.\n3. Formatted response with links.";
-        aiText = "Anbu Selvan is a Full-Stack & Automation Developer based in Chennai, India. Born in a small village, he got his first laptop in college and self-taught full-stack development, native Android apps, and AI agent workflows that automate business operations!";
+        thoughtSteps = "1. Identified query intent: Who is Anbu Selvan?\n2. Summarized technical abilities & engineering superpowers.\n3. Formatted response with links.";
+        aiText = "Anbu Selvan is an Elite Full-Stack & AI Automation Developer based in Chennai, India. He builds high-performance web applications, native Android apps, and AI agent workflows (n8n, Retell AI, OpenAI) that eliminate manual business bottlenecks.\n\nReach out to Anbu on the Connect page to see if you can work with him and if your project is a strong mutual fit.";
         links = [
           { label: "👋 About Anbu", url: "/me" },
           { label: "📁 Explore Projects", url: "/projects" },
         ];
       } else {
         thoughtSteps = "1. Analyzing general prompt.\n2. Summarizing core expertise: AI Agents, Web & Android Apps, Workflow Automations.\n3. Providing relevant quick links.";
-        aiText = "Anbu Selvan specializes in Full-Stack Web Development, Native Android Apps, and AI Agent Automations. Driven by a relentless work ethic, he builds custom solutions that eliminate manual business tasks and boost conversions.";
+        aiText = "Anbu Selvan specializes in Full-Stack Web Development, Native Android Apps, and AI Agent Automations. If you have a business bottleneck or custom software idea, he can turn it into production code end-to-end.\n\nReach out to Anbu on the Connect page to see if you can work with him and if your project is a strong mutual fit.";
         links = [
           { label: "🚀 View Featured Projects", url: "/projects" },
           { label: "🤝 Get in Touch", url: "/contact" },
