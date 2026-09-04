@@ -222,7 +222,8 @@ async function queryGeminiApi(
 
   const handleSend = async (textToSend?: string) => {
     const query = (textToSend || input).trim();
-    if (!query || remainingWishes <= 0 || isThinking) return;
+    // if (!query || remainingWishes <= 0 || isThinking) return;
+    if (!query || isThinking) return;
 
     playSendSound();
     setInput("");
@@ -235,9 +236,11 @@ async function queryGeminiApi(
 
     setMessages((prev) => [...prev, userMsg]);
     
+    /*
     const newUsedCount = getStoredWishCount() + 1;
     saveStoredWishCount(newUsedCount);
     setRemainingWishes(Math.max(0, 3 - newUsedCount));
+    */
 
     setIsThinking(true);
 
@@ -413,7 +416,7 @@ async function queryGeminiApi(
         boxSizing: "border-box",
       }}
     >
-      {/* Session Wishes Badge - Rate limiter active */}
+      {/* Session Wishes Badge - Rate limiter commented out for testing */}
       <div
         style={{
           display: "inline-flex",
@@ -421,19 +424,16 @@ async function queryGeminiApi(
           gap: 6,
           padding: "5px 14px",
           borderRadius: 999,
-          background: remainingWishes > 0 ? "#f0fdf4" : "#fef2f2",
-          border: `1.5px solid ${remainingWishes > 0 ? "#16a34a" : "#dc2626"}`,
+          background: "#f0fdf4",
+          border: "1.5px solid #16a34a",
           boxShadow: "2.5px 2.5px 0px #18181b",
           fontSize: 12,
           fontWeight: 800,
-          color: remainingWishes > 0 ? "#15803d" : "#991b1b",
+          color: "#15803d",
         }}
       >
         <Sparkles size={14} />
-        {remainingWishes > 0 
-          ? `⚡ ${remainingWishes} question${remainingWishes === 1 ? "" : "s"} left for the AI Genie`
-          : `❌ Limit reached. Connect with Anbu directly!`
-        }
+        ⚡ Unlimited AI Chat Mode (Testing GPT-4o)
       </div>
 
       {/* Chat Messages Log */}
