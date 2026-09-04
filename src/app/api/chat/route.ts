@@ -37,7 +37,7 @@ export async function POST(req: Request) {
     }
 
     // STRICTLY SERVER-SIDE KEY ONLY. DO NOT USE NEXT_PUBLIC_
-    const apiKey = process.env.GEMINI_API_KEY;
+    const apiKey = process.env.OPENAI_API_KEY;
 
     const systemPrompt = `You are Anbu Selvan's #1 advocate, personal representative, and high-status AI assistant on his portfolio website (https://anbu-aiportfolio.vercel.app/).
 Anbu Selvan is an Expert Full-Stack & AI Solutions Developer from a small town in Kallakurichi, Tamil Nadu, India.
@@ -153,55 +153,54 @@ ${
     let candidateText: string | undefined = undefined;
 
     if (apiKey) {
-      const modelsToTry = ["gemini-2.5-flash", "gemini-3.6-flash"];
+      for (let attempt = 0; attempt < 2; attempt++) {
+        try {
+          const controller = new AbortController();
+          const timeoutId = setTimeout(() => controller.abort(), 8000); // 8-second timeout
 
-      for (const model of modelsToTry) {
-        for (let attempt = 0; attempt < 2; attempt++) {
-          try {
-            const controller = new AbortController();
-            const timeoutId = setTimeout(() => controller.abort(), 8000); // 8-second timeout
-
-            const res = await fetch(
-              `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`,
-              {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                signal: controller.signal,
-                body: JSON.stringify({
-                  contents: [
-                    {
-                      role: "user",
-                      parts: [{ text: `${systemPrompt}\n\nUser Question: ${prompt}` }],
-                    },
-                  ],
-                }),
-              }
-            );
-
-            clearTimeout(timeoutId);
-
-            if (res.ok) {
-              const data = await res.json();
-              const text = data?.candidates?.[0]?.content?.parts?.[0]?.text;
-              if (text) {
-                candidateText = text;
-                break;
-              }
-            } else {
-              console.error(`Gemini API Model [${model}] attempt ${attempt + 1} returned status:`, res.status);
-              if (res.status === 503 || res.status === 429) {
-                await new Promise((r) => setTimeout(r, 200));
-              }
+          const res = await fetch(
+            `https://api.openai.com/v1/chat/completions`,
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${apiKey}`,
+              },
+              signal: controller.signal,
+              body: JSON.stringify({
+                model: "gpt-4o-mini",
+                messages: [
+                  { role: "system", content: systemPrompt },
+                  { role: "user", content: prompt },
+                ],
+              }),
             }
-          } catch (err: any) {
-            if (err.name === 'AbortError') {
-              console.warn(`Fetch timeout (8s) for Gemini model [${model}].`);
+          );
+
+          clearTimeout(timeoutId);
+
+          if (res.ok) {
+            const data = await res.json();
+            const text = data?.choices?.[0]?.message?.content;
+            if (text) {
+              candidateText = text;
+              break;
+            }
+          } else {
+            console.error(`OpenAI API attempt ${attempt + 1} returned status:`, res.status);
+            if (res.status === 503 || res.status === 429) {
+              await new Promise((r) => setTimeout(r, 400));
             } else {
-              console.error(`Fetch error for Gemini model [${model}]:`, err);
+              break;
             }
           }
+        } catch (err: any) {
+          if (err.name === 'AbortError') {
+            console.warn(`Fetch timeout (8s) for OpenAI model.`);
+          } else {
+            console.error(`Fetch error for OpenAI API:`, err);
+          }
         }
-        if (candidateText) break;
       }
     }
 
