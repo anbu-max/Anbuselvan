@@ -329,7 +329,7 @@ async function queryGeminiApi(
         }}
       >
         <Sparkles size={14} />
-        {remainingWishes > 0 ? `⚡ ${remainingWishes} Free AI Chats Remaining` : "⚡ Limit Reached - Contact Anbu to Talk"}
+        {remainingWishes > 0 ? `⚡ ${remainingWishes} Free AI Chats Remaining` : "⚡ Limit Reached - Contact Anbu to know more"}
       </div>
 
       {/* Chat Messages Log */}
