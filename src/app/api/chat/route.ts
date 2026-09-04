@@ -1,16 +1,43 @@
 import { NextResponse } from "next/server";
 
+const rateLimitMap = new Map<string, { count: number, resetTime: number }>();
+const MAX_CHATS_PER_IP = 3;
+// Reset after 12 hours
+const RATE_LIMIT_RESET_MS = 1000 * 60 * 60 * 12;
+
 export async function POST(req: Request) {
   try {
+    // Basic IP tracking for rate limiting (max 3 chats per device/IP)
+    const ip = req.headers.get("x-forwarded-for") || req.headers.get("x-real-ip") || "unknown";
+    
+    if (ip !== "unknown") {
+      const now = Date.now();
+      const userRate = rateLimitMap.get(ip) || { count: 0, resetTime: now + RATE_LIMIT_RESET_MS };
+      
+      if (now > userRate.resetTime) {
+        userRate.count = 0;
+        userRate.resetTime = now + RATE_LIMIT_RESET_MS;
+      }
+      
+      if (userRate.count >= MAX_CHATS_PER_IP) {
+        return NextResponse.json({ 
+          error: "Rate limit exceeded. You've reached the maximum of 3 chats.",
+          reply: "You've reached the limit of 3 free AI chats! Head over to the Connect page to speak with Anbu directly." 
+        }, { status: 429 });
+      }
+      
+      userRate.count++;
+      rateLimitMap.set(ip, userRate);
+    }
+
     const { prompt, isFinalWish } = await req.json();
 
     if (!prompt || typeof prompt !== "string") {
       return NextResponse.json({ error: "Invalid prompt" }, { status: 400 });
     }
 
-    const apiKey =
-      process.env.GEMINI_API_KEY ||
-      process.env.NEXT_PUBLIC_GEMINI_API_KEY;
+    // STRICTLY SERVER-SIDE KEY ONLY. DO NOT USE NEXT_PUBLIC_
+    const apiKey = process.env.GEMINI_API_KEY;
 
     const systemPrompt = `You are Anbu Selvan's #1 advocate, personal representative, and high-status AI assistant on his portfolio website (https://anbu-aiportfolio.vercel.app/).
 Anbu Selvan is an Expert Full-Stack & AI Solutions Developer from a small town in Kallakurichi, Tamil Nadu, India.
