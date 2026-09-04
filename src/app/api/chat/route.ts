@@ -207,21 +207,10 @@ ${
       } else if (lower.includes("cannot do") || lower.includes("can't do") || lower.includes("limitations") || lower.includes("not do") || lower.includes("doesn't know") || lower.includes("what can't he do")) {
         candidateText = "Anbu doesn't just write code \u2014 he builds solutions that drive business revenue. \ud83d\udeab\n\nIf you want someone to blindly follow instructions without caring about the end result, he's not the guy. He identifies bottlenecks and solves them. If a project doesn't lead to a measurable business improvement, he typically won't take it on.";
 
-      // --- TECH STACK / SKILLS / BEST SKILL STACK ---
-      } else if (lower.includes("tech stack") || lower.includes("technologies") || lower.includes("what language") || lower.includes("programming language") || lower.includes("skill") || lower.includes("tools") || lower.includes("framework") || lower.includes("best stack") || lower.includes("best skill stack")) {
-        candidateText = "Anbu focuses on **business revenue and improvements** \u2014 the tech stack is just a tool to get you results! \ud83d\udd25\n\nWhile he is highly proficient in **React, Next.js, n8n, and various automation tools**, what he really cares about is pure output. He plays on the offensive: whatever the problem is, he will build the right system to get you the desired results.";
+      // --- TECH STACK / SKILLS / BEST SKILL STACK / SPECIFIC TECH (REACT, JAVA, KOTLIN) ---
+      } else if (lower.includes("tech stack") || lower.includes("technologies") || lower.includes("what language") || lower.includes("programming language") || lower.includes("skill") || lower.includes("tools") || lower.includes("framework") || lower.includes("best stack") || lower.includes("best skill stack") || lower.includes("react") || lower.includes("next") || lower.includes("java") || lower.includes("spring boot") || lower.includes("kotlin") || lower.includes("android")) {
+        candidateText = "Anbu is an enabler of full-stack and AI automation solutions for businesses. \ud83d\udd25\n\nMore than the technical side, he is focused on giving you the results. The tech stack or app features don't matter if they don't get you the outcome you need! It's better to contact him to identify your bottlenecks and goals, and see if he can deliver the best results for you.";
 
-      // --- REACT / NEXT.JS ---
-      } else if ((lower.includes("react") || lower.includes("next.js") || lower.includes("nextjs") || lower.includes("next js")) && !lower.includes("whatsapp")) {
-        candidateText = "Anbu is an expert in React and Next.js, but honestly, the specific tech stack doesn't matter if it doesn't get you results! \ud83d\ude80\n\nIt's better to contact him directly to identify your bottlenecks and goals before worrying about the framework. Head over to the Connect page to start the conversation.";
-
-      // --- JAVA / SPRING BOOT ---
-      } else if (lower.includes("java") || lower.includes("spring boot") || lower.includes("spring security") || lower.includes("backend api")) {
-        candidateText = "Anbu has strong Java Spring Boot expertise for enterprise backends. However, the exact tech stack or app features don't matter if they don't drive business improvements. \u26a1\n\nIt's best to contact him to discuss your specific goals and bottlenecks before creating something.";
-
-      // --- KOTLIN / ANDROID / MOBILE ---
-      } else if (lower.includes("kotlin") || lower.includes("android") || lower.includes("mobile app") || lower.includes("jetpack") || lower.includes("ballz") || lower.includes("dialer") || lower.includes("cold call") || lower.includes("power dialer")) {
-        candidateText = "Anbu builds native Android apps (like his offline-first CRM, Ballz), but he focuses on the output, not just the code. \ud83d\udcf1\n\nIf an app doesn't solve a real bottleneck or increase revenue, the tech doesn't matter. Contact him on the Connect page to talk about your business goals first.";
 
       // --- AI RECEPTIONIST / VOICE AI ---
       } else if (lower.includes("receptionist") || lower.includes("voice ai") || lower.includes("retell") || lower.includes("inbound call") || lower.includes("outbound call") || lower.includes("voice agent") || lower.includes("ai call")) {
@@ -273,7 +262,7 @@ ${
 
       // --- PRICING / COST / GUARANTEE ---
       } else if (lower.includes("guarantee") || lower.includes("offer") || lower.includes("price") || lower.includes("cost") || lower.includes("negotiat") || lower.includes("contract") || lower.includes("custom project") || lower.includes("how much") || lower.includes("rate") || lower.includes("budget") || lower.includes("quote")) {
-        candidateText = "For custom project terms, guarantees, pricing, or specific business offers, reach out directly to Anbu via WhatsApp (+91 9361952703) or Email (anbuselvandzz@gmail.com) on the Connect page to discuss your project requirements. \ud83e\udd1d";
+        candidateText = "When it comes to pricing, the price doesn't matter if it doesn't get you results. Even if Anbu gave you something for free, if it doesn't improve anything, the free is a waste, right? \ud83d\udcb0\n\nSo before worrying about the price, you have to know what you can get. It's better to talk to him directly about your bottlenecks first. Head to the Connect page to start!";
 
       // --- CONTACT INFO ---
       } else if (lower.includes("contact") || lower.includes("email") || lower.includes("phone") || lower.includes("whatsapp number") || lower.includes("reach") || lower.includes("get in touch") || lower.includes("connect")) {
@@ -289,11 +278,11 @@ ${
 
       // --- EDUCATION ---
       } else if (lower.includes("education") || lower.includes("college") || lower.includes("degree") || lower.includes("university") || lower.includes("school") || lower.includes("study") || lower.includes("qualification")) {
-        candidateText = "Anbu is entirely self-taught! \ud83d\udcda\n\nHe taught himself how to use the internet, coding, and automation tools from scratch. No bootcamps, no hand-holding \u2014 just raw execution and building real projects.";
+        candidateText = "Anbu has a degree in BE CSE (Computer Science Engineering) and he is a self-taught automation coder! \ud83c\udf93\n\nHe taught himself how to use modern automation tools to build real, revenue-driving projects.";
 
-      // --- AVAILABILITY / FREELANCE ---
-      } else if (lower.includes("available") || lower.includes("freelance") || lower.includes("full time") || lower.includes("full-time") || lower.includes("part time") || lower.includes("part-time") || lower.includes("open to work") || lower.includes("taking on")) {
-        candidateText = "Anbu is currently open to working with serious business owners and founders on high-impact projects! \ud83d\udca1\n\nHead over to the Connect page to discuss your project and see if it's a strong fit.";
+      // --- AVAILABILITY / FREELANCE / COLLABORATE ---
+      } else if (lower.includes("available") || lower.includes("freelance") || lower.includes("full time") || lower.includes("full-time") || lower.includes("part time") || lower.includes("part-time") || lower.includes("open to work") || lower.includes("taking on") || lower.includes("collaborate")) {
+        candidateText = "Anbu is open to collaborating on different opportunities! \ud83e\udd1d\n\nIf you're looking for someone who just talks about technology stacks, he's not the right fit. But if you're looking for an automation guy who actually gets you results, head over to the Connect page!";
 
       // --- WHY SHOULDN'T I CHOOSE HIM ---
       } else if (lower.includes("why shouldn't") || lower.includes("why not to choose") || lower.includes("not choose")) {
