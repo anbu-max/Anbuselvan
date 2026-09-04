@@ -69,14 +69,14 @@ export default function ContactPage() {
         </div>
       </div>
 
-      {/* Book Free Demo Form Card */}
+      {/* Hire Me / Message Form Card */}
       <FadeIn delay={0.3} direction="up">
         <div style={{ background: "#ffffff", border: "2px solid #18181b", boxShadow: "6px 6px 0px #18181b", borderRadius: 24, padding: 22 }}>
           <div style={{ fontWeight: 800, fontSize: 16, color: "#111", marginBottom: 4, display: "flex", alignItems: "center", gap: 8 }}>
-            <Sparkles size={18} color="#f59e0b" /> Book your free demo or message me
+            <Sparkles size={18} color="#f59e0b" /> Hire Me or Send a Message
           </div>
           <p style={{ fontSize: 13.5, color: "#444", marginBottom: 14, lineHeight: 1.5, fontWeight: 500 }}>
-            Tell me what kind of demo or AI automation you want, and I will build it for you!
+            Whether you&apos;re a recruiter looking to hire a software developer, a business owner seeking custom AI automation, or exploring a project collaboration — send me a message!
           </p>
 
           <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: 12 }}>
@@ -86,18 +86,18 @@ export default function ContactPage() {
               <input type="tel" name="phone" value={formData.phone} onChange={handleChange} placeholder="Phone / WhatsApp Number *" required style={{ flex: "1 1 180px", padding: "10px 14px", borderRadius: 10, border: "1.5px solid #18181b", fontSize: 13, outline: "none", fontFamily: "inherit", boxSizing: "border-box" }} />
             </div>
 
-            <textarea name="message" value={formData.message} onChange={handleChange} placeholder="What kind of demo or AI automation do you want built? *" required rows={4} style={{ width: "100%", padding: "10px 14px", borderRadius: 10, border: "1.5px solid #18181b", fontSize: 13, outline: "none", resize: "vertical", fontFamily: "inherit", boxSizing: "border-box" }} />
+            <textarea name="message" value={formData.message} onChange={handleChange} placeholder="Tell me about the role, project, or AI automation you want to build... *" required rows={4} style={{ width: "100%", padding: "10px 14px", borderRadius: 10, border: "1.5px solid #18181b", fontSize: 13, outline: "none", resize: "vertical", fontFamily: "inherit", boxSizing: "border-box" }} />
 
             {/* Workflow Audit Helper Note */}
             <div style={{ display: "flex", alignItems: "flex-start", gap: 8, padding: "10px 12px", borderRadius: 12, background: "#f8fafc", border: "1px dashed #94a3b8", fontSize: 12, color: "#475569", lineHeight: 1.5 }}>
               <HelpCircle size={16} color="#3b82f6" style={{ flexShrink: 0, marginTop: 2 }} />
               <div>
-                <b>Don&apos;t know what to automate?</b> No problem! Tell me about your daily business processes, and I&apos;ll audit your workflows, suggest high-ROI automations, and build a custom demo for you.
+                <b>Open for Full-Time Roles &amp; Custom Automations:</b> Available for SDE / Full-Stack developer positions, AI agent building, and enterprise workflow automations.
               </div>
             </div>
 
             <button type="submit" style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 8, padding: "12px 20px", borderRadius: 12, background: "#18181b", color: "#fff", border: "2px solid #18181b", boxShadow: "3px 3px 0px #000", fontSize: 13.5, fontWeight: 700, cursor: "pointer", transition: "all 0.2s" }}>
-              <Send size={14} /> Request Free Demo
+              <Send size={14} /> Hire Me / Send Message
             </button>
           </form>
         </div>

@@ -9,12 +9,9 @@ export default function ProjectsPage() {
     <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
       <FadeIn delay={0} direction="none" duration={0.5}>
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 8 }}>
-          <div className="section-title" style={{ fontWeight: 700, fontSize: 16, color: "#111", margin: 0 }}>
+          <div className="section-title" style={{ fontWeight: 800, fontSize: 18, color: "#111", margin: 0 }}>
             Featured Projects
           </div>
-          <span style={{ fontSize: 12, color: "#888", fontWeight: 600 }}>
-            Hover for preview · Click to expand
-          </span>
         </div>
       </FadeIn>
 

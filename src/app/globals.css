@@ -31,16 +31,10 @@ body {
   --foreground: #1a1a1a;
 }
 
-/* Scroll Animation classes */
+/* All sections and content visible by default */
 section, .proj-card-wrapper, .service-card, .exp-item {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-section.fade-in, .proj-card-wrapper.fade-in, .service-card.fade-in, .exp-item.fade-in {
   opacity: 1;
-  transform: translateY(0);
+  transform: none;
 }
 
 .hero-sec {

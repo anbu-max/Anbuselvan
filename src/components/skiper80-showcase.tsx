@@ -90,13 +90,11 @@ export function Skiper80Showcase() {
             >
               {/* Left Side: Number & Title */}
               <div style={{ display: "flex", alignItems: "center", gap: 18, flex: 1, minWidth: 0 }}>
-                {/* Large Bold Display Number (Matching Reference Image) */}
+                {/* Large Bold Display Number in Black */}
                 <div style={{
                   fontSize: 34,
                   fontWeight: 900,
-                  color: "#ffedd5",
-                  textShadow: "0 0 1px #fdba74, 1px 1px 0px #18181b",
-                  WebkitTextStroke: "1px #f97316",
+                  color: "#18181b",
                   letterSpacing: "-0.04em",
                   lineHeight: 1,
                   flexShrink: 0,

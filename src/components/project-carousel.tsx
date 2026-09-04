@@ -58,10 +58,8 @@ export function ProjectCarousel({
         style={{
           position: "relative",
           width: "100%",
-          borderRadius: 24,
+          borderRadius: 20,
           overflow: "hidden",
-          border: "2px solid #18181b",
-          boxShadow: "6px 6px 0px #18181b",
           background: "#09090b",
           padding: "16px 12px 18px",
           display: "flex",

@@ -11,8 +11,6 @@ import { TextRoll } from "@/components/text-roll";
 import { VercelTooltipNav } from "@/components/vercel-tooltip-nav";
 import { ProgressiveBlur } from "@/components/progressive-blur";
 
-import { MouseFollowingEyes } from "@/components/ui/mouse-following-eyes";
-
 const MotionLink = motion.create(Link);
 const MotionA = motion.a;
 
@@ -24,48 +22,17 @@ export default function PagesLayout({ children }: { children: React.ReactNode })
   const contentRef = useRef<HTMLDivElement>(null);
   const avatarRef = useRef<HTMLDivElement>(null);
 
+  const { scrollYProgress } = useScroll({ container: contentRef });
+  const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30, restDelta: 0.001 });
+
   // Check if current route is a subpage (e.g., /projects/moviedex)
   const isSubpage = pathname.split("/").length > 2 || (pathname.startsWith("/projects/") && pathname !== "/projects");
-
-  // Eyeball cursor tracking
-  const [eyeOffset, setEyeOffset] = useState({ x: 0, y: 0 });
-
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      if (avatarRef.current) {
-        const rect = avatarRef.current.getBoundingClientRect();
-        const centerX = rect.left + rect.width / 2;
-        const centerY = rect.top + rect.height / 2;
-
-        const deltaX = e.clientX - centerX;
-        const deltaY = e.clientY - centerY;
-
-        const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
-        const maxOffset = 4; // max pixels for pupil shift
-
-        const shiftX = distance > 0 ? (deltaX / distance) * Math.min(Math.abs(deltaX / 30), maxOffset) : 0;
-        const shiftY = distance > 0 ? (deltaY / distance) * Math.min(Math.abs(deltaY / 30), maxOffset) : 0;
-
-        setEyeOffset({ x: shiftX, y: shiftY });
-      }
-    };
-
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, []);
-
-  const { scrollYProgress } = useScroll({ container: contentRef });
-  const scaleX = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
-    restDelta: 0.001
-  });
 
   return (
     <>
       <style>{`@keyframes slideUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
       .portfolio-content::-webkit-scrollbar { display: none; }
-      .portfolio-content { -ms-overflow-style: none; scrollbar-width: none; }
+      .portfolio-content { -ms-overflow-style: none; scrollbar-width: none; scroll-behavior: smooth; overscroll-behavior-y: auto; -webkit-overflow-scrolling: touch; }
       .qb{user-select:none; transition:all .2s ease;}
       .qb:hover{border-color:#111!important;transform:translateY(-1px)}
       .home-btn{transition:all .2s ease; padding:4px 8px; border-radius:10px; color:#666; display:flex; align-items:center; gap:4px; font-size:12px; font-weight:600; text-decoration:none; cursor:pointer; background:none; border:none;}
@@ -155,7 +122,7 @@ export default function PagesLayout({ children }: { children: React.ReactNode })
             <motion.div style={{ height: "100%", background: "linear-gradient(90deg, #3b82f6, #10b981)", scaleX, transformOrigin: "0%" }} />
           </div>
           {/* Header - Compact Half-Size */}
-          <header style={{ display: "flex", alignItems: "center", justifyContent: "center", padding: "8px 16px", borderBottom: "1px solid #f0f0f0", background: "#fff", flexShrink: 0, position: "relative", minHeight: 48 }}>
+          <header style={{ display: "flex", alignItems: "center", justifyContent: "center", padding: "8px 16px", borderBottom: "1px solid #f0f0f0", background: "#fff", flexShrink: 0, position: "relative", minHeight: 52 }}>
             {/* Dynamic Home vs Back button */}
             {isSubpage ? (
               <button 
@@ -171,17 +138,12 @@ export default function PagesLayout({ children }: { children: React.ReactNode })
               </MotionLink>
             )}
 
-            {/* Compact Avatar with Interactive Mouse Following Eyes */}
-            <div ref={avatarRef} style={{ display: "flex", alignItems: "center", gap: 8 }}>
-              <div style={{ padding: "2px 6px", borderRadius: 999, background: "#f8fafc", border: "1.5px solid #18181b", boxShadow: "2px 2px 0px #18181b", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                <MouseFollowingEyes size={16} />
-              </div>
-              <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
-                <span style={{ fontWeight: 800, fontSize: 13, color: "#111", letterSpacing: "-0.02em", lineHeight: 1.2 }}>Anbu</span>
-                <span style={{ fontSize: 8.5, color: "#22c55e", fontWeight: 700, display: "flex", alignItems: "center", gap: 3, textTransform: "uppercase", letterSpacing: "0.04em" }}>
-                  <span style={{ width: 4, height: 4, borderRadius: "50%", background: "#22c55e", display: "inline-block", boxShadow: "0 0 4px rgba(34,197,94,0.6)" }} /> Active
-                </span>
-              </div>
+            {/* Clean Header Avatar / Title */}
+            <div ref={avatarRef} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 1 }}>
+              <span style={{ fontWeight: 800, fontSize: 14, color: "#111", letterSpacing: "-0.02em" }}>Anbu</span>
+              <span style={{ fontSize: 9, color: "#16a34a", fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.05em", display: "flex", alignItems: "center", gap: 3 }}>
+                <span style={{ width: 5, height: 5, borderRadius: "50%", background: "#16a34a", display: "inline-block", boxShadow: "0 0 4px rgba(22,163,74,0.6)" }} /> ACTIVE
+              </span>
             </div>
 
             {/* Connect Button */}
