@@ -93,7 +93,19 @@ CORE OBJECTIVES & HIGH-STATUS POSITIONING RULES:
      * Mindset & Work Ethic: Driven by inspiration from Elon Musk, Anbu cares ONLY about YOUR SUCCESS. If you have a business bottleneck, he has the execution mindset to build and solve it end-to-end.
      * DO NOT bring up his personal backstory (Kallakurichi, cat Scar 🐱, Android app at 19) for technical or qualification questions!
 
-4. HANDLING CUSTOM PRICING, GUARANTEES, NEGOTIATIONS, OR UNKNOWN DATA:
+4. WHEN ASKED ABOUT "SKILLS", "TECH STACK", OR "TECHNOLOGIES":
+   - Clearly list his core skills with formatting/icons: Frontend (React, Next.js, Tailwind), Backend (Java Spring Boot, Node.js), Mobile (Kotlin, Jetpack Compose), AI & Automation (n8n, OpenAI, Retell AI, Twilio), and Databases.
+   - Emphasize that while he is an expert in these, his main focus is using them to solve business bottlenecks and get results.
+
+5. WHEN ASKED ABOUT "TOP PROJECTS", "AI PROJECTS", OR "AUTOMATION PROJECTS":
+   - You MUST showcase his Top 3 Automation Projects:
+     1. 24/7 AI Voice Receptionist (Retell AI & n8n)
+     2. Multi-Modal WhatsApp AI Agent (n8n, OpenAI)
+     3. Automated SEO Blog Agent (Perplexity, ChatGPT)
+   - Provide a brief 1-sentence description for each.
+   - DO NOT dismiss the question by saying "tech stack doesn't matter". Give them the projects they asked for!
+
+6. HANDLING CUSTOM PRICING, GUARANTEES, NEGOTIATIONS, OR UNKNOWN DATA:
    - If a visitor asks about custom pricing, project guarantees, contract terms, negotiations, custom offers, or questions where you don't have exact data in your knowledge base:
    - Instruct them: "For custom project terms, guarantees, or specific business offers, reach out directly to Anbu via WhatsApp (+91 9361952703) or Email (anbuselvandzz@gmail.com) on the Connect page to get more details and see if there's a strong fit to work together."
 
@@ -246,8 +258,11 @@ ${
 
       // --- TECH STACK / SKILLS / BEST SKILL STACK / SPECIFIC TECH (REACT, JAVA, KOTLIN) ---
       } else if (lower.includes("tech stack") || lower.includes("technologies") || lower.includes("what language") || lower.includes("programming language") || lower.includes("skill") || lower.includes("tools") || lower.includes("framework") || lower.includes("best stack") || lower.includes("best skill stack") || lower.includes("react") || lower.includes("next") || lower.includes("java") || lower.includes("spring boot") || lower.includes("kotlin") || lower.includes("android")) {
-        candidateText = "Anbu is an enabler of full-stack and AI automation solutions for businesses. \ud83d\udd25\n\nMore than the technical side, he is focused on giving you the results. The tech stack or app features don't matter if they don't get you the outcome you need! It's better to contact him to identify your bottlenecks and goals, and see if he can deliver the best results for you.";
+        candidateText = "Here are Anbu's core skills and technologies: ⚡\n\n• 🌐 **Frontend**: React, Next.js, Tailwind CSS\n• ⚙️ **Backend**: Java Spring Boot, Node.js\n• 📱 **Mobile**: Kotlin, Jetpack Compose\n• 🤖 **AI & Automation**: n8n, OpenAI, Retell AI, Twilio\n• 🗄️ **Databases**: PostgreSQL, MongoDB, Redis\n\nIf you have a business bottleneck, Anbu can use these tools to build a custom solution for you!";
 
+      // --- TOP 3 AUTOMATION PROJECTS ---
+      } else if (lower.includes("top 3") || lower.includes("top project") || lower.includes("automation project") || lower.includes("ai project") || lower.includes("web project")) {
+        candidateText = "Here are Anbu's Top 3 Automation Projects: 🚀\n\n1. **24/7 AI Voice Receptionist**: Built with Retell AI & n8n to automatically handle inbound business calls and book meetings.\n2. **Multi-Modal WhatsApp AI Agent**: An n8n workflow that processes text, voice notes, and images via OpenAI in a single chat.\n3. **SEO Blog Agent**: Fully automates research and article generation directly to WordPress using Perplexity and ChatGPT.\n\nCheck out the Projects page to see them in action!";
 
       // --- AI RECEPTIONIST / VOICE AI ---
       } else if (lower.includes("receptionist") || lower.includes("voice ai") || lower.includes("retell") || lower.includes("inbound call") || lower.includes("outbound call") || lower.includes("voice agent") || lower.includes("ai call")) {
