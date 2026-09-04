@@ -147,11 +147,15 @@ ${
       for (const model of modelsToTry) {
         for (let attempt = 0; attempt < 2; attempt++) {
           try {
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), 8000); // 8-second timeout
+
             const res = await fetch(
               `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`,
               {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
+                signal: controller.signal,
                 body: JSON.stringify({
                   contents: [
                     {
@@ -162,6 +166,8 @@ ${
                 }),
               }
             );
+
+            clearTimeout(timeoutId);
 
             if (res.ok) {
               const data = await res.json();
@@ -176,8 +182,12 @@ ${
                 await new Promise((r) => setTimeout(r, 200));
               }
             }
-          } catch (err) {
-            console.error(`Fetch error for Gemini model [${model}]:`, err);
+          } catch (err: any) {
+            if (err.name === 'AbortError') {
+              console.warn(`Fetch timeout (8s) for Gemini model [${model}].`);
+            } else {
+              console.error(`Fetch error for Gemini model [${model}]:`, err);
+            }
           }
         }
         if (candidateText) break;
