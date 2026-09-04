@@ -309,9 +309,9 @@ async function queryGeminiApi(
           { label: "🤝 Connect with Anbu", url: "/contact" },
           { label: "📁 View Projects", url: "/projects" },
         ];
-      } else if (lower.includes("hobby") || lower.includes("hobbies") || lower.includes("cat") || lower.includes("book") || lower.includes("story") || lower.includes("village") || lower.includes("kallakurichi")) {
-        thoughtSteps = "1. Identified query intent: Anbu's Personal Hobbies & Backstory.\n2. Retrieved backstory: Small town Kallakurichi roots, self-taught dev (1st Android app at 19, multiple apps at 20, AI apps today), Elon Musk inspiration, pet cat Scar 🐱.\n3. Formatted authentic witty response.";
-        aiText = "Looking at his projects, you might think Anbu was born with a compiler pre-installed! 🤣 In reality, he's a self-taught developer from a small town in Kallakurichi, Tamil Nadu who taught himself how to use the internet, coding, and automation tools. He coded his first Android app at 19, built multiple applications at 20, and is now developing cutting-edge AI applications! Driven by inspiration from Elon Musk... and the vital daily duty of feeding his pet cat, Scar 🐱.";
+      } else if (lower.includes("hobby") || lower.includes("hobbies") || lower.includes("read") || lower.includes("book") || lower.includes("biography") || lower.includes("steve jobs") || lower.includes("elon musk") || lower.includes("mind") || lower.includes("psychology")) {
+        thoughtSteps = "1. Identified query intent: Anbu's Personal Hobbies & Reading.\n2. Retrieved hobbies: Reading Steve Jobs & Elon Musk biographies, psychology/mind books, feeding pet cat Scar 🐱.\n3. Formatted authentic response.";
+        aiText = "Anbu loves reading biographies and non-fiction books in his free time! 📚\n\n• **Biographies**: He has read the biographies of Steve Jobs and Elon Musk.\n• **Human Mind & Psychology**: Passionate about non-fiction books exploring human behavior, psychology, and high-performance mindsets.\n• **Pet Cat**: Driven by inspiration from Elon Musk... and the daily mission to keep his pet cat Scar 🐱 well-fed!";
         links = [
           { label: "👋 About Anbu", url: "/me" },
           { label: "🤝 Connect with Anbu", url: "/contact" },
@@ -325,7 +325,7 @@ async function queryGeminiApi(
         ];
       } else if (lower.includes("who is anbu") || lower.includes("who are you") || lower.includes("about anbu") || lower.includes("tell me about anbu") || lower.includes("who's anbu")) {
         thoughtSteps = "1. Identified query intent: Who is Anbu Selvan?\n2. Summarized expertise as Expert Full-Stack Developer & AI Automation Specialist.\n3. Formatted response with links.";
-        aiText = "Anbu Selvan is an **Expert Full-Stack Developer & AI Automation Specialist** from Kallakurichi, Tamil Nadu, India! 🚀\n\n• **Core Superpower**: Builds high-performance web applications, native Android apps, and production AI agents (n8n, Retell AI, OpenAI) that eliminate business bottlenecks.\n• **Target Clients**: SMBs, founders, business owners, and international clients across the US and UK.\n• **Mission**: Delivers high-ROI software solutions that automate manual workflows and save 20+ hours/week.\n\nReach out to Anbu on the Connect page to see if you can work with him!";
+        aiText = "Anbu Selvan is an **Expert Full-Stack Developer & AI Automation Specialist** from Kallakurichi, Tamil Nadu, India! 🚀\n\n• **Core Superpower**: Builds full-stack applications and custom AI solutions (n8n, Make, ChatGPT, Claude) that eliminate business bottlenecks.\n• **Target Clients**: SMBs, founders, business owners, and international clients across the US and UK.\n• **Mission**: Delivers high-ROI software solutions that automate manual workflows, speed up operations, and drive revenue & growth.\n\nReach out to Anbu on the Connect page to see if you can work with him!";
         links = [
           { label: "👋 About Anbu", url: "/me" },
           { label: "📁 Explore Projects", url: "/projects" },
@@ -333,7 +333,7 @@ async function queryGeminiApi(
         ];
       } else if (lower.includes("why choose") || lower.includes("why work") || lower.includes("why hire") || lower.includes("best") || lower.includes("why is anbu")) {
         thoughtSteps = "1. Identified query intent: Why choose Anbu?\n2. Highlighted relentless execution mindset, problem-solving focus, and dual full-stack & AI expertise.\n3. Formatted response.";
-        aiText = "Here is why working with Anbu is the highest-leverage decision for your team: ⚡\n\n• **Problem & Bottleneck Priority**: If you're looking for someone who prioritizes your exact business bottlenecks and focuses every second to solve and automate them, Anbu is the right person.\n• **Relentless Execution Mindset**: Inspired by Elon Musk's work ethic, Anbu delivers end-to-end fast without fluff.\n• **Dual Expertise**: Specializing in Next.js, React, Java Spring Boot, Kotlin Android, and n8n AI workflows.\n\nTalk with Anbu on the Connect page to see if you can work with him and if there's a strong fit.";
+        aiText = "Here is why working with Anbu is the highest-leverage decision for your team: ⚡\n\n• **Problem & Bottleneck Priority**: If you're looking for someone who prioritizes your exact business bottlenecks and focuses every second to solve and automate them, Anbu is the right person.\n• **Relentless Execution Mindset**: Inspired by Elon Musk's work ethic, Anbu delivers end-to-end fast without fluff.\n• **Dual Expertise**: Specializing in full-stack web applications and custom AI automations (n8n, Make, ChatGPT, Claude).\n\nTalk with Anbu on the Connect page to see if you can work with him and if there's a strong fit.";
         links = [
           { label: "🤝 Connect & Work with Anbu", url: "/contact" },
           { label: "⚡ View Skills", url: "/skills" },
@@ -359,7 +359,7 @@ async function queryGeminiApi(
         ];
       } else if (lower.includes("skill") || lower.includes("stack") || lower.includes("technolog")) {
         thoughtSteps = "1. Identified query intent: Anbu's Top Skills.\n2. Summarized as Expert Full-Stack Developer & AI Automation Specialist.\n3. Formatted cleanly.";
-        aiText = "Anbu is an **Expert Full-Stack Developer & AI Automation Specialist**! ⚡\n\nHis expertise lies in building end-to-end web apps (Next.js, React, Java Spring Boot, Kotlin) and custom AI Automations (n8n, Retell AI, OpenAI) to eliminate business bottlenecks.\n\nIf you have a business bottleneck, Anbu can build a custom solution for you!";
+        aiText = "Anbu is an **Expert Full-Stack Developer & AI Automation Specialist**! ⚡\n\nHis expertise lies in building full-stack applications and providing custom AI solutions (n8n, Make, ChatGPT, Claude) to SMBs and business owners, utilizing AI to eliminate operational bottlenecks, speed up business workflows, and drive revenue and growth.\n\nIf you have a business bottleneck, Anbu can build a custom solution for you!";
         links = [
           { label: "⚡ View Skills", url: "/skills" },
           { label: "🤝 Connect with Anbu", url: "/contact" },
