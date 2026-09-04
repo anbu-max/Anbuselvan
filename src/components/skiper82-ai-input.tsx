@@ -228,7 +228,6 @@ async function queryGeminiApi(
 
   const handleSend = async (textToSend?: string) => {
     const query = (textToSend || input).trim();
-    // if (!query || remainingWishes <= 0 || isThinking) return;
     if (!query || isThinking) return;
 
     playSendSound();
@@ -242,11 +241,9 @@ async function queryGeminiApi(
 
     setMessages((prev) => [...prev, userMsg]);
     
-    /*
     const newUsedCount = getStoredWishCount() + 1;
     saveStoredWishCount(newUsedCount);
     setRemainingWishes(Math.max(0, 3 - newUsedCount));
-    */
 
     setIsThinking(true);
 
@@ -272,113 +269,11 @@ async function queryGeminiApi(
 
     // Fallback: ONLY triggers if live AI query fails or takes longer than 10 seconds
     setTimeout(() => {
-      const lower = query.toLowerCase();
-      let aiText = "";
-      let links: { label: string; url: string }[] = [];
-      let thoughtSteps = "";
-
-      const isGreeting = ["hi", "hello", "hlo", "hey", "good morning", "good evening", "namaste", "yo", "sup"].some(
-        (g) => lower === g || lower.startsWith(g + " ")
-      );
-
-      if (isGreeting) {
-        thoughtSteps = "1. Detected greeting intent.\n2. Formatted polite welcome response.\n3. Prompted visitor for their business workflow or project needs.";
-        aiText = "Hey there! 👋 Welcome to Anbu's portfolio. What kind of AI automation, web app, or business workflow are you looking to build today?";
-        links = [
-          { label: "🤝 Get in Touch", url: "/contact" },
-          { label: "📁 Explore Projects", url: "/projects" },
-        ];
-      } else if (lower.includes("fuck") || lower.includes("shit") || lower.includes("bitch") || lower.includes("asshole")) {
-        thoughtSteps = "1. Detected abusive / troll input.\n2. Maintained unbothered, high-status professional boundary.\n3. Directed to Connect page for serious inquiries.";
-        aiText = "Anbu works exclusively with serious business owners, founders, and engineering teams looking for high-ROI software and AI automations. ⚡\n\nReach out to Anbu on the Connect page to see if you can work with him and if your project is a strong mutual fit.";
-        links = [
-          { label: "🤝 Connect with Anbu", url: "/contact" },
-          { label: "📁 Explore Projects", url: "/projects" },
-        ];
-      } else if (lower.includes("guarantee") || lower.includes("offer") || lower.includes("price") || lower.includes("cost") || lower.includes("negotiat") || lower.includes("contract") || lower.includes("custom project")) {
-        thoughtSteps = "1. Identified query intent: Custom Project Terms / Guarantees / Pricing.\n2. Redirected to direct contact for custom business proposals.\n3. Attached contact page link.";
-        aiText = "For custom project terms, guarantees, pricing, or specific business offers, reach out directly to Anbu via WhatsApp (+91 9361952703) or Email (anbuselvandzz@gmail.com) on the Connect page to discuss your project requirements and see if there's a strong fit to work together. 🤝";
-        links = [
-          { label: "🤝 Contact Anbu Directly", url: "/contact" },
-          { label: "📁 View Projects", url: "/projects" },
-        ];
-      } else if (lower.includes("smb") || lower.includes("client") || lower.includes("who does") || lower.includes("business owner") || lower.includes("founder")) {
-        thoughtSteps = "1. Identified query intent: Target Clients & Business Focus.\n2. Evaluated clientele: SMBs, Founders, and International Clients.\n3. Formatted response with action links.";
-        aiText = "Anbu works primarily with Small to Medium-Sized Businesses (SMBs), business owners, founders, and international clients across the UK and US! 🚀\n\n• **Core Focus**: Identifies operational bottlenecks and builds tailored Full-Stack & AI agent solutions that automate manual tasks and scale revenue.\n\nReach out to Anbu on the Connect page to see if you can work with him and if your project is a strong mutual fit.";
-        links = [
-          { label: "🤝 Connect with Anbu", url: "/contact" },
-          { label: "📁 View Projects", url: "/projects" },
-        ];
-      } else if (lower.includes("hobby") || lower.includes("hobbies") || lower.includes("read") || lower.includes("book") || lower.includes("biography") || lower.includes("steve jobs") || lower.includes("elon musk") || lower.includes("mind") || lower.includes("psychology")) {
-        thoughtSteps = "1. Identified query intent: Anbu's Personal Hobbies & Reading.\n2. Retrieved hobbies: Reading Steve Jobs & Elon Musk biographies, psychology/mind books, feeding pet cat Scar 🐱.\n3. Formatted authentic response.";
-        aiText = "Anbu loves reading biographies and non-fiction books in his free time! 📚\n\n• **Biographies**: He has read the biographies of Steve Jobs and Elon Musk.\n• **Human Mind & Psychology**: Passionate about non-fiction books exploring human behavior, psychology, and high-performance mindsets.\n• **Pet Cat**: Driven by inspiration from Elon Musk... and the daily mission to keep his pet cat Scar 🐱 well-fed!";
-        links = [
-          { label: "👋 About Anbu", url: "/me" },
-          { label: "🤝 Connect with Anbu", url: "/contact" },
-        ];
-      } else if (lower.includes("model") || lower.includes("what ai") || lower.includes("who are you")) {
-        thoughtSteps = "1. Identified query intent: AI Model Identity.\n2. Stated ChatGPT gpt-4o-mini architecture.\n3. Formatted response with contact link.";
-        aiText = "I am powered by ChatGPT (gpt-4o-mini), customized specifically to showcase Anbu Selvan's engineering projects, high-character mindset, and automation systems!";
-        links = [
-          { label: "🤝 Connect with Anbu", url: "/contact" },
-          { label: "📁 Explore Projects", url: "/projects" },
-        ];
-      } else if (lower.includes("who is anbu") || lower.includes("who are you") || lower.includes("about anbu") || lower.includes("tell me about anbu") || lower.includes("who's anbu")) {
-        thoughtSteps = "1. Identified query intent: Who is Anbu Selvan?\n2. Summarized expertise as Expert Full-Stack Developer & AI Automation Specialist.\n3. Formatted response with links.";
-        aiText = "Anbu Selvan is an **Expert Full-Stack Developer & AI Automation Specialist** from Kallakurichi, Tamil Nadu, India! 🚀\n\n• **Core Superpower**: Builds full-stack applications and custom AI solutions (n8n, Make, ChatGPT, Claude) that eliminate business bottlenecks.\n• **Target Clients**: SMBs, founders, business owners, and international clients across the US and UK.\n• **Mission**: Delivers high-ROI software solutions that automate manual workflows, speed up operations, and drive revenue & growth.\n\nReach out to Anbu on the Connect page to see if you can work with him!";
-        links = [
-          { label: "👋 About Anbu", url: "/me" },
-          { label: "📁 Explore Projects", url: "/projects" },
-          { label: "🤝 Connect with Anbu", url: "/contact" },
-        ];
-      } else if (lower.includes("why choose") || lower.includes("why work") || lower.includes("why hire") || lower.includes("best") || lower.includes("why is anbu")) {
-        thoughtSteps = "1. Identified query intent: Why choose Anbu?\n2. Highlighted relentless execution mindset, problem-solving focus, and dual full-stack & AI expertise.\n3. Formatted response.";
-        aiText = "Here is why working with Anbu is the highest-leverage decision for your team: ⚡\n\n• **Problem & Bottleneck Priority**: If you're looking for someone who prioritizes your exact business bottlenecks and focuses every second to solve and automate them, Anbu is the right person.\n• **Relentless Execution Mindset**: Inspired by Elon Musk's work ethic, Anbu delivers end-to-end fast without fluff.\n• **Dual Expertise**: Specializing in full-stack web applications and custom AI automations (n8n, Make, ChatGPT, Claude).\n\nTalk with Anbu on the Connect page to see if you can work with him and if there's a strong fit.";
-        links = [
-          { label: "🤝 Connect & Work with Anbu", url: "/contact" },
-          { label: "⚡ View Skills", url: "/skills" },
-        ];
-      } else if (lower.includes("ballz") || lower.includes("dialer") || (lower.includes("android") && lower.includes("app"))) {
-        thoughtSteps = "1. Identified query intent: Ballz Android Cold Call CRM & Power Dialer.\n2. Retrieved specs: SDK 36, Jetpack Compose, Kotlin 2.2, Twilio WebRTC Voice SDK, Room DB.\n3. Prepared project navigation link.";
-        aiText = "Anbu built 'Ballz' — a 100% offline-first native Android Power Dialer & CRM! Powered by Jetpack Compose (Material 3), Twilio WebRTC VoIP SDK, Kotlin 2.2, and Room SQLite DB for high-velocity outbound calling and conversion funnel tracking.";
-        links = [
-          { label: "📱 View Ballz Power Dialer Project", url: "/projects/android-twilio-cold-calls" },
-        ];
-      } else if (lower.includes("receptionist") || lower.includes("voice ai") || lower.includes("call")) {
-        thoughtSteps = "1. Identified query intent: 24/7 AI Voice Receptionist.\n2. Retrieved specs: Retell AI, n8n, Webhooks, Twilio Voice API.\n3. Attached project detail link.";
-        aiText = "Anbu built a 24/7 AI Voice Receptionist using Retell AI, n8n webhooks, and Twilio Voice API that automatically answers inbound business calls, addresses customer FAQs, and books appointments around the clock!";
-        links = [
-          { label: "📞 View AI Voice Receptionist", url: "/projects/ai-receptionist" },
-        ];
-      } else if (lower.includes("whatsapp") || lower.includes("n8n")) {
-        thoughtSteps = "1. Identified query intent: WhatsApp Multi-Modal AI Agent.\n2. Retrieved specs: n8n, OpenAI Whisper, GPT Vision, PDF extraction, Voice notes.\n3. Attached project detail link.";
-        aiText = "Anbu built a Multi-Modal WhatsApp AI Agent in n8n that processes text, voice notes (Whisper transcription), images (AI vision), and PDFs in one conversation thread, responding in either text or generated voice notes!";
-        links = [
-          { label: "💬 View WhatsApp AI Agent Project", url: "/projects/whatsapp-agent" },
-          { label: "🤝 Connect with Anbu", url: "/contact" },
-        ];
-      } else if (lower.includes("skill") || lower.includes("stack") || lower.includes("technolog")) {
-        thoughtSteps = "1. Identified query intent: Anbu's Top Skills.\n2. Summarized as Expert Full-Stack Developer & AI Automation Specialist.\n3. Formatted cleanly.";
-        aiText = "Anbu is an **Expert Full-Stack Developer & AI Automation Specialist**! ⚡\n\nHis expertise lies in building full-stack applications and providing custom AI solutions (n8n, Make, ChatGPT, Claude) to SMBs and business owners, utilizing AI to eliminate operational bottlenecks, speed up business workflows, and drive revenue and growth.\n\nIf you have a business bottleneck, Anbu can build a custom solution for you!";
-        links = [
-          { label: "⚡ View Skills", url: "/skills" },
-          { label: "🤝 Connect with Anbu", url: "/contact" },
-        ];
-      } else if (lower.includes("top 3") || lower.includes("top project") || lower.includes("automation project")) {
-        thoughtSteps = "1. Identified query intent: Top 3 Automation Projects.\n2. Extracted top automated AI workflows from portfolio.\n3. Formatted list and attached project link.";
-        aiText = "Here are Anbu's Top 3 Automation Projects: 🚀\n\n1. **24/7 AI Voice Receptionist**: Built with Retell AI & n8n to automatically handle inbound business calls and book meetings.\n2. **Multi-Modal WhatsApp AI Agent**: An n8n workflow that processes text, voice notes, and images via OpenAI in a single chat.\n3. **SEO Blog Agent**: Fully automates research and article generation directly to WordPress using Perplexity and ChatGPT.\n\nCheck out the Projects page to see them in action!";
-        links = [
-          { label: "📁 View All Projects", url: "/projects" },
-          { label: "📞 AI Receptionist", url: "/projects/ai-receptionist" },
-        ];
-      } else {
-        thoughtSteps = "1. Analyzing general prompt.\n2. Summarizing core expertise: AI Agents, Web & Android Apps, Workflow Automations.\n3. Providing relevant quick links.";
-        aiText = "Anbu Selvan is an Expert Full-Stack Developer & AI Automation Specialist for SMBs and international clients. If you have a business bottleneck or custom software idea, he can turn it into production code end-to-end.\n\nReach out to Anbu on the Connect page to see if you can work with him and if your project is a strong mutual fit.";
-        links = [
-          { label: "🚀 View Featured Projects", url: "/projects" },
-          { label: "🤝 Get in Touch", url: "/contact" },
-        ];
-      }
+      let aiText = "I am currently experiencing high traffic or a temporary network issue. Please reach out to Anbu directly on the Connect page for any inquiries!";
+      let links = [
+        { label: "🤝 Connect with Anbu", url: "/contact" }
+      ];
+      let thoughtSteps = "1. Attempted to connect to AI API.\n2. Connection timed out or failed.\n3. Falling back to direct contact recommendation.";
 
       const aiMsg: Message = {
         id: `ai-${Date.now()}`,
@@ -417,7 +312,7 @@ async function queryGeminiApi(
         boxSizing: "border-box",
       }}
     >
-      {/* Session Wishes Badge - Rate limiter commented out for testing */}
+      {/* Session Wishes Badge */}
       <div
         style={{
           display: "inline-flex",
@@ -425,16 +320,16 @@ async function queryGeminiApi(
           gap: 6,
           padding: "5px 14px",
           borderRadius: 999,
-          background: "#f0fdf4",
-          border: "1.5px solid #16a34a",
+          background: remainingWishes > 0 ? "#f0fdf4" : "#fee2e2",
+          border: `1.5px solid ${remainingWishes > 0 ? "#16a34a" : "#dc2626"}`,
           boxShadow: "2.5px 2.5px 0px #18181b",
           fontSize: 12,
           fontWeight: 800,
-          color: "#15803d",
+          color: remainingWishes > 0 ? "#15803d" : "#991b1b",
         }}
       >
         <Sparkles size={14} />
-        ⚡ Unlimited AI Chat Mode (Testing GPT-4o)
+        {remainingWishes > 0 ? `⚡ ${remainingWishes} Free AI Chats Remaining` : "⚡ Limit Reached - Contact Anbu to Talk"}
       </div>
 
       {/* Chat Messages Log */}
