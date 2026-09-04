@@ -130,7 +130,9 @@ async function queryGeminiApi(
 
   const handleSend = async (textToSend?: string) => {
     const query = (textToSend || input).trim();
-    if (!query || remainingWishes <= 0 || isThinking) return;
+    // RATE LIMITER COMMENTED OUT FOR TESTING MODE:
+    // if (!query || remainingWishes <= 0 || isThinking) return;
+    if (!query || isThinking) return;
 
     playSendSound();
     setInput("");
@@ -142,13 +144,16 @@ async function queryGeminiApi(
     };
 
     setMessages((prev) => [...prev, userMsg]);
+    
+    /* RATE LIMITER TRACKING COMMENTED OUT FOR UNLIMITED TESTING
     const newUsedCount = getStoredWishCount() + 1;
     saveStoredWishCount(newUsedCount);
     setRemainingWishes(Math.max(0, 5 - newUsedCount));
+    */
     setIsThinking(true);
 
     const thoughtTime = Math.floor(Math.random() * 3) + 3; // 3-5s
-    const isFinal = newUsedCount >= 5;
+    const isFinal = false; // Rate limiter disabled during testing
 
     // First attempt Gemini API call
     const geminiRes = await queryGeminiApi(query, isFinal);
@@ -158,7 +163,7 @@ async function queryGeminiApi(
         id: `ai-${Date.now()}`,
         sender: "ai",
         text: geminiRes.text,
-        thought: "1. Prompted Google Gemini 2.0 Flash Model.\n2. Evaluated prompt with Alex Hormozi ROI & Character mindset principles.\n3. Generated personalized high-energy response with action links.",
+        thought: "1. Prompted Google Gemini Flash Model.\n2. Evaluated prompt with Alex Hormozi ROI & Character mindset principles.\n3. Generated personalized high-energy response with action links.",
         thoughtTime,
         links: geminiRes.links,
       };
@@ -283,7 +288,7 @@ async function queryGeminiApi(
         boxSizing: "border-box",
       }}
     >
-      {/* Session Wishes Badge */}
+      {/* Session Wishes Badge - Rate limiter commented out for testing */}
       <div
         style={{
           display: "inline-flex",
@@ -291,18 +296,16 @@ async function queryGeminiApi(
           gap: 6,
           padding: "5px 14px",
           borderRadius: 999,
-          background: remainingWishes > 0 ? "#f0fdf4" : "#fef2f2",
-          border: remainingWishes > 0 ? "1.5px solid #16a34a" : "1.5px solid #ef4444",
+          background: "#f0fdf4",
+          border: "1.5px solid #16a34a",
           boxShadow: "2.5px 2.5px 0px #18181b",
           fontSize: 12,
           fontWeight: 800,
-          color: remainingWishes > 0 ? "#15803d" : "#b91c1c",
+          color: "#15803d",
         }}
       >
         <Sparkles size={14} />
-        {remainingWishes > 0
-          ? `🧞‍♂️ Make your 5 wishes (${remainingWishes}/5 available)`
-          : "Wish limit reached! Explore the page yourself below 🚀"}
+        ⚡ Unlimited AI Chat Mode (Test &amp; Refine)
       </div>
 
       {/* Chat Messages Log */}
@@ -513,12 +516,8 @@ async function queryGeminiApi(
           onKeyDown={(e) => {
             if (e.key === "Enter") handleSend();
           }}
-          disabled={remainingWishes <= 0 || isThinking}
-          placeholder={
-            remainingWishes > 0
-              ? "Ask AI anything about Anbu's projects, skills..."
-              : "Wish limit reached for this session."
-          }
+          disabled={isThinking}
+          placeholder="Ask AI anything about Anbu's projects, skills..."
           style={{
             flex: 1,
             border: "none",
@@ -536,18 +535,18 @@ async function queryGeminiApi(
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
           onClick={() => handleSend()}
-          disabled={!input.trim() || remainingWishes <= 0 || isThinking}
+          disabled={!input.trim() || isThinking}
           style={{
             width: 38,
             height: 38,
             borderRadius: "50%",
-            background: input.trim() && remainingWishes > 0 ? "#18181b" : "#f1f5f9",
-            color: input.trim() && remainingWishes > 0 ? "#ffffff" : "#94a3b8",
+            background: input.trim() ? "#18181b" : "#f1f5f9",
+            color: input.trim() ? "#ffffff" : "#94a3b8",
             border: "none",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            cursor: input.trim() && remainingWishes > 0 ? "pointer" : "default",
+            cursor: input.trim() ? "pointer" : "default",
             transition: "all 0.2s ease",
             flexShrink: 0,
           }}
@@ -596,8 +595,8 @@ async function queryGeminiApi(
           {(isMobile ? activePrompts.slice(0, 2) : activePrompts.slice(0, 3)).map((suggestion, idx) => (
             <button
               key={idx}
-              onClick={() => remainingWishes > 0 && handleSend(suggestion)}
-              disabled={remainingWishes <= 0}
+              onClick={() => handleSend(suggestion)}
+              disabled={isThinking}
               style={{
                 display: "inline-flex",
                 alignItems: "center",
@@ -609,8 +608,8 @@ async function queryGeminiApi(
                 boxShadow: "2px 2px 0px #18181b",
                 fontSize: isMobile ? 11 : 12,
                 fontWeight: 700,
-                color: remainingWishes > 0 ? "#18181b" : "#94a3b8",
-                cursor: remainingWishes > 0 ? "pointer" : "default",
+                color: "#18181b",
+                cursor: isThinking ? "default" : "pointer",
                 whiteSpace: "nowrap",
                 maxWidth: isMobile ? "48%" : "none",
                 overflow: "hidden",

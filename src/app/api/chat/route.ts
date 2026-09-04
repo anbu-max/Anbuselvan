@@ -66,56 +66,56 @@ ${
     : "6. Always invite them to reach out on the Connect page (/contact) to collaborate with Anbu."
 }`;
 
-    // Secure server-to-server call to Google Gemini API
-    let res = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`,
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          contents: [
-            {
-              role: "user",
-              parts: [{ text: `${systemPrompt}\n\nUser Question: ${prompt}` }],
-            },
-          ],
-        }),
-      }
-    );
+    // Secure server-to-server call to Google Gemini API with robust model fallback
+    const modelsToTry = [
+      "gemini-3.6-flash",
+      "gemini-2.5-flash",
+      "gemini-1.5-flash-latest",
+    ];
 
-    if (!res.ok) {
-      res = await fetch(
-        `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`,
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            contents: [
-              {
-                role: "user",
-                parts: [{ text: `${systemPrompt}\n\nUser Question: ${prompt}` }],
-              },
-            ],
-          }),
+    let candidateText: string | undefined = undefined;
+
+    for (const model of modelsToTry) {
+      try {
+        const res = await fetch(
+          `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`,
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              contents: [
+                {
+                  role: "user",
+                  parts: [{ text: `${systemPrompt}\n\nUser Question: ${prompt}` }],
+                },
+              ],
+            }),
+          }
+        );
+
+        if (res.ok) {
+          const data = await res.json();
+          const text = data?.candidates?.[0]?.content?.parts?.[0]?.text;
+          if (text) {
+            candidateText = text;
+            break; // Successfully got candidate text from Gemini
+          }
+        } else {
+          console.error(`Gemini API Model [${model}] returned status:`, res.status);
         }
-      );
+      } catch (err) {
+        console.error(`Fetch error for Gemini model [${model}]:`, err);
+      }
     }
-
-    if (!res.ok) {
-      return NextResponse.json({ error: "Gemini API error" }, { status: 502 });
-    }
-
-    const data = await res.json();
-    const candidateText = data?.candidates?.[0]?.content?.parts?.[0]?.text;
 
     if (!candidateText) {
-      return NextResponse.json({ error: "Empty AI response" }, { status: 500 });
+      return NextResponse.json({ error: "Gemini API unavailable across models" }, { status: 502 });
     }
 
     return NextResponse.json({
       text: candidateText.trim(),
       links: [
-        { label: "🤝 Connect & Hire Anbu", url: "/contact" },
+        { label: "🤝 Connect with Anbu", url: "/contact" },
         { label: "📁 View Projects", url: "/projects" },
       ],
     });
