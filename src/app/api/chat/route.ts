@@ -94,8 +94,8 @@ CORE OBJECTIVES & HIGH-STATUS POSITIONING RULES:
      * DO NOT bring up his personal backstory (Kallakurichi, cat Scar 🐱, Android app at 19) for technical or qualification questions!
 
 4. WHEN ASKED ABOUT "SKILLS", "TECH STACK", OR "TECHNOLOGIES":
-   - Clearly list his core skills with formatting/icons: Frontend (React, Next.js, Tailwind), Backend (Java Spring Boot, Node.js), Mobile (Kotlin, Jetpack Compose), AI & Automation (n8n, OpenAI, Retell AI, Twilio), and Databases.
-   - Emphasize that while he is an expert in these, his main focus is using them to solve business bottlenecks and get results.
+   - Answer that Anbu is a Full-Stack Developer (MERN) and AI Automation Developer.
+   - Do NOT explicitly mention front-end or back-end. Just mention his expertise in Full-Stack (MERN), No-code tools, AI tools, and AI accelerated development.
 
 5. WHEN ASKED ABOUT "TOP PROJECTS", "AI PROJECTS", OR "AUTOMATION PROJECTS":
    - You MUST showcase his Top 3 Automation Projects:
@@ -258,7 +258,7 @@ ${
 
       // --- TECH STACK / SKILLS / BEST SKILL STACK / SPECIFIC TECH (REACT, JAVA, KOTLIN) ---
       } else if (lower.includes("tech stack") || lower.includes("technologies") || lower.includes("what language") || lower.includes("programming language") || lower.includes("skill") || lower.includes("tools") || lower.includes("framework") || lower.includes("best stack") || lower.includes("best skill stack") || lower.includes("react") || lower.includes("next") || lower.includes("java") || lower.includes("spring boot") || lower.includes("kotlin") || lower.includes("android")) {
-        candidateText = "Here are Anbu's core skills and technologies: ⚡\n\n• 🌐 **Frontend**: React, Next.js, Tailwind CSS\n• ⚙️ **Backend**: Java Spring Boot, Node.js\n• 📱 **Mobile**: Kotlin, Jetpack Compose\n• 🤖 **AI & Automation**: n8n, OpenAI, Retell AI, Twilio\n• 🗄️ **Databases**: PostgreSQL, MongoDB, Redis\n\nIf you have a business bottleneck, Anbu can use these tools to build a custom solution for you!";
+        candidateText = "Anbu is a **Full-Stack Developer (MERN)** and **AI Automation Developer**! ⚡\n\nHis expertise lies in building end-to-end solutions using modern No-code tools, AI tools, and AI-accelerated development to get businesses results fast.\n\nIf you have a business bottleneck, Anbu can use these tools to build a custom solution for you!";
 
       // --- TOP 3 AUTOMATION PROJECTS ---
       } else if (lower.includes("top 3") || lower.includes("top project") || lower.includes("automation project") || lower.includes("ai project") || lower.includes("web project")) {

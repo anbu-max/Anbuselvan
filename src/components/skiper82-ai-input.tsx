@@ -152,7 +152,7 @@ function saveStoredWishCount(count: number) {
 export function Skiper82AiInput() {
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState<Message[]>([]);
-  const [remainingWishes, setRemainingWishes] = useState(5);
+  const [remainingWishes, setRemainingWishes] = useState(3);
   const [isThinking, setIsThinking] = useState(false);
   const [expandedThoughtId, setExpandedThoughtId] = useState<string | null>(null);
   const [activePrompts, setActivePrompts] = useState<string[]>([]);
@@ -166,7 +166,7 @@ export function Skiper82AiInput() {
     window.addEventListener("resize", checkMobile);
 
     const used = getStoredWishCount();
-    const remaining = Math.max(0, 5 - used);
+    const remaining = Math.max(0, 3 - used);
     setRemainingWishes(remaining);
 
     const shuffled = [...ALL_QUESTION_PROMPTS].sort(() => 0.5 - Math.random());
@@ -222,9 +222,7 @@ async function queryGeminiApi(
 
   const handleSend = async (textToSend?: string) => {
     const query = (textToSend || input).trim();
-    // RATE LIMITER COMMENTED OUT FOR TESTING MODE:
-    // if (!query || remainingWishes <= 0 || isThinking) return;
-    if (!query || isThinking) return;
+    if (!query || remainingWishes <= 0 || isThinking) return;
 
     playSendSound();
     setInput("");
@@ -237,15 +235,14 @@ async function queryGeminiApi(
 
     setMessages((prev) => [...prev, userMsg]);
     
-    /* RATE LIMITER TRACKING COMMENTED OUT FOR UNLIMITED TESTING
     const newUsedCount = getStoredWishCount() + 1;
     saveStoredWishCount(newUsedCount);
-    setRemainingWishes(Math.max(0, 5 - newUsedCount));
-    */
+    setRemainingWishes(Math.max(0, 3 - newUsedCount));
+
     setIsThinking(true);
 
     const thoughtTime = 1; // Optimized ultra-fast 1s thought timing
-    const isFinal = false; // Rate limiter disabled during testing
+    const isFinal = remainingWishes === 1; // Final wish prompt on last try
 
     // First attempt Gemini API call
     const geminiRes = await queryGeminiApi(query, isFinal);
@@ -344,8 +341,8 @@ async function queryGeminiApi(
           { label: "🤝 Connect with Anbu", url: "/contact" },
         ];
       } else if (lower.includes("skill") || lower.includes("stack") || lower.includes("technolog")) {
-        thoughtSteps = "1. Identified query intent: Anbu's Top Skills.\n2. Listed technical proficiency across frontend, backend, mobile, and AI.\n3. Added formatted icons.";
-        aiText = "Here are Anbu's core skills and technologies: ⚡\n\n• 🌐 **Frontend**: React, Next.js, Tailwind CSS\n• ⚙️ **Backend**: Java Spring Boot, Node.js\n• 📱 **Mobile**: Kotlin, Jetpack Compose\n• 🤖 **AI & Automation**: n8n, OpenAI, Retell AI, Twilio\n• 🗄️ **Databases**: PostgreSQL, MongoDB, Redis\n\nIf you have a business bottleneck, Anbu can use these tools to build a custom solution for you!";
+        thoughtSteps = "1. Identified query intent: Anbu's Top Skills.\n2. Summarized as Full-Stack (MERN) and AI Automation Developer.\n3. Formatted cleanly.";
+        aiText = "Anbu is a **Full-Stack Developer (MERN)** and **AI Automation Developer**! ⚡\n\nHis expertise lies in building end-to-end solutions using modern No-code tools, AI tools, and AI-accelerated development to get businesses results fast.\n\nIf you have a business bottleneck, Anbu can use these tools to build a custom solution for you!";
         links = [
           { label: "⚡ View Skills", url: "/skills" },
           { label: "🤝 Connect with Anbu", url: "/contact" },
@@ -410,7 +407,7 @@ async function queryGeminiApi(
         boxSizing: "border-box",
       }}
     >
-      {/* Session Wishes Badge - Rate limiter commented out for testing */}
+      {/* Session Wishes Badge - Rate limiter active */}
       <div
         style={{
           display: "inline-flex",
@@ -418,16 +415,19 @@ async function queryGeminiApi(
           gap: 6,
           padding: "5px 14px",
           borderRadius: 999,
-          background: "#f0fdf4",
-          border: "1.5px solid #16a34a",
+          background: remainingWishes > 0 ? "#f0fdf4" : "#fef2f2",
+          border: `1.5px solid ${remainingWishes > 0 ? "#16a34a" : "#dc2626"}`,
           boxShadow: "2.5px 2.5px 0px #18181b",
           fontSize: 12,
           fontWeight: 800,
-          color: "#15803d",
+          color: remainingWishes > 0 ? "#15803d" : "#991b1b",
         }}
       >
         <Sparkles size={14} />
-        ⚡ Unlimited AI Chat Mode (Test &amp; Refine)
+        {remainingWishes > 0 
+          ? `⚡ ${remainingWishes} question${remainingWishes === 1 ? "" : "s"} left for the AI Genie`
+          : `❌ Limit reached. Connect with Anbu directly!`
+        }
       </div>
 
       {/* Chat Messages Log */}
