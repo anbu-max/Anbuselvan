@@ -56,6 +56,22 @@
       "response": "Anbu's specialty is voice agents and WhatsApp automations — AI systems that answer calls, handle bookings, qualify leads, and follow up automatically. He's worked on projects across real estate, healthcare, and home services, building the automation layer that removes manual bottlenecks."
     },
     {
+      "id": "project_whatsapp_agent",
+      "countsTowardLimit": true,
+      "patterns": [
+        "multi-modal whatsapp ai agent", "whatsapp ai agent", "whatsapp agent project", "multimodal whatsapp agent"
+      ],
+      "response": "The Multimodal WhatsApp AI Agent is an end-to-end automation built to handle text, voice notes, images, and PDFs with real-time conversation memory. It allows businesses to automatically qualify leads, answer complex FAQs, and process documents directly inside WhatsApp without human intervention."
+    },
+    {
+      "id": "project_voice_agent",
+      "countsTowardLimit": true,
+      "patterns": [
+        "24/7 ai voice receptionist", "voice receptionist project", "ai voice agent project", "voice ai agent"
+      ],
+      "response": "The AI Voice Receptionist & Outbound Site Visit Agent provides 24/7 inquiry handling and automated booking using Retell AI, n8n, and Twilio Voice. It completely removes the bottleneck of missed calls and slow follow-ups, ensuring every lead is instantly engaged and qualified."
+    },
+    {
       "id": "best_project",
       "countsTowardLimit": true,
       "patterns": [
@@ -64,7 +80,7 @@
         "standout project", "his best work", "most complex project", "hardest project", "proudest project",
         "signature project", "which project is your favorite", "which one should i check first",
         "top pick project", "strongest project", "which project shows your skills best",
-        "top 3 automation projects", "multi-modal whatsapp ai agent", "24/7 ai voice receptionist"
+        "top 3 automation projects"
       ],
       "response": "Two stand out: the AI Voice Receptionist & Outbound Site Visit Agent (24/7 property inquiry handling + automated booking via Retell AI, n8n, Twilio Voice), and the Multimodal WhatsApp AI Agent (handles text, voice notes, images, and PDFs with real-time conversation memory). Both solve real business bottlenecks end-to-end."
     },
