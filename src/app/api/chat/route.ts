@@ -12,7 +12,7 @@ export async function POST(req: Request) {
     
     const memCount = ipTracking.get(fingerprint) || 0;
     
-    const cookieStore = cookies();
+    const cookieStore = await cookies();
     const chatCookie = cookieStore.get("chat_count");
     const cookieCount = chatCookie ? parseInt(chatCookie.value, 10) : 0;
     
