@@ -89,11 +89,12 @@ export async function POST(req: Request) {
         { label: "🤝 Connect with Anbu", url: "/contact" },
         { label: "📁 View Projects", url: "/projects" },
       ],
+      count: newCount,
     });
 
     if (isLimited) {
       response.cookies.set("chat_count", newCount.toString(), {
-        httpOnly: true,
+        httpOnly: false,
         secure: process.env.NODE_ENV === "production",
         maxAge: 60 * 60 * 24 * 7, // 7 days
         path: "/",

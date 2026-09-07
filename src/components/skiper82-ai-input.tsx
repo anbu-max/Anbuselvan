@@ -129,6 +129,7 @@ export function Skiper82AiInput() {
   const [expandedThoughtId, setExpandedThoughtId] = useState<string | null>(null);
   const [activePrompts, setActivePrompts] = useState<string[]>([]);
   const [isMobile, setIsMobile] = useState(false);
+  const [chatCount, setChatCount] = useState<number>(0);
   const chatEndRef = useRef<HTMLDivElement>(null);
 
   // Detect mobile screen width & initialize remaining wishes from localStorage / cookies on mount
@@ -136,6 +137,13 @@ export function Skiper82AiInput() {
     const checkMobile = () => setIsMobile(window.innerWidth < 640);
     checkMobile();
     window.addEventListener("resize", checkMobile);
+
+    if (typeof document !== "undefined") {
+      const match = document.cookie.match(/(^| )chat_count=([^;]+)/);
+      if (match) {
+        setChatCount(parseInt(match[2], 10));
+      }
+    }
 
     const shuffled = [...ALL_QUESTION_PROMPTS].sort(() => 0.5 - Math.random());
     setActivePrompts(shuffled.slice(0, 3));
@@ -166,7 +174,7 @@ export function Skiper82AiInput() {
 // Call secure Server Route Handler (/api/chat) with automatic fallback to smart JSON answering
 async function queryGeminiApi(
   userPrompt: string
-): Promise<{ text: string; links?: { label: string; url: string }[] } | null> {
+): Promise<{ text: string; links?: { label: string; url: string }[]; count?: number } | null> {
   try {
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), 10000); // Strict 10-second timeout
@@ -187,6 +195,7 @@ async function queryGeminiApi(
     return {
       text: data.text,
       links: data.links,
+      count: data.count,
     };
   } catch {
     return null;
@@ -215,6 +224,9 @@ async function queryGeminiApi(
     const geminiRes = await queryGeminiApi(query);
 
     if (geminiRes) {
+      if (geminiRes.count !== undefined) {
+        setChatCount(geminiRes.count);
+      }
       const aiMsg: Message = {
         id: `ai-${Date.now()}`,
         sender: "ai",
@@ -495,6 +507,18 @@ async function queryGeminiApi(
             fontFamily: "inherit",
           }}
         />
+
+        <div style={{
+          fontSize: 11,
+          fontWeight: 700,
+          color: chatCount >= 3 ? "#ef4444" : "#94a3b8",
+          background: chatCount >= 3 ? "#fee2e2" : "#f1f5f9",
+          padding: "4px 8px",
+          borderRadius: 12,
+          whiteSpace: "nowrap"
+        }}>
+          {Math.min(chatCount, 3)}/3
+        </div>
 
         {/* Morphing Arrow Action Button */}
         <motion.button
