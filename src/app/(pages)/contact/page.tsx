@@ -45,7 +45,7 @@ export default function ContactPage() {
             </div>
 
             {/* Resume Button */}
-            <a onClick={handleDownload} href="/resume/anbu-selvan-resume.pdf" download="Anbu_Selvan_Resume.pdf" className="dl-btn" style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "8px 18px", borderRadius: 999, textDecoration: "none", fontSize: 12.5, fontWeight: 800, border: "2px solid #18181b", boxShadow: "3px 3px 0px #18181b", background: "#ffffff", color: "#18181b" }}>
+            <a onClick={handleDownload} href="/resume/Anbu anbuselvan.devz@gmail.com.pdf" download="Anbu_Selvan_Resume.pdf" className="dl-btn" style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "8px 18px", borderRadius: 999, textDecoration: "none", fontSize: 12.5, fontWeight: 800, border: "2px solid #18181b", boxShadow: "3px 3px 0px #18181b", background: "#ffffff", color: "#18181b" }}>
               <Download size={15} /> Download Resume
             </a>
           </div>
