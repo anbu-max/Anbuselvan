@@ -104,13 +104,13 @@ export default function MePage() {
         <div style={{ background: "#ffffff", border: "2px solid #18181b", boxShadow: "6px 6px 0px #18181b", borderRadius: 20, padding: 22 }}>
           <div className="section-title" style={sectionTitle}>💡 My Philosophy</div>
           <p style={{ ...paragraph, fontStyle: "italic", color: "#111", fontWeight: 600, borderLeft: "3.5px solid #18181b", paddingLeft: 14, margin: "10px 0 14px" }}>
-            {`"The man who loves walking will walk further than the man who loves the destination."`}
+            {`"I will succeed no matter what obstacles are put in my way, because I know the obstacle is the way."`}
           </p>
           <p style={{ ...paragraph, fontSize: 14 }}>
-            I believe <b>consistency</b>, <b>curiosity</b>, and <b>embracing challenges</b> are what truly shape a person. 🚀 Difficult problems don&apos;t discourage me, they <em>motivate</em> me. The harder the journey, the more <b>meaningful the lessons</b> and the greater the satisfaction of finding a solution.
+            My philosophy is rooted in <b>mindset</b> and the <b>perseverance of character</b>. 🚀 I believe that extraordinary outcomes are the result of compounding daily execution, radical accountability, and an obsession with solving hard problems. If you are seeking a relentless high performer to engineer your systems, you have found the right one.
           </p>
           <p style={{ ...paragraph, fontSize: 14, margin: 0 }}>
-            I care about building things that create <b>real impact</b>. Whether it's software, automation, or an idea, I want my work to <em>make someone's life easier</em> or help a business grow. 🌱 My goal is to become the kind of <b>engineer people can trust</b>, someone who keeps learning, keeps improving, and can always figure things out.
+            I don't just write code—I build leverage. 🦅 I operate on the mindset that effort is the baseline, and out-competing the friction of reality is the goal. Give me a bottleneck, and I will automate it out of existence. True engineering is about forcing outcomes through sheer, calculated persistence.
           </p>
         </div>
       </FadeIn>
