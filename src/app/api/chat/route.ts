@@ -30,7 +30,11 @@ export async function POST(req: Request) {
     let matchedIntent = null;
     for (const intent of chatbotData.intents) {
       for (const pattern of intent.patterns) {
-        if (lowerPrompt.includes(pattern.toLowerCase())) {
+        // Use word boundaries to prevent false positives (e.g., "hi" inside "his")
+        // Escape pattern to safely use in regex
+        const escapedPattern = pattern.toLowerCase().replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        const regex = new RegExp(`\\b${escapedPattern}\\b`, "i");
+        if (regex.test(lowerPrompt)) {
           matchedIntent = intent;
           break;
         }
