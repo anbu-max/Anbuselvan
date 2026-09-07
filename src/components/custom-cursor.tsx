@@ -13,8 +13,9 @@ export default function CustomCursor() {
   const ring = useRef({ x: 0, y: 0 });
 
   useEffect(() => {
-    // Disable entirely on mobile to save performance
-    if (typeof window !== "undefined" && window.innerWidth <= 768) {
+    // Disable entirely on mobile and touch devices to save performance
+    const isTouchDevice = "ontouchstart" in window || navigator.maxTouchPoints > 0;
+    if (isTouchDevice || (typeof window !== "undefined" && window.innerWidth <= 768)) {
       return;
     }
 
@@ -45,8 +46,8 @@ export default function CustomCursor() {
       }
     };
 
-    window.addEventListener("mousemove", onMouseMove, { capture: true });
-    window.addEventListener("mouseover", onMouseOver, { capture: true });
+    window.addEventListener("mousemove", onMouseMove, { capture: true, passive: true });
+    window.addEventListener("mouseover", onMouseOver, { capture: true, passive: true });
 
     let rafId: number;
     const render = () => {

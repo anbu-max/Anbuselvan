@@ -23,7 +23,7 @@
       "id": "greeting",
       "countsTowardLimit": false,
       "patterns": ["hi", "hii", "hiii", "hiya", "hello", "helo", "hey", "heyy", "yo", "sup", "wassup", "what's up", "good morning", "good evening", "good afternoon", "good day", "namaste", "vanakkam", "howdy"],
-      "response": "Hey there! 👋 I'm Anbu's AI assistant. Ask me about his skills, projects, clients, philosophy, or how he works. You've got 3 questions in this chat, so make them count!"
+      "response": "Hey there! 👋 I'm Anbu's AI assistant. Ask me about his skills, projects, clients, philosophy, or how he works. You have 3 wishes in this chat, so make them count!"
     },
     {
       "id": "ai_identity",
