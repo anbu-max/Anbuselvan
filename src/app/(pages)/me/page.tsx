@@ -63,14 +63,14 @@ export default function MePage() {
             <span style={{ fontSize: 12, color: "#15803d", fontWeight: 800, background: "#f0fdf4", border: "1.5px solid #18181b", boxShadow: "2px 2px 0px #18181b", padding: "3px 12px", borderRadius: 999 }}>2025 - Present</span>
           </div>
           <p style={{ ...paragraph, fontSize: 14, color: "#333", fontWeight: 500, marginBottom: 16 }}>
-            Partnering directly with business owners, SMB founders, and international clients across the UK and US to eliminate operational bottlenecks, automate customer acquisition, and engineer high-performance systems.
+            Worked with business owners, SMB founders, and international clients to eliminate operational bottlenecks and engineer high-performance systems. I have built custom n8n systems and AI workflows engineered to drive results and automate unnecessary boring tasks. Here are some of the results we have brought to them:
           </p>
 
           <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
-            {/* 1. First Choice Properties */}
+            {/* 1. Real Estate Agency */}
             <div style={{ padding: 16, borderRadius: 16, background: "#fafafa", border: "1.5px solid #18181b", boxShadow: "3px 3px 0px #18181b" }}>
               <div style={{ fontSize: 14.5, fontWeight: 800, color: "#111", marginBottom: 6, fontStyle: "italic" }}>
-                <span style={{ textDecoration: "underline" }}>AI Automation for Real Estate Agency</span> (First Choice Properties):
+                <span style={{ textDecoration: "underline" }}>AI Automation for Real Estate Agency</span>:
               </div>
               <ul style={{ margin: 0, paddingLeft: 18, fontSize: 13.5, color: "#333", lineHeight: 1.65, display: "flex", flexDirection: "column", gap: 6 }}>
                 <li>Manual lead follow-ups were slow and inconsistent, making it difficult to respond to and qualify leads efficiently.</li>
@@ -79,10 +79,10 @@ export default function MePage() {
               </ul>
             </div>
 
-            {/* 2. PM Electricals */}
+            {/* 2. Reputation Management */}
             <div style={{ padding: 16, borderRadius: 16, background: "#fafafa", border: "1.5px solid #18181b", boxShadow: "3px 3px 0px #18181b" }}>
               <div style={{ fontSize: 14.5, fontWeight: 800, color: "#111", marginBottom: 6, fontStyle: "italic" }}>
-                <span style={{ textDecoration: "underline" }}>Reputation management system &amp; Website development</span> (PM Electricals):
+                <span style={{ textDecoration: "underline" }}>Reputation management system &amp; Website development</span>:
               </div>
               <ul style={{ margin: 0, paddingLeft: 18, fontSize: 13.5, color: "#333", lineHeight: 1.65, display: "flex", flexDirection: "column", gap: 6 }}>
                 <li>Manual review collection was inconsistent and missed opportunities for positive feedback.</li>
