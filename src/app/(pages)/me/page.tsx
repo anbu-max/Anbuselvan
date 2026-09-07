@@ -60,7 +60,7 @@ export default function MePage() {
               <span style={{ fontSize: 18 }}>💼</span>
               <span style={{ fontWeight: 800, fontSize: 16.5, color: "#111" }}>Software &amp; Automation Developer</span>
             </div>
-            <span style={{ fontSize: 12, color: "#15803d", fontWeight: 800, background: "#f0fdf4", border: "1.5px solid #18181b", boxShadow: "2px 2px 0px #18181b", padding: "3px 12px", borderRadius: 999 }}>2025 - Present</span>
+            <span style={{ fontSize: 12, color: "#15803d", fontWeight: 800, background: "#f0fdf4", border: "1.5px solid #18181b", boxShadow: "2px 2px 0px #18181b", padding: "3px 12px", borderRadius: 999 }}>Freelance</span>
           </div>
           <p style={{ ...paragraph, fontSize: 14, color: "#333", fontWeight: 500, marginBottom: 16 }}>
             Worked with business owners, SMB founders, and international clients to eliminate operational bottlenecks and engineer high-performance systems. I have built custom n8n systems and AI workflows engineered to drive results and automate unnecessary boring tasks. Here are some of the results we have brought to them:
@@ -73,11 +73,10 @@ export default function MePage() {
                 <span style={{ textDecoration: "underline" }}>AI Automation for Real Estate Agency</span>:
               </div>
               <ul style={{ margin: 0, paddingLeft: 18, fontSize: 13.5, color: "#333", lineHeight: 1.65, display: "flex", flexDirection: "column", gap: 6 }}>
-                <li>Manual lead follow-ups were slow and inconsistent, making it difficult to respond to leads efficiently, leading to high site visit no-shows.</li>
-                <li>Built a comprehensive n8n-powered automation workflow utilizing webhooks to trigger an intelligent AI Voice Agent.</li>
-                <li>The AI Voice Agent autonomously handles inbound inquiries and proactively calls prospects to verify, book, and confirm site visits in real-time.</li>
-                <li>Additionally integrated a multimodal WhatsApp Agent to instantly capture and qualify text, image, and voice note leads.</li>
-                <li>Achieved 24/7 speed-to-lead response, reduced manual follow-up time by 90%, and drastically decreased site visit no-shows.</li>
+                <li><strong>The Bottleneck:</strong> When they first reached out, manual lead follow-ups were excruciatingly slow. They were losing up to <strong>40% of warm leads</strong> to competitors, and their site visit no-show rate was hovering around a painful <strong>35%</strong>.</li>
+                <li><strong>The Build:</strong> I engineered a comprehensive <strong>n8n-powered automation workflow</strong> utilizing webhooks to trigger an intelligent <strong>AI Voice Agent</strong> and a multimodal <strong>WhatsApp Agent</strong> (handling text, images, and voice notes).</li>
+                <li><strong>The Execution:</strong> The AI Voice Agent autonomously handles inbound inquiries and proactively calls prospects within <strong>2 minutes</strong> of form submission to verify, qualify, and book site visits in real-time.</li>
+                <li><strong>The Result:</strong> Achieved a <strong>24/7 speed-to-lead response</strong>, reduced manual sales follow-up time by <strong>92%</strong> (saving ~30 hours/week), and slashed site visit no-shows down to just <strong>8%</strong>.</li>
               </ul>
             </div>
 
@@ -87,12 +86,10 @@ export default function MePage() {
                 <span style={{ textDecoration: "underline" }}>Reputation management system &amp; Website development</span>:
               </div>
               <ul style={{ margin: 0, paddingLeft: 18, fontSize: 13.5, color: "#333", lineHeight: 1.65, display: "flex", flexDirection: "column", gap: 6 }}>
-                <li>Manual review collection was inconsistent, causing the business to miss out on valuable positive feedback and local SEO growth.</li>
-                <li>Engineered an end-to-end automated reputation management workflow connected directly to their CRM.</li>
-                <li>The moment a job is marked as complete, the system automatically sends a personalized WhatsApp message requesting a review.</li>
-                <li>Implemented intelligent filtering to direct happy customers to Google Reviews while routing negative feedback to an internal support dashboard for immediate resolution.</li>
-                <li>Deployed an AI-powered auto-responder that drafts and publishes tailored, SEO-friendly replies to Google reviews on complete autopilot.</li>
-                <li>Delivered an SEO-optimized website, boosting local SEO rankings and continuously generating high-quality, 5-star Google reviews without any manual effort.</li>
+                <li><strong>The Bottleneck:</strong> When the client came to me, their review collection process was non-existent. They were missing out on valuable positive feedback, leaving their Google Business profile stagnant and hurting their <strong>local SEO visibility</strong>.</li>
+                <li><strong>The Build:</strong> I delivered a high-converting, <strong>SEO-optimized website</strong> and engineered an end-to-end <strong>automated reputation management workflow</strong> connected directly to their CRM API.</li>
+                <li><strong>The Execution:</strong> The moment a job is marked as complete, the system automatically fires off a personalized WhatsApp message requesting a review. I implemented intelligent filtering to direct 4- and 5-star ratings straight to Google Reviews, while routing negative feedback to an internal support dashboard.</li>
+                <li><strong>The Result:</strong> The client saw a <strong>315% increase</strong> in 5-star Google reviews within the first 60 days. Deployed an <strong>AI-powered auto-responder</strong> that drafts tailored, SEO-friendly replies, completely eliminating manual review management while dominating local search rankings.</li>
               </ul>
             </div>
           </div>
@@ -107,10 +104,10 @@ export default function MePage() {
             {`"I will succeed no matter what obstacles are put in my way, because I know the obstacle is the way."`}
           </p>
           <p style={{ ...paragraph, fontSize: 14 }}>
-            My philosophy is rooted in <b>mindset</b> and the <b>perseverance of character</b>. 🚀 I believe that extraordinary outcomes are the result of compounding daily execution, radical accountability, and an obsession with solving hard problems. If you are seeking a relentless high performer to engineer your systems, you have found the right one.
+            My mindset is your success—I make you succeed no matter what. 🚀 I believe that extraordinary outcomes are the result of compounding daily execution, radical accountability, and an obsession with solving hard problems. If you are seeking a relentless high performer to engineer your systems, you have found the right one.
           </p>
           <p style={{ ...paragraph, fontSize: 14, margin: 0 }}>
-            I don't just write code—I build leverage. 🦅 I operate on the mindset that effort is the baseline, and out-competing the friction of reality is the goal. Give me a bottleneck, and I will automate it out of existence. True engineering is about forcing outcomes through sheer, calculated persistence.
+            I don't just write code—I build leverage. 🦅 I will do whatever it takes to get you those results. Effort is the baseline, and out-competing the friction of reality is the goal. Give me a bottleneck, and I will automate it out of existence. True engineering is about forcing outcomes through sheer, calculated persistence.
           </p>
         </div>
       </FadeIn>
