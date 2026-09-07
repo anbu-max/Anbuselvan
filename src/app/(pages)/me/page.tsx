@@ -67,33 +67,27 @@ export default function MePage() {
           </p>
 
           <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
-            {/* 1. PM Electricals (UK) */}
+            {/* 1. First Choice Properties */}
             <div style={{ padding: 16, borderRadius: 16, background: "#fafafa", border: "1.5px solid #18181b", boxShadow: "3px 3px 0px #18181b" }}>
-              <div style={{ fontSize: 14.5, fontWeight: 800, color: "#111", marginBottom: 6 }}>⚡ PM Electricals (UK)</div>
+              <div style={{ fontSize: 14.5, fontWeight: 800, color: "#111", marginBottom: 6, fontStyle: "italic" }}>
+                <span style={{ textDecoration: "underline" }}>AI Automation for Real Estate Agency</span> (First Choice Properties):
+              </div>
               <ul style={{ margin: 0, paddingLeft: 18, fontSize: 13.5, color: "#333", lineHeight: 1.65, display: "flex", flexDirection: "column", gap: 6 }}>
-                <li>Designed &amp; deployed a custom web platform paired with an intelligent Reputation Management system.</li>
-                <li>Built automated review filtering that intelligently routes 4 &amp; 5-star reviews to Google Reviews while capturing private feedback for lower ratings.</li>
-                <li>Streamlined quote requests and digital brand presence, boosting public 5-star Google reviews by 300%.</li>
+                <li>Manual lead follow-ups were slow and inconsistent, making it difficult to respond to and qualify leads efficiently.</li>
+                <li>Built an intelligent WhatsApp Agent to instantly capture, qualify, and book leads, plus a Voice Agent to autonomously call and confirm site visits.</li>
+                <li>Achieved 24/7 speed to lead response, reduced follow-up time by 90%, and significantly decreased site visit no-shows.</li>
               </ul>
             </div>
 
-            {/* 2. Dental Clinics & Healthcare Practices */}
+            {/* 2. PM Electricals */}
             <div style={{ padding: 16, borderRadius: 16, background: "#fafafa", border: "1.5px solid #18181b", boxShadow: "3px 3px 0px #18181b" }}>
-              <div style={{ fontSize: 14.5, fontWeight: 800, color: "#111", marginBottom: 6 }}>🏥 Dental Clinics &amp; Healthcare Practices</div>
+              <div style={{ fontSize: 14.5, fontWeight: 800, color: "#111", marginBottom: 6, fontStyle: "italic" }}>
+                <span style={{ textDecoration: "underline" }}>Reputation management system &amp; Website development</span> (PM Electricals):
+              </div>
               <ul style={{ margin: 0, paddingLeft: 18, fontSize: 13.5, color: "#333", lineHeight: 1.65, display: "flex", flexDirection: "column", gap: 6 }}>
-                <li>Engineered 24/7 AI Voice Receptionists using Retell AI &amp; n8n to eliminate missed inbound calls outside office hours.</li>
-                <li>Integrated automated WhatsApp booking agents connected directly with real-time Google Calendar availability sync.</li>
-                <li>Reduced patient inquiry drop-offs by 90%, saving clinic staff 20+ hours per week in manual appointment booking.</li>
-              </ul>
-            </div>
-
-            {/* 3. Real Estate Agencies */}
-            <div style={{ padding: 16, borderRadius: 16, background: "#fafafa", border: "1.5px solid #18181b", boxShadow: "3px 3px 0px #18181b" }}>
-              <div style={{ fontSize: 14.5, fontWeight: 800, color: "#111", marginBottom: 6 }}>🏠 Real Estate Agencies</div>
-              <ul style={{ margin: 0, paddingLeft: 18, fontSize: 13.5, color: "#333", lineHeight: 1.65, display: "flex", flexDirection: "column", gap: 6 }}>
-                <li>Developed high-converting automated SMS &amp; WhatsApp lead response engines for instant property inquiry follow-ups.</li>
-                <li>Built outbound AI cold-calling CRM pipelines to qualify prospective property buyers automatically.</li>
-                <li>Accelerated site-visit booking rates by 3x and eliminated manual lead nurturing delays.</li>
+                <li>Manual review collection was inconsistent and missed opportunities for positive feedback.</li>
+                <li>Delivered an SEO-optimized website and integrated an automated WhatsApp review workflow directly into their CRM automatically requesting, filtering, and AI-replying to reviews the moment a job is completed.</li>
+                <li>Boosted local SEO rankings and continuously generated high-quality, 5-star Google reviews on complete autopilot.</li>
               </ul>
             </div>
           </div>
