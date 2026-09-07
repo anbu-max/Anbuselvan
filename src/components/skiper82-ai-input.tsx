@@ -470,6 +470,22 @@ async function queryGeminiApi(
         )}
       </AnimatePresence>
 
+      {/* Explicit Chat Limit Indicator */}
+      <div style={{
+        alignSelf: "flex-end",
+        fontSize: 12,
+        fontWeight: 700,
+        color: chatCount >= 3 ? "#ef4444" : "#64748b",
+        marginRight: 10,
+        marginBottom: -4,
+        display: "flex",
+        alignItems: "center",
+        gap: 4
+      }}>
+        <Sparkles size={12} />
+        {Math.max(0, 3 - chatCount)} out of 3 chats remaining
+      </div>
+
       {/* Skiper82 Floating Pill Input Component */}
       <div
         style={{
@@ -507,18 +523,6 @@ async function queryGeminiApi(
             fontFamily: "inherit",
           }}
         />
-
-        <div style={{
-          fontSize: 11,
-          fontWeight: 700,
-          color: chatCount >= 3 ? "#ef4444" : "#94a3b8",
-          background: chatCount >= 3 ? "#fee2e2" : "#f1f5f9",
-          padding: "4px 8px",
-          borderRadius: 12,
-          whiteSpace: "nowrap"
-        }}>
-          {Math.min(chatCount, 3)}/3
-        </div>
 
         {/* Morphing Arrow Action Button */}
         <motion.button
