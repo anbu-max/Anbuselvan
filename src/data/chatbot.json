@@ -1,0 +1,197 @@
+{
+  "meta": {
+    "botName": "Anbu's Portfolio Assistant",
+    "owner": "Anbu Selvan",
+    "version": "3.0.0",
+    "description": "Keyword-driven Q&A config for the portfolio chat widget at anbu-aiportfolio.vercel.app. Not a generative model — match user input against 'patterns' per intent (case-insensitive, substring/keyword match) and return the matching 'response'. Falls back to 'fallback' intent if nothing matches. Patterns are intentionally broad (typos, casual phrasing, synonyms) to cover edge cases. Responses never contain raw URLs or contact details — always direct the user to 'the contact page' in words; the chat UI itself should render that phrase as a clickable link to /contact."
+  },
+
+  "session": {
+    "maxQuestionsPerUser": 3,
+    "questionCounterNote": "Increment counter on every USER message whose intent has countsTowardLimit = true. Persist counter client-side (e.g. localStorage) per browser session.",
+    "limitReachedResponse": "You've hit the free question limit for this chat 🙂 For anything deeper — pricing, timelines, or your specific project — reach out to him through the contact page and he'll pick it up personally."
+  },
+
+  "identity": {
+    "brandLine": "I'm Anbu Selvan — a full-stack developer and AI automation specialist helping SMBs, founders, and international businesses remove operational bottlenecks and automate their workflows.",
+    "shortPitch": "I build web apps, Android apps, and AI automations — with a special focus on voice agents and WhatsApp agents that handle real conversations, bookings, and lead follow-up on autopilot.",
+    "location": "Chennai, Tamil Nadu, India — working with SMBs, founders, and international businesses."
+  },
+
+  "intents": [
+    {
+      "id": "greeting",
+      "countsTowardLimit": false,
+      "patterns": ["hi", "hii", "hiii", "hiya", "hello", "helo", "hey", "heyy", "yo", "sup", "wassup", "what's up", "good morning", "good evening", "good afternoon", "good day", "namaste", "vanakkam", "howdy"],
+      "response": "Hey there! 👋 I'm Anbu's AI assistant. Ask me about his skills, projects, clients, philosophy, or how he works. You've got 3 questions in this chat, so make them count!"
+    },
+    {
+      "id": "ai_identity",
+      "countsTowardLimit": false,
+      "patterns": ["are you ai", "are you a bot", "are you a chatbot", "are you real", "are you human", "is this ai", "is this a bot", "who made you", "who built you", "what are you", "are you anbu", "you're an ai", "you are an ai", "are you gpt", "are you chatgpt", "am i talking to a bot", "am i talking to anbu"],
+      "response": "I'm Anbu's AI assistant, built to answer quick questions about his work — not Anbu himself. For anything personal or detailed, reach out to him through the contact page and he'll respond directly."
+    },
+    {
+      "id": "who_is_anbu",
+      "countsTowardLimit": true,
+      "patterns": ["who is anbu", "who's anbu", "who are you", "about anbu", "tell me about yourself", "tell me about anbu", "about you", "your background", "introduce yourself", "what does anbu do", "what does he do", "anbu selvan", "give me an intro", "explain who anbu is"],
+      "response": "Anbu Selvan is a full-stack developer and AI automation specialist based in Chennai, Tamil Nadu, India. He works with SMBs, founders, and international businesses — building web apps, Android apps, and AI automations to remove bottlenecks and automate operational workflows. He's especially focused on voice agents and WhatsApp agents. Full story on the /me page."
+    },
+    {
+      "id": "philosophy_mindset",
+      "countsTowardLimit": true,
+      "patterns": ["philosophy", "mindset", "how do you think", "what drives you", "what motivates you", "your values", "what do you believe in", "approach to work", "how do you approach problems", "what's your outlook", "life philosophy", "work philosophy", "what keeps you going"],
+      "response": "Anbu believes consistency, curiosity, and embracing challenges are what truly shape a person — difficult problems don't discourage him, they motivate him. His mindset: 'The man who loves walking will walk further than the man who loves the destination.' He cares about building things that create real impact — work that makes someone's life easier or helps a business grow."
+    },
+    {
+      "id": "skills",
+      "countsTowardLimit": true,
+      "patterns": ["skill", "skills", "tech stack", "techstack", "technologies", "what do you know", "what can you do", "tools you use", "stack", "programming languages", "what languages", "frameworks", "what tools do you use", "qualifications", "what can he build", "capabilities", "what does he know"],
+      "response": "Anbu works across the full stack (MERN — MongoDB, Express, React, Node.js) plus SQL, and specializes in AI automation tooling: n8n, Make.com, Retell AI, Twilio, OpenAI, Claude, LangChain, Pinecone, Clay, and NotebookLM. Full breakdown on the /skills page."
+    },
+    {
+      "id": "specialization",
+      "countsTowardLimit": true,
+      "patterns": ["specialize", "specialise", "specialty", "what are you best at", "expertise", "voice agent", "voice ai", "whatsapp agent", "whatsapp bot", "what's your focus", "niche", "worked in", "worked on", "area of expertise", "what has he worked on", "what has he done before", "what industries"],
+      "response": "Anbu's specialty is voice agents and WhatsApp automations — AI systems that answer calls, handle bookings, qualify leads, and follow up automatically. He's worked on projects across real estate, healthcare, and home services, building the automation layer that removes manual bottlenecks."
+    },
+    {
+      "id": "projects_general",
+      "countsTowardLimit": true,
+      "patterns": ["project", "projects", "portfolio projects", "what have you built", "show me your work", "work samples", "case studies", "what have you made", "examples of your work", "his work", "past work", "what has anbu made"],
+      "response": "Anbu has 11+ featured projects — AI voice receptionists, a WhatsApp AI agent, an SEO blog automation pipeline, a review management system, an Android cold-calling CRM, and more. Full list with details on the /projects page. Want me to point you to a specific one?"
+    },
+    {
+      "id": "best_project",
+      "countsTowardLimit": true,
+      "patterns": [
+        "best project", "favorite project", "favourite project", "top project", "most impressive project",
+        "flagship project", "which project should i look at", "coolest project", "greatest project",
+        "standout project", "his best work", "most complex project", "hardest project", "proudest project",
+        "signature project", "which project is your favorite", "which one should i check first",
+        "top pick project", "strongest project", "which project shows your skills best"
+      ],
+      "response": "Two stand out: the AI Voice Receptionist & Outbound Site Visit Agent (24/7 property inquiry handling + automated booking via Retell AI, n8n, Twilio Voice), and the Multimodal WhatsApp AI Agent (handles text, voice notes, images, and PDFs with real-time conversation memory). Both solve real business bottlenecks end-to-end."
+    },
+    {
+      "id": "clients",
+      "countsTowardLimit": true,
+      "patterns": [
+        "client", "clients", "who has he worked with", "past clients", "who do you work with",
+        "who have you worked with", "companies you worked with", "who has anbu worked with", "customers",
+        "who hired you", "case studies with clients", "any references", "testimonials", "reviews from clients",
+        "who did he help", "businesses he worked with", "companies he's worked for", "who has used his services",
+        "who trusts him", "notable clients", "any big clients"
+      ],
+      "response": "Anbu has worked with a number of international businesses — helping them remove operational bottlenecks and automate their workflows across industries like real estate, healthcare, and home services. If you'd like specifics, reach out to him through the contact page — I'm just his AI assistant. 🙂"
+    },
+    {
+      "id": "experience",
+      "countsTowardLimit": true,
+      "patterns": [
+        "experience", "how many years", "background in", "career history", "professional experience",
+        "work history", "how long has he been doing this", "since when", "how experienced is he",
+        "years of experience", "his journey", "how did he start", "his track record", "how seasoned",
+        "how long in the industry", "years in business", "history of his work", "his career path"
+      ],
+      "response": "Since 2025, Anbu has partnered with SMB founders and international businesses to eliminate operational bottlenecks and automate customer acquisition — spanning real estate, healthcare, and home services, building everything from AI voice receptionists to full lead-response automation systems."
+    },
+    {
+      "id": "why_choose_anbu",
+      "countsTowardLimit": true,
+      "patterns": [
+        "why choose anbu", "why should i hire you", "why you", "why work with anbu", "why pick you",
+        "what makes you different", "why should i pick anbu", "what sets you apart", "why partner with anbu",
+        "why partner with him", "why go with anbu", "what makes anbu special", "why is he worth it",
+        "why should i trust you", "why not someone else", "what's unique about anbu"
+      ],
+      "response": "If you want to work with someone who puts your needs and your goals first, and only measures success by your results — then Anbu is the right person. He's not interested in just doing the work; he's focused on getting you the outcome he promised. If that's not what you're looking for, he's probably not the right fit — and that's okay too."
+    },
+    {
+      "id": "usp",
+      "countsTowardLimit": true,
+      "patterns": ["usp", "what makes your systems different", "do you offer support", "after the project", "ongoing support", "maintenance", "what happens after launch", "do you disappear after", "long term support", "does he maintain it", "post launch support"],
+      "response": "Most people build AI systems and disappear. Anbu doesn't. He builds the system and then keeps optimizing it using real data — so the longer you work with him, the better the system gets. That ongoing improvement is the whole point, not a one-time handoff."
+    },
+    {
+      "id": "guarantee",
+      "countsTowardLimit": true,
+      "patterns": [
+        "guarantee", "refund", "money back", "what if it doesn't work", "risk", "roi", "return on investment",
+        "what do i get", "what's the catch", "results guaranteed", "what if it fails", "is there a warranty",
+        "what if the automation breaks", "what happens if it doesn't perform"
+      ],
+      "response": "Before starting anything, Anbu maps out the ROI upfront — what you stand to gain with the automation in place, and what the bottleneck is currently costing you without it. If the system doesn't deliver what was promised within 60 days, he'll fix it and optimize it for you at no extra cost until it does. Reach out through the contact page for more specific details on how this applies to your project."
+    },
+    {
+      "id": "pricing",
+      "countsTowardLimit": true,
+      "patterns": ["price", "pricing", "cost", "how much", "budget", "rate", "rates", "charges", "quote", "how expensive", "affordable", "i have a project in mind", "want to work with you", "want to hire you", "i have an idea", "can you build me"],
+      "response": "Pricing depends on the scope of your project, so I can't quote a number here. If you have a specific project in mind, reach out to him through the contact page and Anbu will give you a clear quote based on what you need."
+    },
+    {
+      "id": "timeline",
+      "countsTowardLimit": true,
+      "patterns": ["timeline", "how long", "deadline", "turnaround", "delivery time", "when can you deliver", "eta", "how fast", "how quickly"],
+      "response": "Timelines vary by project scope and complexity, so it's best discussed directly. Reach out to him through the contact page and Anbu will walk you through a realistic timeline for your project."
+    },
+    {
+      "id": "never_do",
+      "countsTowardLimit": true,
+      "patterns": ["what would you never do", "what won't you do", "what will you not do", "what do you refuse to do", "what's off limits", "what don't you do", "things you avoid"],
+      "response": "Anbu won't take on work he can't stand behind — he doesn't overpromise results he hasn't mapped out, doesn't cut corners on something meant to run your business, and won't build something without first showing you the ROI and what it actually costs you to leave the bottleneck unfixed."
+    },
+    {
+      "id": "faq",
+      "countsTowardLimit": true,
+      "patterns": ["faq", "frequently asked questions", "common questions", "questions people ask", "what do people usually ask"],
+      "response": "The most common questions are about pricing, timelines, past clients, and his guarantee — feel free to ask any of those directly, or reach out to him through the contact page for anything more specific."
+    },
+    {
+      "id": "contact",
+      "countsTowardLimit": true,
+      "patterns": ["contact", "reach out", "get in touch", "email", "phone", "whatsapp", "call", "connect", "hire", "linkedin", "github link", "how do i reach", "how can i contact", "dm you", "message you", "talk to anbu", "speak to anbu"],
+      "response": "Reach out to him through the contact page and Anbu will get back to you directly."
+    },
+    {
+      "id": "location",
+      "countsTowardLimit": true,
+      "patterns": ["where are you from", "location", "based in", "which country", "time zone", "where is anbu located", "where do you live"],
+      "response": "Anbu is based in Chennai, Tamil Nadu, India, and works with SMBs, founders, and international businesses."
+    },
+    {
+      "id": "gratitude_closing",
+      "countsTowardLimit": false,
+      "patterns": ["thanks", "thank you", "thx", "ty", "bye", "goodbye", "see you", "cya", "ok thanks", "appreciate it", "sounds good", "great thanks", "cool thanks", "nice one"],
+      "response": "You're welcome! If you're ready to talk specifics, reach out to him through the contact page — Anbu would love to hear about your project. 🙌"
+    }
+  ],
+
+  "moderation": {
+    "description": "Basic profanity/inappropriate-language filter. Check user input against 'blockedTerms' (case-insensitive, word-boundary match) BEFORE running intent matching. If matched, return moderationResponse and do NOT count it toward the 3-question limit.",
+    "blockedTerms": [
+      "fuck", "fucking", "fck", "shit", "bitch", "asshole", "bastard", "dick", "pussy",
+      "slut", "whore", "cunt", "nigger", "faggot", "retard", "idiot", "stupid bot",
+      "kill yourself", "die", "hate you"
+    ],
+    "moderationResponse": "Let's keep this respectful 🙂 I'm just a simple assistant here to answer questions about Anbu's work. Try asking about his skills, projects, or how he works with clients."
+  },
+
+  "fallback": {
+    "description": "Used when no intent pattern matches and the message isn't profanity — covers off-topic questions, small talk unrelated to the portfolio, or anything the bot has no verified data on. Never invent or guess an answer.",
+    "countsTowardLimit": false,
+    "response": "I don't have a verified answer for that one — I only know what's on Anbu's portfolio (skills, projects, clients, philosophy, how he works). For anything specific or outside that, reach out to him through the contact page and Anbu will answer directly."
+  },
+
+  "matchingLogic": {
+    "steps": [
+      "1. Lowercase and trim the user's message.",
+      "2. Check against moderation.blockedTerms first (word-boundary match). If matched, return moderationResponse immediately — don't touch the question counter.",
+      "3. If session question count >= session.maxQuestionsPerUser, return session.limitReachedResponse and stop.",
+      "4. Loop through 'intents' in array order; for each, check if any of its 'patterns' appears as a substring in the message. Return the first match's 'response'.",
+      "5. If an intent matched and its countsTowardLimit is true, increment the question counter.",
+      "6. If nothing matched, return fallback.response (does not count toward the limit, so users aren't penalized for phrasing the bot doesn't understand).",
+      "7. Never expose raw URLs or contact details (email/phone) in bot response text — always say 'reach out to him through the contact page' in words, and let the chat UI render that phrase as a clickable link to /contact rather than printing the URL."
+    ]
+  }
+}

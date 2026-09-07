@@ -2,6 +2,7 @@ import React from "react";
 import { notFound } from "next/navigation";
 import { Github, ArrowLeft, Sparkles, HelpCircle, Cpu, GitMerge, Award } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 import type { Metadata } from "next";
 import FadeIn from "@/components/fade-in";
 import { PROJECTS } from "@/lib/data";
@@ -96,7 +97,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
           <ProjectCarousel images={project.images} title={project.title} autoPlayInterval={5000} />
         ) : (
           <div style={{ width: "100%", borderRadius: 20, overflow: "hidden", border: "1.5px solid #18181b", boxShadow: "4px 4px 0px #18181b", background: "#ffffff" }}>
-            <img src={project.image} alt={project.title} style={{ width: "100%", height: "auto", display: "block" }} />
+            <Image src={project.image} alt={project.title} width={1200} height={630} style={{ width: "100%", height: "auto", display: "block" }} />
           </div>
         )}
       </FadeIn>

@@ -3,6 +3,7 @@
 import React, { useEffect, useRef, useState, useCallback, useMemo } from "react";
 import { motion, useScroll, useSpring, AnimatePresence } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 import FluidSimulation from "@/components/fluid-simulation";
 import { VercelTooltipNav } from "@/components/vercel-tooltip-nav";
 
@@ -174,7 +175,7 @@ export default function Home() {
           
           {/* Avatar with 3D tilt */}
           <div ref={avatarRef} className="mobile-scroll-capture" style={{ width: 200, height: 200, marginBottom: 20, transformStyle: "preserve-3d", transition: "transform .15s ease-out", transform: `perspective(800px) rotateX(${tilt.rx}deg) rotateY(${tilt.ry}deg)` }}>
-            <img src="/img/MainAvt.png" alt="Anbu Selvan" style={{ width: "100%", height: "100%", objectFit: "contain", filter: "drop-shadow(0 16px 32px rgba(0,0,0,.15))", pointerEvents: "none", userSelect: "none" }} />
+            <Image src="/img/MainAvt.png" alt="Anbu Selvan" width={200} height={200} priority style={{ width: "100%", height: "100%", objectFit: "contain", filter: "drop-shadow(0 16px 32px rgba(0,0,0,.15))", pointerEvents: "none", userSelect: "none" }} />
           </div>
           
           {/* Skiper82 AI Input Bar & Vercel Tooltip Dock */}

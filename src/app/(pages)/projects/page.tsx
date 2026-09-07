@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import FadeIn from "@/components/fade-in";
 import { Skiper80Showcase } from "@/components/skiper80-showcase";
 
@@ -24,9 +25,9 @@ export default function ProjectsPage() {
         <div style={{ marginTop: 24, padding: 24, borderRadius: 16, background: "#fafafa", border: "1px solid #eee", textAlign: "center", display: "flex", flexDirection: "column", alignItems: "center", gap: 12 }}>
           <div className="section-para" style={{ fontWeight: 700, fontSize: 16, color: "#111" }}>These are some of my featured projects.</div>
           <div className="section-para" style={{ fontSize: 14.5, color: "#1a1a1a" }}>Do you have an automation or custom software project in mind? <b>Let&apos;s build it together!</b></div>
-          <a href="/contact" className="dl-btn" style={{ marginTop: 4, display: "inline-flex", alignItems: "center", gap: 8, padding: "10px 20px", borderRadius: 999, textDecoration: "none", fontSize: 13, fontWeight: 700 }}>
+          <Link href="/contact" className="dl-btn" style={{ marginTop: 4, display: "inline-flex", alignItems: "center", gap: 8, padding: "10px 20px", borderRadius: 999, textDecoration: "none", fontSize: 13, fontWeight: 700 }}>
             Contact Me
-          </a>
+          </Link>
         </div>
       </FadeIn>
     </div>

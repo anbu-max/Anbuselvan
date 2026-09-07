@@ -33,7 +33,7 @@ export default function MePage() {
             <MapPin size={16} color="#22c55e" />
             <div>
               <div style={{ fontSize: 10, color: "#888", fontWeight: 700, textTransform: "uppercase" }}>Location</div>
-              <div style={{ color: "#111", fontWeight: 700 }}>Kallakurichi, Tamil Nadu, India</div>
+              <div style={{ color: "#111", fontWeight: 700 }}>Chennai, Tamil Nadu, India</div>
             </div>
           </div>
         </div>

@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 
 export default function InformationPage() {
   return (
@@ -50,7 +51,7 @@ export default function InformationPage() {
         <h2>Education</h2>
         <div className="timeline">
           <div className="timeline-item">
-            <img src="/img/miet.png" alt="Mahendra Institute Logo" />
+            <Image src="/img/miet.png" alt="Mahendra Institute Logo" width={80} height={80} />
             <div>
               <h3>Mahendra Institute of Engineering and technology,Namakkal</h3>
               <p>Bachelor of Engineering in Computer Science</p>
@@ -59,7 +60,7 @@ export default function InformationPage() {
           </div>
 
           <div className="timeline-item">
-            <img src="/img/svmss.png" alt="SVMSS Logo" />
+            <Image src="/img/svmss.png" alt="SVMSS Logo" width={80} height={80} />
             <div>
               <h3>Sri Vinayaga Matric Higher Secondary School,Kallakuruchi</h3>
               <p>12th Grade</p>
@@ -68,7 +69,7 @@ export default function InformationPage() {
           </div>
 
           <div className="timeline-item">
-            <img src="/img/akt.png" alt="AKT Logo" />
+            <Image src="/img/akt.png" alt="AKT Logo" width={80} height={80} />
             <div>
               <h3>A.K.T Matric Higher Secondary School, Kallakuruchi</h3>
               <p>10th Grade</p>
@@ -81,14 +82,14 @@ export default function InformationPage() {
         <h2>Courses & Certifications</h2>
         <div className="timeline">
           <div className="timeline-item">
-            <img src="/img/PANTECH-AI.png" alt="Pantech AI Logo" />
+            <Image src="/img/PANTECH-AI.png" alt="Pantech AI Logo" width={80} height={80} />
             <div>
               <h3>Pantech AI</h3>
               <p>Full stack Web Development</p>
               <span className="date">Sep 2024 – Oct 2024</span>
               
               <div style={{ marginTop: "1.5rem" }}>
-                <img src="/img/Qspiders.jpeg" alt="Qspiders Logo" style={{ display: "block", marginBottom: "0.5rem" }} />
+                <Image src="/img/Qspiders.jpeg" alt="Qspiders Logo" width={80} height={80} style={{ display: "block", marginBottom: "0.5rem" }} />
                 <h3>Qspiders</h3>
                 <p>Java Full stack</p>
                 <span className="date">Aug 2025 – Nov 2025</span>
