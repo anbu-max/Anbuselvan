@@ -122,37 +122,9 @@ const ALL_QUESTION_PROMPTS = [
   "How to get in touch with Anbu",
 ];
 
-// Helper to get stored wish count from localStorage or cookies (v5 key to refresh limit)
-function getStoredWishCount(): number {
-  if (typeof window === "undefined") return 0;
-  try {
-    const localVal = localStorage.getItem("anbu_ai_wishes_v5");
-    if (localVal !== null) return parseInt(localVal, 10) || 0;
-
-    const match = document.cookie.match(/(?:^|; )anbu_ai_wishes_v5=([^;]*)/);
-    if (match) return parseInt(match[1], 10) || 0;
-  } catch {
-    // fallback
-  }
-  return 0;
-}
-
-// Helper to save wish count into both localStorage and cookies (30 day expiry)
-function saveStoredWishCount(count: number) {
-  if (typeof window === "undefined") return;
-  try {
-    localStorage.setItem("anbu_ai_wishes_v5", count.toString());
-    const expires = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toUTCString();
-    document.cookie = `anbu_ai_wishes_v5=${count}; expires=${expires}; path=/; SameSite=Lax`;
-  } catch {
-    // fallback
-  }
-}
-
 export function Skiper82AiInput() {
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState<Message[]>([]);
-  const [remainingWishes, setRemainingWishes] = useState(3);
   const [isThinking, setIsThinking] = useState(false);
   const [expandedThoughtId, setExpandedThoughtId] = useState<string | null>(null);
   const [activePrompts, setActivePrompts] = useState<string[]>([]);
@@ -164,10 +136,6 @@ export function Skiper82AiInput() {
     const checkMobile = () => setIsMobile(window.innerWidth < 640);
     checkMobile();
     window.addEventListener("resize", checkMobile);
-
-    const used = getStoredWishCount();
-    const remaining = Math.max(0, 3 - used);
-    setRemainingWishes(remaining);
 
     const shuffled = [...ALL_QUESTION_PROMPTS].sort(() => 0.5 - Math.random());
     setActivePrompts(shuffled.slice(0, 3));
@@ -197,8 +165,7 @@ export function Skiper82AiInput() {
 
 // Call secure Server Route Handler (/api/chat) with automatic fallback to smart JSON answering
 async function queryGeminiApi(
-  userPrompt: string,
-  isFinalWish: boolean = false
+  userPrompt: string
 ): Promise<{ text: string; links?: { label: string; url: string }[] } | null> {
   try {
     const controller = new AbortController();
@@ -207,7 +174,7 @@ async function queryGeminiApi(
     const res = await fetch("/api/chat", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ prompt: userPrompt, isFinalWish }),
+      body: JSON.stringify({ prompt: userPrompt }),
       signal: controller.signal,
     });
 
@@ -240,18 +207,12 @@ async function queryGeminiApi(
     };
 
     setMessages((prev) => [...prev, userMsg]);
-    
-    const newUsedCount = getStoredWishCount() + 1;
-    saveStoredWishCount(newUsedCount);
-    setRemainingWishes(Math.max(0, 3 - newUsedCount));
-
     setIsThinking(true);
 
     const thoughtTime = 1; // Optimized ultra-fast 1s thought timing
-    const isFinal = remainingWishes === 1; // Final wish prompt on last try
 
     // First attempt Live AI API call (OpenAI via /api/chat)
-    const geminiRes = await queryGeminiApi(query, isFinal);
+    const geminiRes = await queryGeminiApi(query);
 
     if (geminiRes) {
       const aiMsg: Message = {
@@ -312,26 +273,6 @@ async function queryGeminiApi(
         boxSizing: "border-box",
       }}
     >
-      {/* Session Wishes Badge */}
-      <div
-        style={{
-          display: "inline-flex",
-          alignItems: "center",
-          gap: 6,
-          padding: "5px 14px",
-          borderRadius: 999,
-          background: remainingWishes > 0 ? "#f0fdf4" : "#fee2e2",
-          border: `1.5px solid ${remainingWishes > 0 ? "#16a34a" : "#dc2626"}`,
-          boxShadow: "2.5px 2.5px 0px #18181b",
-          fontSize: 12,
-          fontWeight: 800,
-          color: remainingWishes > 0 ? "#15803d" : "#991b1b",
-        }}
-      >
-        <Sparkles size={14} />
-        {remainingWishes > 0 ? `⚡ ${remainingWishes} Free AI Chats Remaining` : "⚡ Limit Reached - Contact Anbu to know more"}
-      </div>
-
       {/* Chat Messages Log */}
       <AnimatePresence>
         {messages.length > 0 && (
