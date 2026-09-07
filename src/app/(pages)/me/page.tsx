@@ -73,9 +73,11 @@ export default function MePage() {
                 <span style={{ textDecoration: "underline" }}>AI Automation for Real Estate Agency</span>:
               </div>
               <ul style={{ margin: 0, paddingLeft: 18, fontSize: 13.5, color: "#333", lineHeight: 1.65, display: "flex", flexDirection: "column", gap: 6 }}>
-                <li>Manual lead follow-ups were slow and inconsistent, making it difficult to respond to and qualify leads efficiently.</li>
-                <li>Built an intelligent WhatsApp Agent to instantly capture, qualify, and book leads, plus a Voice Agent to autonomously call and confirm site visits.</li>
-                <li>Achieved 24/7 speed to lead response, reduced follow-up time by 90%, and significantly decreased site visit no-shows.</li>
+                <li>Manual lead follow-ups were slow and inconsistent, making it difficult to respond to leads efficiently, leading to high site visit no-shows.</li>
+                <li>Built a comprehensive n8n-powered automation workflow utilizing webhooks to trigger an intelligent AI Voice Agent.</li>
+                <li>The AI Voice Agent autonomously handles inbound inquiries and proactively calls prospects to verify, book, and confirm site visits in real-time.</li>
+                <li>Additionally integrated a multimodal WhatsApp Agent to instantly capture and qualify text, image, and voice note leads.</li>
+                <li>Achieved 24/7 speed-to-lead response, reduced manual follow-up time by 90%, and drastically decreased site visit no-shows.</li>
               </ul>
             </div>
 
@@ -85,9 +87,12 @@ export default function MePage() {
                 <span style={{ textDecoration: "underline" }}>Reputation management system &amp; Website development</span>:
               </div>
               <ul style={{ margin: 0, paddingLeft: 18, fontSize: 13.5, color: "#333", lineHeight: 1.65, display: "flex", flexDirection: "column", gap: 6 }}>
-                <li>Manual review collection was inconsistent and missed opportunities for positive feedback.</li>
-                <li>Delivered an SEO-optimized website and integrated an automated WhatsApp review workflow directly into their CRM automatically requesting, filtering, and AI-replying to reviews the moment a job is completed.</li>
-                <li>Boosted local SEO rankings and continuously generated high-quality, 5-star Google reviews on complete autopilot.</li>
+                <li>Manual review collection was inconsistent, causing the business to miss out on valuable positive feedback and local SEO growth.</li>
+                <li>Engineered an end-to-end automated reputation management workflow connected directly to their CRM.</li>
+                <li>The moment a job is marked as complete, the system automatically sends a personalized WhatsApp message requesting a review.</li>
+                <li>Implemented intelligent filtering to direct happy customers to Google Reviews while routing negative feedback to an internal support dashboard for immediate resolution.</li>
+                <li>Deployed an AI-powered auto-responder that drafts and publishes tailored, SEO-friendly replies to Google reviews on complete autopilot.</li>
+                <li>Delivered an SEO-optimized website, boosting local SEO rankings and continuously generating high-quality, 5-star Google reviews without any manual effort.</li>
               </ul>
             </div>
           </div>
