@@ -130,6 +130,7 @@ export function Skiper82AiInput() {
   const [activePrompts, setActivePrompts] = useState<string[]>([]);
   const [isMobile, setIsMobile] = useState(false);
   const [chatCount, setChatCount] = useState<number>(0);
+  const [shake, setShake] = useState(false);
   const chatEndRef = useRef<HTMLDivElement>(null);
 
   // Detect mobile screen width & initialize remaining wishes from localStorage / cookies on mount
@@ -203,6 +204,7 @@ async function queryGeminiApi(
 }
 
   const handleSend = async (textToSend?: string) => {
+    if (chatCount >= 3) return;
     const query = (textToSend || input).trim();
     if (!query || isThinking) return;
 
@@ -487,7 +489,15 @@ async function queryGeminiApi(
       </div>
 
       {/* Skiper82 Floating Pill Input Component */}
-      <div
+      <motion.div
+        animate={shake ? { x: [-5, 5, -5, 5, 0] } : {}}
+        transition={{ duration: 0.3 }}
+        onClick={() => {
+          if (chatCount >= 3) {
+            setShake(true);
+            setTimeout(() => setShake(false), 300);
+          }
+        }}
         style={{
           position: "relative",
           width: "100%",
@@ -500,6 +510,7 @@ async function queryGeminiApi(
           padding: "6px 8px 6px 18px",
           gap: 10,
           transition: "all 0.2s ease",
+          cursor: chatCount >= 3 ? "not-allowed" : "text",
         }}
       >
         {/* Input Text Box */}
@@ -510,39 +521,50 @@ async function queryGeminiApi(
           onKeyDown={(e) => {
             if (e.key === "Enter") handleSend();
           }}
-          disabled={isThinking}
-          placeholder="Ask AI anything about Anbu's projects, skills..."
+          disabled={isThinking || chatCount >= 3}
+          placeholder={chatCount >= 3 ? "All chats have gone, explore the page yourself and contact Anbu" : "Ask AI anything about Anbu's projects, skills..."}
           style={{
             flex: 1,
             border: "none",
             outline: "none",
             background: "transparent",
-            fontSize: 13.5,
+            fontSize: chatCount >= 3 ? 12 : 13.5,
             fontWeight: 500,
             color: "#111111",
             fontFamily: "inherit",
+            pointerEvents: chatCount >= 3 ? "none" : "auto",
+            textOverflow: "ellipsis",
+            overflow: "hidden",
+            whiteSpace: "nowrap",
           }}
         />
 
         {/* Morphing Arrow Action Button */}
         <motion.button
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
-          onClick={() => handleSend()}
-          disabled={!input.trim() || isThinking}
+          whileHover={chatCount >= 3 ? {} : { scale: 1.1 }}
+          whileTap={chatCount >= 3 ? {} : { scale: 0.9 }}
+          onClick={(e) => {
+             if (chatCount >= 3) {
+               e.preventDefault();
+               return;
+             }
+             handleSend();
+          }}
+          disabled={!input.trim() || isThinking || chatCount >= 3}
           style={{
             width: 38,
             height: 38,
             borderRadius: "50%",
-            background: input.trim() ? "#18181b" : "#f1f5f9",
-            color: input.trim() ? "#ffffff" : "#94a3b8",
+            background: input.trim() && chatCount < 3 ? "#18181b" : "#f1f5f9",
+            color: input.trim() && chatCount < 3 ? "#ffffff" : "#94a3b8",
             border: "none",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            cursor: input.trim() ? "pointer" : "default",
+            cursor: chatCount >= 3 ? "not-allowed" : (input.trim() ? "pointer" : "default"),
             transition: "all 0.2s ease",
             flexShrink: 0,
+            pointerEvents: chatCount >= 3 ? "none" : "auto",
           }}
         >
           <AnimatePresence mode="wait">
@@ -569,10 +591,10 @@ async function queryGeminiApi(
             )}
           </AnimatePresence>
         </motion.button>
-      </div>
+      </motion.div>
 
       {/* Suggested Quick Question Chips (Max 2 on Mobile, 3 on Desktop) */}
-      {activePrompts.length > 0 && (
+      {activePrompts.length > 0 && chatCount < 3 && (
         <div
           style={{
             width: "100%",
