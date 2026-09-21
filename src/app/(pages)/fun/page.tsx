@@ -39,13 +39,13 @@ export default function FunPage() {
     <div style={{ display: "flex", flexDirection: "column", gap: 18 }}>
       <FadeIn delay={0} direction="none" duration={0.5}>
         <div className="section-title" style={{ fontWeight: 800, fontSize: 18, color: "#111", margin: 0 }}>
-          🌿 Interests &amp; Beyond Code
+          🌿 Hobby
         </div>
       </FadeIn>
 
       <FadeIn delay={0.08} direction="up">
         <p style={{ fontSize: 14.5, color: "#444", fontStyle: "italic", margin: 0, borderLeft: "3.5px solid #18181b", paddingLeft: 12 }}>
-          &ldquo;As long as I am alive, there are infinite chances.&rdquo; — <b>Monkey D. Luffy</b>
+          &ldquo;Your actions create habits, habits create identity, identity is what people call their fate.&rdquo;
         </p>
       </FadeIn>
 
@@ -57,7 +57,7 @@ export default function FunPage() {
             I am genuinely obsessed with <b>reading and collecting books</b>. People feed their bodies every day, but my mind has an insatiable hunger to learn something new that never stops. Whenever I earn money, my immediate thought is always: <i>&ldquo;Which book can I buy next?&rdquo;</i>
           </p>
           <p style={paragraph}>
-            I collect, download, and devour books across <b>business, marketing, psychology, and especially philosophy</b>. Some of my favorite authors whose ideas have profoundly shaped my perspective include <b>Joseph Murphy</b>, <b>Seth Godin</b>, <b>Brian Tracy</b>, and <b>Ryan Holiday</b>. Every time I learn a powerful concept and successfully implement it into real life, that massive rush of dopamine hits—and I love that feeling.
+            I collect, download, and devour books across <b>business, marketing, neuroscience, and especially philosophy</b>. Some of my favorite authors whose ideas have profoundly shaped my perspective include <b>Joseph Murphy</b>, <b>Seth Godin</b>, <b>Brian Tracy</b>, and <b>Ryan Holiday</b>. Every time I learn a powerful concept and successfully implement it into real life, that massive rush of dopamine hits—and I love that feeling.
           </p>
           <p style={paragraph}>
             I don&apos;t just believe in becoming a better engineer; I believe in becoming a <b>better person</b>. Building a stronger character, refining my personality, and relentlessly striving to create the best version of myself is what makes life truly fulfilling.

@@ -49,7 +49,7 @@ export default function MePage() {
           </p>
 
           <p style={paragraph}>
-            I didn&apos;t stop at code. Driven by a deep fascination with <b>human psychology and marketing</b>, I devoured non-fiction books, psychology, and business strategies to learn from great minds and understand not just how systems run, but how people think and how businesses grow.
+            I didn&apos;t stop at code. Driven by a deep fascination with <b>neuroscience and marketing</b>, I devoured non-fiction books, neuroscience, and business strategies to learn from great minds and understand not just how systems run, but how people think and how businesses grow.
           </p>
 
           <p style={paragraph}>

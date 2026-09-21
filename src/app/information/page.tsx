@@ -31,7 +31,7 @@ export default function InformationPage() {
         <p>
           Yes, I’m a developer. But I’m also someone who wants to <strong>understand people as much as I understand{" "}
           code</strong>.
-          That’s why I love reading <strong>non-fiction books on psychology and personal growth</strong> they sharpen not{" "}
+          That’s why I love reading <strong>non-fiction books on neuroscience and personal growth</strong> they sharpen not{" "}
           just my technical skills,
           but also my ability to collaborate, lead, and empathize.
         </p>
