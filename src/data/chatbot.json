@@ -13,21 +13,21 @@
   },
 
   "identity": {
-    "brandLine": "I'm Anbu Selvan — a full-stack developer and AI automation specialist helping SMBs, founders, and international businesses remove operational bottlenecks and automate their workflows.",
-    "shortPitch": "I build web apps, Android apps, and AI automations — with a special focus on voice agents and WhatsApp agents that handle real conversations, bookings, and lead follow-up on autopilot.",
-    "location": "Chennai, Tamil Nadu, India — working with SMBs, founders, and international businesses."
+    "brandLine": "I'm Anbu Selvan — a full-stack developer and AI automation specialist helping SMBs, founders, and clients from the UK, US, Ireland, etc. remove operational bottlenecks and automate their workflows.",
+    "shortPitch": "I build web apps, Android apps, and AI automations — with a special focus on voice agents, WhatsApp agents, reputation management, and automated lead qualification pipelines.",
+    "location": "Chennai, Tamil Nadu, India — working with SMBs, founders, and clients from the UK, US, Ireland, etc."
   },
 
   "intents": [
     {
       "id": "greeting",
-      "countsTowardLimit": false,
+      "countsTowardLimit": true,
       "patterns": ["hi", "hii", "hiii", "hiya", "hello", "helo", "hey", "heyy", "yo", "sup", "wassup", "what's up", "good morning", "good evening", "good afternoon", "good day", "namaste", "vanakkam", "howdy"],
-      "response": "Hey there! 👋 I'm Anbu's AI assistant. Ask me about his skills, projects, clients, philosophy, or how he works. You have 3 wishes in this chat, so make them count!"
+      "response": "Hey there! 👋 I'm Anbu's AI assistant. Ask me about his skills, projects, clients, philosophy, or how he works. You have 3 chats in this session, so make them count!"
     },
     {
       "id": "ai_identity",
-      "countsTowardLimit": false,
+      "countsTowardLimit": true,
       "patterns": ["are you ai", "are you a bot", "are you a chatbot", "are you real", "are you human", "is this ai", "is this a bot", "who made you", "who built you", "what are you", "are you anbu", "you're an ai", "you are an ai", "are you gpt", "are you chatgpt", "am i talking to a bot", "am i talking to anbu"],
       "response": "I'm Anbu's AI assistant, built to answer quick questions about his work — not Anbu himself. For anything personal or detailed, reach out to him through the contact page and he'll respond directly."
     },
@@ -35,7 +35,7 @@
       "id": "who_is_anbu",
       "countsTowardLimit": true,
       "patterns": ["who is anbu", "who's anbu", "who are you", "about anbu", "tell me about yourself", "tell me about anbu", "about you", "your background", "introduce yourself", "what does anbu do", "what does he do", "anbu selvan", "give me an intro", "explain who anbu is"],
-      "response": "Anbu Selvan is a full-stack developer and AI automation specialist based in Chennai, Tamil Nadu, India. He works with SMBs, founders, and international businesses — building web apps, Android apps, and AI automations to remove bottlenecks and automate operational workflows. He's especially focused on voice agents and WhatsApp agents. Full story on the /me page."
+      "response": "Anbu Selvan is a full-stack developer and AI automation specialist based in Chennai, Tamil Nadu, India. He started coding at the age of 16 with Python and works with SMBs, founders, and clients from the UK, US, Ireland, etc. — building web apps, Android apps, and AI automations to remove bottlenecks and automate operational workflows. Full story on the /me page."
     },
     {
       "id": "philosophy_mindset",
@@ -53,7 +53,7 @@
       "id": "specialization",
       "countsTowardLimit": true,
       "patterns": ["specialize", "specialise", "specialty", "what are you best at", "expertise", "voice agent", "voice ai", "whatsapp agent", "whatsapp bot", "what's your focus", "niche", "worked in", "worked on", "area of expertise", "what has he worked on", "what has he done before", "what industries"],
-      "response": "Anbu's specialty is voice agents and WhatsApp automations — AI systems that answer calls, handle bookings, qualify leads, and follow up automatically. He's worked on projects across real estate, healthcare, and home services, building the automation layer that removes manual bottlenecks."
+      "response": "Anbu's specialty is voice agents, WhatsApp automations, reputation management systems, and AI SEO pipelines — AI systems that answer calls, handle bookings, qualify leads, and follow up automatically. He's worked on projects across real estate, healthcare, and home services, building the automation layer that removes manual bottlenecks."
     },
     {
       "id": "project_whatsapp_agent",
@@ -88,7 +88,7 @@
       "id": "projects_general",
       "countsTowardLimit": true,
       "patterns": ["project", "projects", "portfolio projects", "what have you built", "show me your work", "work samples", "case studies", "what have you made", "examples of your work", "his work", "past work", "what has anbu made"],
-      "response": "Anbu has 11+ featured projects — AI voice receptionists, a WhatsApp AI agent, an SEO blog automation pipeline, a review management system, an Android cold-calling CRM, and more. Full list with details on the /projects page. Want me to point you to a specific one?"
+      "response": "Anbu has 11+ featured projects — AI voice receptionists, a WhatsApp AI agent, an SEO blog automation pipeline, a reputation management system, an Android cold-calling CRM, and more. Full list with details on the /projects page. Want me to point you to a specific one?"
     },
     {
       "id": "clients",
@@ -100,7 +100,7 @@
         "who did he help", "businesses he worked with", "companies he's worked for", "who has used his services",
         "who trusts him", "notable clients", "any big clients"
       ],
-      "response": "Anbu has worked with a number of international businesses — helping them remove operational bottlenecks and automate their workflows across industries like real estate, healthcare, and home services. If you'd like specifics, reach out to him through the contact page — I'm just his AI assistant. 🙂"
+      "response": "Anbu has worked with business owners and clients across the UK, US, Ireland, etc. — helping them remove operational bottlenecks and automate their workflows across industries like real estate, healthcare, and home services. If you'd like specifics, reach out to him through the contact page — I'm just his AI assistant. 🙂"
     },
     {
       "id": "experience",
@@ -111,7 +111,7 @@
         "years of experience", "his journey", "how did he start", "his track record", "how seasoned",
         "how long in the industry", "years in business", "history of his work", "his career path"
       ],
-      "response": "Since 2025, Anbu has partnered with SMB founders and international businesses to eliminate operational bottlenecks and automate customer acquisition — spanning real estate, healthcare, and home services, building everything from AI voice receptionists to full lead-response automation systems."
+      "response": "Anbu started learning programming at the age of 16 with Python. Since 2025, he has partnered with SMBs, founders, and clients from the UK, US, Ireland, etc. to eliminate operational bottlenecks and automate customer acquisition — building everything from AI voice receptionists to reputation management systems and lead qualification pipelines."
     },
     {
       "id": "why_choose_anbu",
@@ -174,11 +174,11 @@
       "id": "location",
       "countsTowardLimit": true,
       "patterns": ["where are you from", "location", "based in", "which country", "time zone", "where is anbu located", "where do you live"],
-      "response": "Anbu is based in Chennai, Tamil Nadu, India, and works with SMBs, founders, and international businesses."
+      "response": "Anbu is based in Chennai, Tamil Nadu, India, and works with SMBs, founders, and clients from the UK, US, Ireland, etc."
     },
     {
       "id": "gratitude_closing",
-      "countsTowardLimit": false,
+      "countsTowardLimit": true,
       "patterns": ["thanks", "thank you", "thx", "ty", "bye", "goodbye", "see you", "cya", "ok thanks", "appreciate it", "sounds good", "great thanks", "cool thanks", "nice one"],
       "response": "You're welcome! If you're ready to talk specifics, reach out to him through the contact page — Anbu would love to hear about your project. 🙌"
     }

@@ -41,14 +41,33 @@ export default function MePage() {
 
       {/* About Me Card */}
       <FadeIn delay={0.15} direction="up">
-        <div style={{ background: "#ffffff", border: "2px solid #18181b", boxShadow: "6px 6px 0px #18181b", borderRadius: 20, padding: 22 }}>
+        <div style={{ background: "#ffffff", border: "2px solid #18181b", boxShadow: "6px 6px 0px #18181b", borderRadius: 20, padding: 22, display: "flex", flexDirection: "column", gap: 14 }}>
           <div className="section-title" style={sectionTitle}>👋 About Me</div>
+          
           <p style={paragraph}>
-            I&apos;m <b>Anbu Selvan</b> — Full-Stack &amp; AI Automation Developer working with <b>Small to Medium-Sized Businesses (SMBs)</b>, <b>Founders</b>, and <b>International Clients</b>. I specialize in building <DoodleHighlight color="#38bdf8">web applications</DoodleHighlight>, <DoodleHighlight color="#a855f7">native mobile apps (Android)</DoodleHighlight>, and <DoodleHighlight color="#f59e0b">AI Automations &amp; Agentic Workflows</DoodleHighlight> to scale operations, remove business bottlenecks, and save teams 20+ hours per week.
+            Hi, I&apos;m <b>Anbu Selvan</b>. My journey into tech began at the <b>age of 16</b> completely by accident. I started learning programming with <b>Python</b> thinking, <i>&ldquo;Why not give it a try?&rdquo;</i>, and it immediately sparked an intense curiosity. That curiosity pulled me deep into the tech world, exploring programming languages and understanding the technology behind how software actually works.
           </p>
-          <p style={{ ...paragraph, margin: 0 }}>
-            I specialize in transforming complex business bottlenecks into seamless automated systems. Working with cutting-edge platforms and tools like <b>n8n</b>, <b>Claude</b>, <b>Hermes</b>, and custom AI agents, I design production-ready solutions spanning web development, voice AI, automated lead capture, and intelligent messaging pipelines.
+
+          <p style={paragraph}>
+            I didn&apos;t stop at code. Driven by a deep fascination with <b>human psychology and marketing</b>, I devoured non-fiction books, psychology, and business strategies to learn from great minds and understand not just how systems run, but how people think and how businesses grow.
           </p>
+
+          <p style={paragraph}>
+            Today, I combine that technical depth with strategic thinking to build <DoodleHighlight color="#38bdf8">web applications</DoodleHighlight>, <DoodleHighlight color="#a855f7">native Android apps</DoodleHighlight>, and <DoodleHighlight color="#f59e0b">AI Automation Systems</DoodleHighlight>. Working with <b>SMBs</b>, <b>Founders</b>, and clients across the <b>US &amp; UK</b>, I engineer high-leverage solutions that eliminate operational friction and save teams <b>15+ hours per week</b>.
+          </p>
+
+          <p style={paragraph}>
+            Using cutting-edge platforms like <b>n8n</b>, <b>Make</b>, <b>Claude</b>, and custom AI agents, I design production-ready pipelines for <b>lead generation</b>, <b>autonomous lead qualification</b>, and <b>intelligent messaging workflows</b>.
+          </p>
+
+          <div style={{ background: "#f8fafc", border: "1.5px solid #18181b", borderRadius: 14, padding: "14px 16px", marginTop: 4 }}>
+            <p style={{ ...paragraph, fontSize: 14, color: "#111", fontWeight: 600, margin: 0, marginBottom: 8 }}>
+              Your success is my success. I make you succeed no matter what. 🚀 I believe that extraordinary outcomes are the result of compounding daily execution, radical accountability, and an obsession with solving hard problems. If you are seeking a relentless high performer with a creative mind to engineer your systems, you have found the right one.
+            </p>
+            <p style={{ ...paragraph, fontSize: 13.5, color: "#333", margin: 0, fontStyle: "italic" }}>
+              I will do whatever it takes to get you those results. Effort is the baseline, and out-competing the friction of reality is the goal. Give me a bottleneck, and I will automate it out of existence.
+            </p>
+          </div>
         </div>
       </FadeIn>
 
@@ -58,57 +77,48 @@ export default function MePage() {
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 14, flexWrap: "wrap", gap: 6 }}>
             <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
               <span style={{ fontSize: 18 }}>💼</span>
-              <span style={{ fontWeight: 800, fontSize: 16.5, color: "#111" }}>Software &amp; Automation Developer</span>
+              <span style={{ fontWeight: 800, fontSize: 16.5, color: "#111" }}>AI &amp; Automation Dev</span>
             </div>
             <span style={{ fontSize: 12, color: "#15803d", fontWeight: 800, background: "#f0fdf4", border: "1.5px solid #18181b", boxShadow: "2px 2px 0px #18181b", padding: "3px 12px", borderRadius: 999 }}>Freelance</span>
           </div>
           <p style={{ ...paragraph, fontSize: 14, color: "#333", fontWeight: 500, marginBottom: 16 }}>
-            Worked with business owners, SMB founders, and international clients to eliminate operational bottlenecks and engineer high-performance systems. I have built custom n8n systems and AI workflows engineered to drive results and automate unnecessary boring tasks. Here are some of the results we have brought to them:
+            Worked with business owners and clients (UK, US, Ireland, etc.) to eliminate operational bottlenecks and engineer high-performance systems. I build custom n8n workflows and AI automation systems engineered to drive measurable results and automate repetitive tasks. Key solutions and impact delivered for businesses:
           </p>
 
-          <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
-            {/* 1. Real Estate Agency */}
-            <div style={{ padding: 16, borderRadius: 16, background: "#fafafa", border: "1.5px solid #18181b", boxShadow: "3px 3px 0px #18181b" }}>
-              <div style={{ fontSize: 14.5, fontWeight: 800, color: "#111", marginBottom: 6, fontStyle: "italic" }}>
-                <span style={{ textDecoration: "underline" }}>AI Automation for Real Estate Agency</span>:
-              </div>
-              <ul style={{ margin: 0, paddingLeft: 18, fontSize: 13.5, color: "#333", lineHeight: 1.65, display: "flex", flexDirection: "column", gap: 6 }}>
-                <li><strong>The Bottleneck:</strong> When they first reached out, manual lead follow-ups were excruciatingly slow. They were losing up to <strong>40% of warm leads</strong> to competitors, and their site visit no-show rate was hovering around a painful <strong>35%</strong>.</li>
-                <li><strong>The Build:</strong> I engineered a comprehensive <strong>n8n-powered automation workflow</strong> utilizing webhooks to trigger an intelligent <strong>AI Voice Agent</strong> and a multimodal <strong>WhatsApp Agent</strong> (handling text, images, and voice notes).</li>
-                <li><strong>The Execution:</strong> The AI Voice Agent autonomously handles inbound inquiries and proactively calls prospects within <strong>2 minutes</strong> of form submission to verify, qualify, and book site visits in real-time.</li>
-                <li><strong>The Result:</strong> Achieved a <strong>24/7 speed-to-lead response</strong>, reduced manual sales follow-up time by <strong>92%</strong> (saving ~30 hours/week), and slashed site visit no-shows down to just <strong>8%</strong>.</li>
-              </ul>
-            </div>
-
-            {/* 2. Reputation Management */}
-            <div style={{ padding: 16, borderRadius: 16, background: "#fafafa", border: "1.5px solid #18181b", boxShadow: "3px 3px 0px #18181b" }}>
-              <div style={{ fontSize: 14.5, fontWeight: 800, color: "#111", marginBottom: 6, fontStyle: "italic" }}>
-                <span style={{ textDecoration: "underline" }}>Reputation management system &amp; Website development</span>:
-              </div>
-              <ul style={{ margin: 0, paddingLeft: 18, fontSize: 13.5, color: "#333", lineHeight: 1.65, display: "flex", flexDirection: "column", gap: 6 }}>
-                <li><strong>The Bottleneck:</strong> When the client came to me, their review collection process was non-existent. They were missing out on valuable positive feedback, leaving their Google Business profile stagnant and hurting their <strong>local SEO visibility</strong>.</li>
-                <li><strong>The Build:</strong> I delivered a high-converting, <strong>SEO-optimized website</strong> and engineered an end-to-end <strong>automated reputation management workflow</strong> connected directly to their CRM API.</li>
-                <li><strong>The Execution:</strong> The moment a job is marked as complete, the system automatically fires off a personalized WhatsApp message requesting a review. I implemented intelligent filtering to direct 4- and 5-star ratings straight to Google Reviews, while routing negative feedback to an internal support dashboard.</li>
-                <li><strong>The Result:</strong> The client saw a <strong>315% increase</strong> in 5-star Google reviews within the first 60 days. Deployed an <strong>AI-powered auto-responder</strong> that drafts tailored, SEO-friendly replies, completely eliminating manual review management while dominating local search rankings.</li>
-              </ul>
-            </div>
-          </div>
+          <ul style={{ margin: 0, paddingLeft: 18, fontSize: 13.5, color: "#333", lineHeight: 1.65, display: "flex", flexDirection: "column", gap: 12 }}>
+            <li>
+              <strong>AI Voice &amp; WhatsApp Automation:</strong> Built n8n-driven speed-to-lead pipelines triggering autonomous AI Voice and WhatsApp agents within 2 minutes of inquiry—qualifying prospects, booking site visits, slashing no-shows from 35% to 8%, and saving 30+ hours/week.
+            </li>
+            <li>
+              <strong>Reputation Management System &amp; AI SEO:</strong> Developed CRM-connected review generation automations with smart sentiment filtering, automated review responses, and AI-driven SEO strategies—driving a 315% surge in 5-star Google reviews and search visibility.
+            </li>
+            <li>
+              <strong>Custom Integrations &amp; Intelligent Pipelines:</strong> Designed end-to-end webhook architectures, automated lead routing, CRM synchronizations, and custom agentic workflows to streamline operations and eliminate manual bottlenecks.
+            </li>
+          </ul>
         </div>
       </FadeIn>
 
-      {/* My Philosophy Card */}
+      {/* Production-Ready Workflows Card */}
       <FadeIn delay={0.45} direction="up">
-        <div style={{ background: "#ffffff", border: "2px solid #18181b", boxShadow: "6px 6px 0px #18181b", borderRadius: 20, padding: 22 }}>
-          <div className="section-title" style={sectionTitle}>💡 My Philosophy</div>
-          <p style={{ ...paragraph, fontStyle: "italic", color: "#111", fontWeight: 600, borderLeft: "3.5px solid #18181b", paddingLeft: 14, margin: "10px 0 14px" }}>
-            {`"I will succeed no matter what obstacles are put in my way, because I know the obstacle is the way."`}
-          </p>
-          <p style={{ ...paragraph, fontSize: 14 }}>
-            My mindset is your success—I make you succeed no matter what. 🚀 I believe that extraordinary outcomes are the result of compounding daily execution, radical accountability, and an obsession with solving hard problems. If you are seeking a relentless high performer to engineer your systems, you have found the right one.
-          </p>
-          <p style={{ ...paragraph, fontSize: 14, margin: 0 }}>
-            I don't just write code—I build leverage. 🦅 I will do whatever it takes to get you those results. Effort is the baseline, and out-competing the friction of reality is the goal. Give me a bottleneck, and I will automate it out of existence. True engineering is about forcing outcomes through sheer, calculated persistence.
-          </p>
+        <div style={{ background: "#ffffff", border: "2px solid #18181b", boxShadow: "6px 6px 0px #18181b", borderRadius: 20, padding: 22, display: "flex", flexDirection: "column", gap: 14 }}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 8 }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+              <span style={{ fontSize: 18 }}>⚡</span>
+              <span style={{ fontWeight: 800, fontSize: 16.5, color: "#111" }}>Production-Ready Workflows</span>
+            </div>
+            <span style={{ fontSize: 12, color: "#4338ca", fontWeight: 800, background: "#e0e7ff", border: "1.5px solid #18181b", boxShadow: "2px 2px 0px #18181b", padding: "3px 12px", borderRadius: 999 }}>
+              n8n &amp; AI Pipeline
+            </span>
+          </div>
+
+          <div style={{ width: "100%", borderRadius: 14, border: "2px solid #18181b", overflow: "hidden", boxShadow: "3px 3px 0px #18181b", background: "#f8fafc" }}>
+            <img
+              src="/img/me/workfows.png"
+              alt="Production-Ready Workflows"
+              style={{ width: "100%", height: "auto", display: "block" }}
+            />
+          </div>
         </div>
       </FadeIn>
     </div>

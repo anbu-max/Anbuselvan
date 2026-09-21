@@ -133,6 +133,17 @@ export function Skiper82AiInput() {
   const [shake, setShake] = useState(false);
   const chatEndRef = useRef<HTMLDivElement>(null);
 
+  const syncChatCount = (newCount: number) => {
+    const capped = Math.min(3, Math.max(0, newCount));
+    setChatCount(capped);
+    if (typeof document !== "undefined") {
+      document.cookie = `chat_count=${capped}; path=/; max-age=${60 * 60 * 24 * 7}`;
+      try {
+        localStorage.setItem("chat_count", capped.toString());
+      } catch {}
+    }
+  };
+
   // Detect mobile screen width & initialize remaining wishes from localStorage / cookies on mount
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 640);
@@ -141,9 +152,13 @@ export function Skiper82AiInput() {
 
     if (typeof document !== "undefined") {
       const match = document.cookie.match(/(^| )chat_count=([^;]+)/);
-      if (match) {
-        setChatCount(parseInt(match[2], 10));
-      }
+      const cookieVal = match ? parseInt(match[2], 10) : 0;
+      let localVal = 0;
+      try {
+        localVal = parseInt(localStorage.getItem("chat_count") || "0", 10);
+      } catch {}
+      const initialVal = Math.min(3, Math.max(cookieVal, localVal, 0));
+      setChatCount(initialVal);
     }
 
     const shuffled = [...ALL_QUESTION_PROMPTS].sort(() => 0.5 - Math.random());
@@ -227,7 +242,9 @@ async function queryGeminiApi(
 
     if (geminiRes) {
       if (geminiRes.count !== undefined) {
-        setChatCount(geminiRes.count);
+        syncChatCount(geminiRes.count);
+      } else {
+        syncChatCount(chatCount + 1);
       }
       const aiMsg: Message = {
         id: `ai-${Date.now()}`,
@@ -244,6 +261,7 @@ async function queryGeminiApi(
 
     // Fallback: ONLY triggers if live AI query fails or takes longer than 10 seconds
     setTimeout(() => {
+      syncChatCount(chatCount + 1);
       let aiText = "I am currently experiencing high traffic or a temporary network issue. Please reach out to Anbu directly on the Connect page for any inquiries!";
       let links = [
         { label: "🤝 Connect with Anbu", url: "/contact" }

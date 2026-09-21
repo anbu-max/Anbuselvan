@@ -20,11 +20,12 @@ export async function POST(req: Request) {
     
     if (currentCount >= 3) {
       return NextResponse.json({
-        text: "You've used your 3 wishes! 🧞‍♂️ Feel free to explore the pages and contact Anbu.",
+        text: "You've used all 3 of your chats! 🙂 Feel free to explore the pages and reach out to Anbu on the contact page.",
         links: [
           { label: "🤝 Connect with Anbu", url: "/contact" },
           { label: "📁 View Projects", url: "/projects" },
         ],
+        count: 3,
       });
     }
 
@@ -36,18 +37,30 @@ export async function POST(req: Request) {
 
     const lowerPrompt = prompt.toLowerCase().trim();
 
+    // Increment chat count for every message (strictly 3 chats maximum)
+    const newCount = Math.min(3, currentCount + 1);
+    ipTracking.set(fingerprint, newCount);
+
     // 1. Moderation Check (blocked terms with word boundaries)
     const { blockedTerms, moderationResponse } = chatbotData.moderation;
     for (const term of blockedTerms) {
       const regex = new RegExp(`\\b${term}\\b`, "i");
       if (regex.test(lowerPrompt)) {
-        return NextResponse.json({
+        const modRes = NextResponse.json({
           text: moderationResponse,
           links: [
             { label: "🤝 Connect with Anbu", url: "/contact" },
             { label: "📁 View Projects", url: "/projects" },
           ],
+          count: newCount,
         });
+        modRes.cookies.set("chat_count", newCount.toString(), {
+          httpOnly: false,
+          secure: process.env.NODE_ENV === "production",
+          maxAge: 60 * 60 * 24 * 7,
+          path: "/",
+        });
+        return modRes;
       }
     }
 
@@ -66,21 +79,12 @@ export async function POST(req: Request) {
     }
 
     let responseText = "";
-    let isLimited = true;
 
     // 3. Handle Match or Fallback
     if (matchedIntent) {
       responseText = matchedIntent.response;
-      isLimited = matchedIntent.countsTowardLimit;
     } else {
       responseText = chatbotData.fallback.response;
-      isLimited = true;
-    }
-    
-    let newCount = currentCount;
-    if (isLimited) {
-      newCount += 1;
-      ipTracking.set(fingerprint, newCount);
     }
 
     const response = NextResponse.json({
@@ -92,14 +96,12 @@ export async function POST(req: Request) {
       count: newCount,
     });
 
-    if (isLimited) {
-      response.cookies.set("chat_count", newCount.toString(), {
-        httpOnly: false,
-        secure: process.env.NODE_ENV === "production",
-        maxAge: 60 * 60 * 24 * 7, // 7 days
-        path: "/",
-      });
-    }
+    response.cookies.set("chat_count", newCount.toString(), {
+      httpOnly: false,
+      secure: process.env.NODE_ENV === "production",
+      maxAge: 60 * 60 * 24 * 7, // 7 days
+      path: "/",
+    });
 
     return response;
   } catch (error) {

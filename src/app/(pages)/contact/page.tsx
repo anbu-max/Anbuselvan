@@ -19,8 +19,16 @@ export default function ContactPage() {
     // Fire confetti
     import("canvas-confetti").then(m => m.default({ particleCount: 100, spread: 80 }));
 
-    const subject = encodeURIComponent(`Message / Opportunity from ${formData.name}`);
-    const body = encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\nPhone/WhatsApp: ${formData.phone}\n\nMessage:\n${formData.message}`);
+    const subject = encodeURIComponent(`Project Inquiry / Opportunity from ${formData.name}`);
+    const body = encodeURIComponent(
+      `Hi Anbu,\n\nI came across your portfolio and would like to connect with you regarding a project / collaboration opportunity.\n\n` +
+      `Here are my details:\n` +
+      `• Name: ${formData.name}\n` +
+      `• Email: ${formData.email}\n` +
+      `• Phone/WhatsApp: ${formData.phone || "Not provided"}\n\n` +
+      `Message:\n${formData.message}\n\n` +
+      `Looking forward to hearing back from you!`
+    );
     window.location.href = `mailto:anbuselvandzz@gmail.com?subject=${subject}&body=${body}`;
   };
 
@@ -45,7 +53,7 @@ export default function ContactPage() {
             </div>
 
             {/* Resume Button */}
-            <a onClick={handleDownload} href="/resume/Anbu anbuselvan.devz@gmail.com.pdf" download="Anbu_Selvan_Resume.pdf" className="dl-btn" style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "8px 18px", borderRadius: 999, textDecoration: "none", fontSize: 12.5, fontWeight: 800, border: "2px solid #18181b", boxShadow: "3px 3px 0px #18181b", background: "#ffffff", color: "#18181b" }}>
+            <a onClick={handleDownload} href="/resume/Anbu selvan anbuselvan.devz@gmail.com.pdf" download="Anbu_Selvan_Resume.pdf" className="dl-btn" style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "8px 18px", borderRadius: 999, textDecoration: "none", fontSize: 12.5, fontWeight: 800, border: "2px solid #18181b", boxShadow: "3px 3px 0px #18181b", background: "#ffffff", color: "#18181b" }}>
               <Download size={15} /> Download Resume
             </a>
           </div>

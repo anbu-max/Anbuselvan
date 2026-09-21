@@ -398,40 +398,6 @@ export const PROJECTS: ProjectItem[] = [
     ]
   },
   {
-    slug: "todo-jwt-auth",
-    title: "Todo Security API Spring Boot, JWT & Swagger Docs",
-    desc: "Enterprise full-stack task management system built with Java Spring Boot, Spring Security, JSON Web Token (JWT) authentication, PostgreSQL DB, and interactive Swagger UI.",
-    problem: "Web applications require robust role-based access control (RBAC), secure stateless session management, and self-documenting REST endpoints to prevent unauthorized data access.",
-    action: "Developed a production-grade backend API using Java Spring Boot 3, Spring Security 6, and JWT authentication tokens. Built stateless token-based authorization filters, BCrypt password hashing, pagination for task lists, PostgreSQL Mapped Entities via JPA/Hibernate, and integrated Swagger OpenAPI UI for interactive endpoint testing.",
-    result: "Achieved 100% test coverage for authentication filters, zero security vulnerabilities, and comprehensive OpenAPI documentation for frontend integration.",
-    github: "https://github.com/anbu-max/TodoJwtAuth",
-    tags: ["Spring Boot", "Spring Security", "JWT Auth", "PostgreSQL", "Swagger UI", "BCrypt"],
-    impact: "Learned Auth & Security Patterns",
-    impactType: "learned" as const,
-    image: "/img/projects/todo.png",
-    builtFor: "Enterprise Developers & Security Engineers",
-    whatItIs: "Todo Security API is a full-stack backend application demonstrating production-grade security architecture. It handles user registration, secure login via JWT tokens, role-based task management, pagination, and automated Swagger API documentation.",
-    targetAudience: [
-      "Backend Java Developers",
-      "Security Engineers",
-      "Full-Stack Software Architects"
-    ],
-    techStackDetails: [
-      { category: "Backend Framework", tool: "Java & Spring Boot", usage: "Enterprise REST API backend architecture with JPA/Hibernate data layer." },
-      { category: "Security & Authentication", tool: "Spring Security & JWT", usage: "Stateless JSON Web Token authentication filters with BCrypt password hashing." },
-      { category: "Database & Documentation", tool: "PostgreSQL & Swagger UI", usage: "Relational persistence with interactive OpenAPI endpoint testing interface." }
-    ],
-    features: [
-      { title: "Stateless JWT Authentication", desc: "Issues secure JSON Web Tokens upon authentication for stateless API request authorization." },
-      { title: "Role-Based Access Control (RBAC)", desc: "Enforces strict permissions between standard users and system administrators." },
-      { title: "Swagger OpenAPI Documentation", desc: "Interactive Swagger UI for live testing of authentication, task creation, and pagination endpoints." }
-    ],
-    benefits: [
-      { title: "Production-Grade Security", desc: "Protects API endpoints with robust JWT verification and BCrypt password encryption." },
-      { title: "Self-Documenting REST API", desc: "Swagger OpenAPI UI makes integration seamless for frontend developers." }
-    ]
-  },
-  {
     slug: "url-shortener",
     title: "Scalable URL Shortener Spring Boot, Redis & Docker",
     desc: "High-throughput link shortener microservice engineered with Spring Boot, Redis caching, MongoDB TTL indices, Docker containerization & Nginx reverse proxy.",
