@@ -41,6 +41,11 @@ const HOBBY_ITEMS: HobbyCardItem[] = [
     src: "/img/hobby/coffeshop.jpeg",
     tag: "Vibes & Flow",
   },
+  {
+    id: "reading",
+    src: "/img/hobby/bookz.jpeg",
+    tag: "Reading & Learning",
+  },
 ];
 
 export default function HobbyCardStack() {
