@@ -239,6 +239,7 @@ export default function HobbyCardStack() {
                 damping: 24,
               }}
               onClick={isFront ? handleNext : undefined}
+              onContextMenu={(e) => e.preventDefault()}
               style={{
                 position: "absolute",
                 top: 4,
@@ -260,6 +261,8 @@ export default function HobbyCardStack() {
               <img
                 src={encodeURI(item.src)}
                 alt={item.tag}
+                onContextMenu={(e) => e.preventDefault()}
+                draggable={false}
                 style={{
                   width: "100%",
                   height: "100%",
