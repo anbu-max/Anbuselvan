@@ -268,11 +268,7 @@ export default function MePage() {
               marginBottom: 16,
             }}
           >
-            Worked with business owners and clients (UK, US, Ireland, etc.) to
-            eliminate operational bottlenecks and engineer high-performance
-            systems. I build custom n8n workflows and AI automation systems
-            engineered to drive measurable results and automate repetitive
-            tasks. Key solutions and impact delivered for businesses:
+            Delivered exceptional results for ambitious business owners across the world by identifying and eliminating operational bottlenecks. By designing production-ready AI systems, I replace manual, repetitive admin work with autonomous agents—transforming operations into streamlined systems that drive measurable ROI, increase revenue, and save teams hundreds of hours. Key impact delivered for businesses:
           </p>
 
           <ul
@@ -401,6 +397,7 @@ export default function MePage() {
               style={{
                 width: "100%",
                 height: "auto",
+                objectFit: "contain",
                 display: "block",
                 transition: "opacity 0.3s ease-in-out",
               }}
