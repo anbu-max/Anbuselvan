@@ -72,6 +72,48 @@ export const PROJECTS: ProjectItem[] = [
     ]
   },
   {
+    slug: "viral-hunter",
+    title: "Viral Hunter Social Media Hook & Trend Intelligence",
+    desc: "AI-powered social media trend scanner & hook generator using Apify and n8n to automatically curate top viral content, extract hooks, and output repurposed video scripts directly into Google Sheets.",
+    problem: "Content creators waste 2 to 4 hours every day scrolling social feeds trying to find trending hooks and high-retention video ideas in their niche.",
+    action: "Developed Viral Hunter — an automated content intelligence tool using Apify scrapers, n8n workflows, and OpenAI GPT-4o. It scans niche content across social feeds daily, identifies why videos went viral over the past week, extracts opening hooks and scripts, and exports them to Google Sheets—complete with a repurposed format tailored for your niche.",
+    result: "Saves 2 to 4 hours of daily manual scrolling by auto-curating viral hooks and generating repurposed scripts directly in Google Sheets.",
+    github: "#",
+    tags: ["Apify API", "n8n Workflow", "OpenAI GPT-4o", "Google Sheets API", "Trend Analytics"],
+    impact: "Automated Daily Research",
+    impactType: "impact" as const,
+    image: "/Project images/Viral hunter/image.png",
+    builtFor: "Content Creators, Social Media Managers & Niche Publishers",
+    whatItIs: "Viral Hunter is an automated content research assistant. Instead of spending 2–4 hours scrolling social feeds every day trying to find what's going viral, Viral Hunter uses Apify and n8n to automatically scrape top niche videos, analyze why they performed over the last week, extract the 3-second hooks and scripts, and write repurposed versions straight into a Google Sheet for your niche.",
+    targetAudience: [
+      "Short-Form Video Creators (TikTok / Reels / Shorts)",
+      "Social Media Growth Managers",
+      "Niche Content Publishers"
+    ],
+    n8nNodes: [
+      { name: "Apify Social Feed Trigger Node", type: "Trigger Node", purpose: "Triggers daily web scrapers via Apify API to fetch trending niche videos." },
+      { name: "Viral Hook & Engagement Analyzer Node", type: "AI Node", purpose: "Analyzes why content went viral over the past week and extracts opening 3-second visual & audio hooks." },
+      { name: "GPT-4o Repurposed Script Generator Node", type: "AI Chain", purpose: "Generates updated, niche-customized video scripts and hook variations." },
+      { name: "Google Sheets Export Node", type: "Integration Node", purpose: "Exports curated viral hooks, original transcripts, and repurposed scripts into Google Sheets." }
+    ],
+    techStackDetails: [
+      { category: "Trend Scraping Engine", tool: "Apify API", usage: "Scrapes trending niche video performance, view counts, and engagement velocity." },
+      { category: "Workflow Orchestrator", tool: "n8n Workflow", usage: "Automates daily scraping schedules, AI analysis, and Google Sheets exports." },
+      { category: "AI Script Generator", tool: "OpenAI GPT-4o", usage: "Transforms viral hook patterns into updated, repurposed short-form scripts." },
+      { category: "Output & Storage", tool: "Google Sheets API", usage: "Stores daily viral digests, original hooks, and repurposed scripts for quick creator access." }
+    ],
+    features: [
+      { title: "Automated Apify Niche Scraper", desc: "Scrapes top-performing videos in your niche daily without manual feed scrolling." },
+      { title: "Weekly Viral Analysis & Hook Extraction", desc: "Analyzes why content went viral over the past week and extracts high-retention 3-second hooks." },
+      { title: "Direct Google Sheets Export", desc: "Organizes hooks, transcripts, and metadata cleanly in Google Sheets." },
+      { title: "Repurposed Script Format", desc: "Provides updated script versions customized specifically for your niche branding." }
+    ],
+    benefits: [
+      { title: "Saves 2–4 Hours Daily", desc: "Eliminates endless scrolling by delivering ready-to-use viral hooks and scripts directly to Google Sheets." },
+      { title: "Proven Viral Hooks", desc: "Builds video scripts on verified, high-retention opening hooks for maximum engagement." }
+    ]
+  },
+  {
     slug: "android-twilio-cold-calls",
     title: "Ballz Android Cold Call CRM & Power Dialer",
     desc: "Native Android application built with Jetpack Compose & Twilio Voice SDK featuring instant CSV prospect import, live contact & business name dialing display, pie/bar chart sales analytics, and Value Per Dial ($) tracking.",
@@ -319,48 +361,6 @@ export const PROJECTS: ProjectItem[] = [
     benefits: [
       { title: "300% Boost in 5-Star Reviews", desc: "Drives satisfied customers directly to Google Business Profile, lifting local SEO search rank." },
       { title: "Protection Against Bad Public Reviews", desc: "Catches negative customer experiences privately so managers can resolve issues proactively." }
-    ]
-  },
-  {
-    slug: "viral-hunter",
-    title: "Viral Hunter Social Media Hook & Trend Intelligence",
-    desc: "AI-powered social media trend scanner & hook generator using Apify and n8n to automatically curate top viral content, extract hooks, and output repurposed video scripts directly into Google Sheets.",
-    problem: "Content creators waste 2 to 4 hours every day scrolling social feeds trying to find trending hooks and high-retention video ideas in their niche.",
-    action: "Developed Viral Hunter — an automated content intelligence tool using Apify scrapers, n8n workflows, and OpenAI GPT-4o. It scans niche content across social feeds daily, identifies why videos went viral over the past week, extracts opening hooks and scripts, and exports them to Google Sheets—complete with a repurposed format tailored for your niche.",
-    result: "Saves 2 to 4 hours of daily manual scrolling by auto-curating viral hooks and generating repurposed scripts directly in Google Sheets.",
-    github: "#",
-    tags: ["Apify API", "n8n Workflow", "OpenAI GPT-4o", "Google Sheets API", "Trend Analytics"],
-    impact: "Automated Daily Research",
-    impactType: "impact" as const,
-    image: "/Project images/Viral hunter/image.png",
-    builtFor: "Content Creators, Social Media Managers & Niche Publishers",
-    whatItIs: "Viral Hunter is an automated content research assistant. Instead of spending 2–4 hours scrolling social feeds every day trying to find what's going viral, Viral Hunter uses Apify and n8n to automatically scrape top niche videos, analyze why they performed over the last week, extract the 3-second hooks and scripts, and write repurposed versions straight into a Google Sheet for your niche.",
-    targetAudience: [
-      "Short-Form Video Creators (TikTok / Reels / Shorts)",
-      "Social Media Growth Managers",
-      "Niche Content Publishers"
-    ],
-    n8nNodes: [
-      { name: "Apify Social Feed Trigger Node", type: "Trigger Node", purpose: "Triggers daily web scrapers via Apify API to fetch trending niche videos." },
-      { name: "Viral Hook & Engagement Analyzer Node", type: "AI Node", purpose: "Analyzes why content went viral over the past week and extracts opening 3-second visual & audio hooks." },
-      { name: "GPT-4o Repurposed Script Generator Node", type: "AI Chain", purpose: "Generates updated, niche-customized video scripts and hook variations." },
-      { name: "Google Sheets Export Node", type: "Integration Node", purpose: "Exports curated viral hooks, original transcripts, and repurposed scripts into Google Sheets." }
-    ],
-    techStackDetails: [
-      { category: "Trend Scraping Engine", tool: "Apify API", usage: "Scrapes trending niche video performance, view counts, and engagement velocity." },
-      { category: "Workflow Orchestrator", tool: "n8n Workflow", usage: "Automates daily scraping schedules, AI analysis, and Google Sheets exports." },
-      { category: "AI Script Generator", tool: "OpenAI GPT-4o", usage: "Transforms viral hook patterns into updated, repurposed short-form scripts." },
-      { category: "Output & Storage", tool: "Google Sheets API", usage: "Stores daily viral digests, original hooks, and repurposed scripts for quick creator access." }
-    ],
-    features: [
-      { title: "Automated Apify Niche Scraper", desc: "Scrapes top-performing videos in your niche daily without manual feed scrolling." },
-      { title: "Weekly Viral Analysis & Hook Extraction", desc: "Analyzes why content went viral over the past week and extracts high-retention 3-second hooks." },
-      { title: "Direct Google Sheets Export", desc: "Organizes hooks, transcripts, and metadata cleanly in Google Sheets." },
-      { title: "Repurposed Script Format", desc: "Provides updated script versions customized specifically for your niche branding." }
-    ],
-    benefits: [
-      { title: "Saves 2–4 Hours Daily", desc: "Eliminates endless scrolling by delivering ready-to-use viral hooks and scripts directly to Google Sheets." },
-      { title: "Proven Viral Hooks", desc: "Builds video scripts on verified, high-retention opening hooks for maximum engagement." }
     ]
   },
   {

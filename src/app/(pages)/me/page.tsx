@@ -117,39 +117,34 @@ export default function MePage() {
           </div>
 
           <p style={paragraph}>
-            Hey, I&apos;m <b>Anbu Selvan</b>. Got into tech around{" "}
-            <b>age 16</b>—um, honestly just pure curiosity. Wanted to see how
-            software actually ticks under the hood, and yeah, got completely
-            hooked building and breaking things.
+            Hey, I&apos;m <b>Anbu Selvan</b>. Got into tech around <b>age 16</b>
+            —um, honestly just pure curiosity. Wanted to see how software
+            actually ticks under the hood, and yeah, got completely hooked
+            building and breaking things.
           </p>
 
           <p style={paragraph}>
-            Didn&apos;t stop at code either. I got super interested in how people
-            think and how businesses actually make money, so I spent late nights
-            reading up on <b>neuroscience, psychology, and marketing</b>. Code is
-            cool, but code that solves human problems and drives real growth?
-            That&apos;s the real win.
+            I didn&apos;t stop at code either. The code is good, but
+            distribution is what really matters right now. Before that,
+            psychology and marketing also interested me, so I learned how
+            marketing and sales actually work. I&apos;ve always been pretty
+            ambitious, so I want to learn every bit of how businesses grow.
           </p>
 
           <p style={paragraph}>
-            Today, I blend that tech foundation with growth strategy to build{" "}
-            <DoodleHighlight color="#38bdf8">web applications</DoodleHighlight>,{" "}
-            <DoodleHighlight color="#a855f7">
-              native Android apps
-            </DoodleHighlight>
-            , and{" "}
+            Today, I focus on building{" "}
             <DoodleHighlight color="#f59e0b">
-              AI Automation Systems
+              automation and AI systems
             </DoodleHighlight>
-            . Working with founders, SMBs, and clients across the{" "}
-            <b>US &amp; UK</b>, I build high-leverage workflows that eliminate
-            manual friction and save teams <b>15+ hours per week</b>.
+            . I work with founders and people approaching us to eliminate their
+            manual work, engineering high-leverage workflows that eliminate
+            operational friction and save teams <b>15+ hours per week</b>.
           </p>
 
           <p style={paragraph}>
-            My go-to stack is <b>n8n</b>, <b>Make</b>, <b>Claude</b>, and custom
-            AI agents—designing production-ready pipelines for lead gen, instant
-            lead qualification, and automated WhatsApp/Voice follow-ups.
+            My go-to stack is <b>n8n</b>, <b>Claude</b>, and custom AI
+            agents—designing production-ready pipelines for lead generation,
+            autonomous lead qualification, and automated messaging workflows.
           </p>
 
           <div
@@ -194,32 +189,26 @@ export default function MePage() {
             style={{
               display: "flex",
               justifyContent: "space-between",
-              alignItems: "center",
-              marginBottom: 14,
+              alignItems: "flex-start",
+              marginBottom: 8,
               flexWrap: "wrap",
               gap: 6,
             }}
           >
-            <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-              <span style={{ fontSize: 18 }}>💼</span>
-              <span style={{ fontWeight: 800, fontSize: 16.5, color: "#111" }}>
-                AI &amp; Automation Dev
-              </span>
+            <div>
+              <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                <span style={{ fontSize: 18 }}>💼</span>
+                <span style={{ fontWeight: 800, fontSize: 16.5, color: "#111" }}>
+                  GTM Intern
+                </span>
+                <span style={{ fontSize: 14, fontWeight: 700, color: "#4f46e5" }}>
+                  @ Tenlyr
+                </span>
+              </div>
+              <div style={{ fontSize: 12.5, color: "#666", fontWeight: 600, marginTop: 2, marginLeft: 26 }}>
+                Oct 2026 – Present
+              </div>
             </div>
-            <span
-              style={{
-                fontSize: 12,
-                color: "#15803d",
-                fontWeight: 800,
-                background: "#f0fdf4",
-                border: "1.5px solid #18181b",
-                boxShadow: "2px 2px 0px #18181b",
-                padding: "3px 12px",
-                borderRadius: 999,
-              }}
-            >
-              Freelance
-            </span>
           </div>
           <p
             style={{
@@ -227,10 +216,11 @@ export default function MePage() {
               fontSize: 14,
               color: "#333",
               fontWeight: 500,
-              marginBottom: 16,
+              marginBottom: 12,
+              marginTop: 6,
             }}
           >
-            Delivered exceptional results for ambitious business owners across the world by identifying and eliminating operational bottlenecks. By designing production-ready AI systems, I replace manual, repetitive admin work with autonomous agents—transforming operations into streamlined systems that drive measurable ROI, increase revenue, and save teams hundreds of hours. Key impact delivered for businesses:
+            Building automated systems that eliminate operational bottlenecks and help teams move faster. Connected scrapers, AI agents, and webhooks to remove manual work so the team can focus directly on growth:
           </p>
 
           <ul
@@ -242,28 +232,30 @@ export default function MePage() {
               lineHeight: 1.65,
               display: "flex",
               flexDirection: "column",
-              gap: 12,
+              gap: 10,
             }}
           >
             <li>
-              <strong>AI Voice &amp; WhatsApp Automation:</strong> Built
-              n8n-driven speed-to-lead pipelines triggering autonomous AI Voice
-              and WhatsApp agents within 2 minutes of inquiry—qualifying
-              prospects, booking site visits, slashing no-shows from 35% to 8%,
-              and saving 30+ hours/week.
+              <strong>Automated Prospect Discovery &amp; Research:</strong> Built
+              automated workflows using Apify and AI agents to track business
+              trends and source verified decision-makers, saving 15+ hours of
+              manual research every week.
             </li>
             <li>
-              <strong>Reputation Management System &amp; AI SEO:</strong>{" "}
-              Developed CRM-connected review generation automations with smart
-              sentiment filtering, automated review responses, and AI-driven SEO
-              strategies—driving a 315% surge in 5-star Google reviews and
-              search visibility.
+              <strong>Speed-to-Lead &amp; Inbound Routing:</strong> Engineered
+              n8n-driven voice and messaging pipelines that trigger autonomous AI
+              agents within minutes of an inquiry—qualifying leads, handling
+              FAQs, and booking meetings automatically.
             </li>
             <li>
-              <strong>Custom Integrations &amp; Intelligent Pipelines:</strong>{" "}
-              Designed end-to-end webhook architectures, automated lead routing,
-              CRM synchronizations, and custom agentic workflows to streamline
-              operations and eliminate manual bottlenecks.
+              <strong>Workflow &amp; Database Integrations:</strong> Connected
+              end-to-end webhook architectures across Airtable, Supabase, and
+              internal tools to route lead data seamlessly and eliminate manual
+              copy-pasting.
+            </li>
+            <li>
+              <strong>Rapid Prototyping:</strong> Leveraged Claude Code, n8n,
+              and MCP to rapidly prototype and deploy AI-driven business workflows.
             </li>
           </ul>
         </div>

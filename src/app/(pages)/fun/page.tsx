@@ -52,15 +52,12 @@ export default function FunPage() {
       {/* 1. Books & Philosophy Card */}
       <FadeIn delay={0.15} direction="up">
         <div style={cardStyle}>
-          <div style={cardTitle}>📚 The Book Obsession &amp; Philosophy</div>
+          <div style={cardTitle}>📚 Reading &amp; Philosophy</div>
           <p style={paragraph}>
-            I am genuinely obsessed with <b>reading and collecting books</b>. People feed their bodies every day, but my mind has an insatiable hunger to learn something new that never stops. Whenever I earn money, my immediate thought is always: <i>&ldquo;Which book can I buy next?&rdquo;</i>
+            I read a lot—mostly around <b>business, consumer psychology, marketing, and philosophy</b>. Authors like <b>Seth Godin</b>, <b>Ryan Holiday</b>, and <b>Brian Tracy</b> have had a big impact on how I think.
           </p>
           <p style={paragraph}>
-            I collect, download, and devour books across <b>business, marketing, neuroscience, and especially philosophy</b>. Some of my favorite authors whose ideas have profoundly shaped my perspective include <b>Joseph Murphy</b>, <b>Seth Godin</b>, <b>Brian Tracy</b>, and <b>Ryan Holiday</b>. Every time I learn a powerful concept and successfully implement it into real life, that massive rush of dopamine hits—and I love that feeling.
-          </p>
-          <p style={paragraph}>
-            I don&apos;t just believe in becoming a better engineer; I believe in becoming a <b>better person</b>. Building a stronger character, refining my personality, and relentlessly striving to create the best version of myself is what makes life truly fulfilling.
+            For me, reading isn&apos;t just passive theory. It&apos;s about finding practical concepts and immediately testing them out in real life and workflows. Learning how people think, what motivates decisions, and how great systems are built is what genuinely fascinates me.
           </p>
         </div>
       </FadeIn>
@@ -68,12 +65,12 @@ export default function FunPage() {
       {/* 2. Competitive Gaming Card */}
       <FadeIn delay={0.25} direction="up">
         <div style={cardStyle}>
-          <div style={cardTitle}>⚔️ Competitive Gaming &amp; Strategy</div>
+          <div style={cardTitle}>⚔️ Strategy &amp; Competitive Gaming</div>
           <p style={paragraph}>
-            When I game, I gravitate strictly toward <b>high-stakes competitive games</b>. While story-driven games have their place, competitive pressure is what truly excites me. I love the intensity, the sharp cognitive focus required, and the thrill of out-thinking opponents under pressure.
+            When I game, I play <b>tactical and competitive games</b>. I enjoy the fast decision-making, resource management under pressure, and the strategy of out-positioning the other team.
           </p>
           <p style={paragraph}>
-            To me, competitive gaming isn&apos;t just about raw speed or power—it&apos;s about <b>positioning, tactics, and maximizing every resource at your disposal</b>. In games (and in life), the playing field isn&apos;t always fair; opponents might have advantages or pay-to-win perks. You can&apos;t complain. You adapt, out-play the friction, and force a win regardless.
+            It&apos;s great mental exercise: stay calm, read the board, adapt quickly to whatever comes up, and execute clean plays.
           </p>
         </div>
       </FadeIn>
@@ -81,12 +78,12 @@ export default function FunPage() {
       {/* 3. Personal & Cat Card */}
       <FadeIn delay={0.35} direction="up">
         <div style={cardStyle}>
-          <div style={cardTitle}>🐾 Scar &amp; Anime</div>
+          <div style={cardTitle}>🐾 Scar &amp; Downtime</div>
           <p style={paragraph}>
-            When I step away from the keyboard, you&apos;ll usually find me hanging out with my cat, <b>Scar</b>. 🐈 He loves to remind me that I&apos;m living in <em>his</em> house and that I&apos;m essentially his personal assistant.
+            When I step away from the keyboard, you&apos;ll usually find me hanging out with my cat, <b>Scar</b> 🐈 (who firmly believes he&apos;s the CEO of the house and I&apos;m just his assistant).
           </p>
           <p style={paragraph}>
-            I also love getting lost in <b>anime</b> adventures and epic storylines 🎌, as well as taking <b>long walks</b> 🚶‍♂️ to clear my head and let product ideas and technical solutions connect in the background.
+            I also enjoy watching <b>anime</b> 🎌 and taking <b>long walks</b> 🚶‍♂️ to disconnect, reset, and let new workflow ideas connect in the background.
           </p>
           
           <button
