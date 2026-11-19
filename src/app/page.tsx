@@ -33,10 +33,9 @@ export default function Home() {
 
   const roles = useMemo(
     () => [
-      "full-stack dev",
       "AI automation guy",
+      "GTM guy",
       "AI guy",
-      "AI SEO guy",
     ],
     []
   );

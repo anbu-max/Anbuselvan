@@ -54,22 +54,6 @@ export default function MePage() {
         </>
       ),
     },
-    {
-      image: "/img/me/ai seo results.jpeg",
-      title: "Client Results",
-      icon: "📈",
-      badge: "AI Automation",
-      badgeColor: "#15803d",
-      badgeBg: "#f0fdf4",
-      description: (
-        <>
-          Using <DoodleHighlight color="#38bdf8">automated SEO</DoodleHighlight>{" "}
-          and <DoodleHighlight color="#f59e0b">AI automation</DoodleHighlight>,
-          I have got these results for my clients, implementing automation
-          systems to get more visitors and bookings for their site.
-        </>
-      ),
-    },
   ];
 
   const [currentSlideIndex, setCurrentSlideIndex] = React.useState(0);
@@ -133,24 +117,22 @@ export default function MePage() {
           </div>
 
           <p style={paragraph}>
-            Hi, I&apos;m <b>Anbu Selvan</b>. My journey into tech began at the{" "}
-            <b>age of 16</b> completely by accident. This sparked an intense
-            curiosity that pulled me deep into the tech world, exploring
-            programming languages and understanding the technology behind how
-            software actually works.
+            Hey, I&apos;m <b>Anbu Selvan</b>. Got into tech around{" "}
+            <b>age 16</b>—um, honestly just pure curiosity. Wanted to see how
+            software actually ticks under the hood, and yeah, got completely
+            hooked building and breaking things.
           </p>
 
           <p style={paragraph}>
-            I didn&apos;t stop at code. Driven by a deep fascination with{" "}
-            <b>neuroscience and marketing</b>, I devoured non-fiction books,
-            neuroscience, and business strategies to learn from great minds and
-            understand not just how systems run, but how people think and how
-            businesses grow.
+            Didn&apos;t stop at code either. I got super interested in how people
+            think and how businesses actually make money, so I spent late nights
+            reading up on <b>neuroscience, psychology, and marketing</b>. Code is
+            cool, but code that solves human problems and drives real growth?
+            That&apos;s the real win.
           </p>
 
           <p style={paragraph}>
-            Today, I combine that technical depth with strategic thinking to
-            build{" "}
+            Today, I blend that tech foundation with growth strategy to build{" "}
             <DoodleHighlight color="#38bdf8">web applications</DoodleHighlight>,{" "}
             <DoodleHighlight color="#a855f7">
               native Android apps
@@ -159,18 +141,15 @@ export default function MePage() {
             <DoodleHighlight color="#f59e0b">
               AI Automation Systems
             </DoodleHighlight>
-            . Working with <b>SMBs</b>, <b>Founders</b>, and clients across the{" "}
-            <b>US &amp; UK</b>, I engineer high-leverage solutions that
-            eliminate operational friction and save teams{" "}
-            <b>15+ hours per week</b>.
+            . Working with founders, SMBs, and clients across the{" "}
+            <b>US &amp; UK</b>, I build high-leverage workflows that eliminate
+            manual friction and save teams <b>15+ hours per week</b>.
           </p>
 
           <p style={paragraph}>
-            Using cutting-edge platforms like <b>n8n</b>, <b>Make</b>,{" "}
-            <b>Claude</b>, and custom AI agents, I design production-ready
-            pipelines for <b>lead generation</b>,{" "}
-            <b>autonomous lead qualification</b>, and{" "}
-            <b>intelligent messaging workflows</b>.
+            My go-to stack is <b>n8n</b>, <b>Make</b>, <b>Claude</b>, and custom
+            AI agents—designing production-ready pipelines for lead gen, instant
+            lead qualification, and automated WhatsApp/Voice follow-ups.
           </p>
 
           <div
@@ -189,29 +168,12 @@ export default function MePage() {
                 color: "#111",
                 fontWeight: 600,
                 margin: 0,
-                marginBottom: 8,
               }}
             >
-              Your success is my success. I make you succeed no matter what. 🚀
-              I believe that extraordinary outcomes are the result of
-              compounding daily execution, radical accountability, and an
-              obsession with solving hard problems. If you are seeking a
-              relentless high performer with a creative mind to engineer your
-              systems, you have found the right one.
-            </p>
-            <p
-              style={{
-                ...paragraph,
-                fontSize: 13.5,
-                color: "#333",
-                margin: 0,
-                fontStyle: "italic",
-              }}
-            >
-              I will do whatever it takes to get you those results. Effort is
-              the baseline, and out-competing the friction of reality is the
-              goal. Give me a bottleneck, and I will automate it out of
-              existence.
+              Bottom line? Hand me a messy operational bottleneck or a
+              mind-numbing manual task, and I&apos;ll automate it out of
+              existence. No fluff, no excuses—just systems that work. Got a
+              bottleneck? Gotcha covered.
             </p>
           </div>
         </div>
